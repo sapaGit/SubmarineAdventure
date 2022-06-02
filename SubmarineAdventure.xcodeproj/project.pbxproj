@@ -21,6 +21,7 @@
 		A00A09762848BB0800AC6919 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09752848BB0800AC6919 /* User.swift */; };
 		A00A09782848D17600AC6919 /* Shark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09772848D17600AC6919 /* Shark.swift */; };
 		A00A097B2848D2E400AC6919 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A097A2848D2E400AC6919 /* Ship.swift */; };
+		A00A09812848E22600AC6919 /* Submarine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09802848E22600AC6919 /* Submarine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		A00A09752848BB0800AC6919 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A00A09772848D17600AC6919 /* Shark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shark.swift; sourceTree = "<group>"; };
 		A00A097A2848D2E400AC6919 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
+		A00A09802848E22600AC6919 /* Submarine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submarine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				A00A09772848D17600AC6919 /* Shark.swift */,
 				A00A097A2848D2E400AC6919 /* Ship.swift */,
 				A00A09752848BB0800AC6919 /* User.swift */,
+				A00A09802848E22600AC6919 /* Submarine.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 				A00A09782848D17600AC6919 /* Shark.swift in Sources */,
 				A00A09722848B63900AC6919 /* UIVeiw+extension.swift in Sources */,
 				A00A095528489C1600AC6919 /* AppDelegate.swift in Sources */,
+				A00A09812848E22600AC6919 /* Submarine.swift in Sources */,
 				A00A09692848A2DA00AC6919 /* MenuViewController.swift in Sources */,
 				A00A095728489C1600AC6919 /* SceneDelegate.swift in Sources */,
 				A00A097B2848D2E400AC6919 /* Ship.swift in Sources */,

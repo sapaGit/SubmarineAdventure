@@ -28,6 +28,9 @@ class GameViewController: UIViewController {
     private var shipTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
+    private var ship = Ship()
+    private var shark = Shark()
+    private var submarine = Submarine()
     
     var user = User(userName: "User")
     //MARK: - lifecycle funcs
@@ -76,14 +79,14 @@ class GameViewController: UIViewController {
         setSubmarine()
     }
     func setShark() {
-        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY, width: 80, height: 60)
-        sharkImageView.image = UIImage(named: "Fish")
+        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY, width: shark.width, height: shark.height)
+        sharkImageView.image = UIImage(named: shark.imageName)
         sharkImageView.contentMode = .scaleAspectFill
         sharkImageView.clipsToBounds = true
         view.addSubview(sharkImageView)
     }
     func setSubmarine() {
-        submarineImageView.frame = CGRect(x: seaImageView.frame.minX+40, y: seaImageView.center.y, width: 80, height: 60)
+        submarineImageView.frame = CGRect(x: seaImageView.frame.minX+40, y: seaImageView.center.y - submarine.height, width: submarine.width, height: submarine.height)
         if let user = UserDefaults.standard.value(User.self, forKey: "currentUser") {
             self.user = user
         } else { let user = User(userName: "User")
@@ -96,8 +99,8 @@ class GameViewController: UIViewController {
         view.addSubview(submarineImageView)
     }
     func setShip() {
-        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-45, width: 150, height: 90)
-        shipImageView.image = UIImage(named: "Ship")
+        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-45, width: ship.width, height: ship.height)
+        shipImageView.image = UIImage(named: ship.imageName)
         shipImageView.contentMode = .scaleAspectFill
         
         view.addSubview(shipImageView)

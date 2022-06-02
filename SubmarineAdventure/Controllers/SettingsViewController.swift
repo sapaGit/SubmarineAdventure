@@ -21,7 +21,9 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setInterface()
- 
+        if let user = UserDefaults.standard.value(User.self, forKey: "currentUser") {
+            textField.text = user.userName
+        }
     }
     
     @IBAction func goToMainPressed(_ sender: UIButton) {
