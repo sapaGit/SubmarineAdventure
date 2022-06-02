@@ -19,6 +19,8 @@
 		A00A09722848B63900AC6919 /* UIVeiw+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09712848B63900AC6919 /* UIVeiw+extension.swift */; };
 		A00A09742848BAE800AC6919 /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09732848BAE800AC6919 /* UserDefaults+Extension.swift */; };
 		A00A09762848BB0800AC6919 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09752848BB0800AC6919 /* User.swift */; };
+		A00A09782848D17600AC6919 /* Shark.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09772848D17600AC6919 /* Shark.swift */; };
+		A00A097B2848D2E400AC6919 /* Ship.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A097A2848D2E400AC6919 /* Ship.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +35,11 @@
 		A00A096A2848A38600AC6919 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		A00A096C2848A39C00AC6919 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		A00A096E2848A3B300AC6919 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
-		A00A09712848B63900AC6919 /* UIVeiw+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIVeiw+extension.swift"; path = "Controllers/UIVeiw+extension.swift"; sourceTree = "<group>"; };
+		A00A09712848B63900AC6919 /* UIVeiw+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVeiw+extension.swift"; sourceTree = "<group>"; };
 		A00A09732848BAE800AC6919 /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
 		A00A09752848BB0800AC6919 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A00A09772848D17600AC6919 /* Shark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shark.swift; sourceTree = "<group>"; };
+		A00A097A2848D2E400AC6919 /* Ship.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ship.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,15 +72,13 @@
 		A00A095328489C1600AC6919 /* SubmarineAdventure */ = {
 			isa = PBXGroup;
 			children = (
-				A00A09712848B63900AC6919 /* UIVeiw+extension.swift */,
-				A00A09732848BAE800AC6919 /* UserDefaults+Extension.swift */,
-				A00A09752848BB0800AC6919 /* User.swift */,
-				A00A095428489C1600AC6919 /* AppDelegate.swift */,
-				A00A095628489C1600AC6919 /* SceneDelegate.swift */,
-				A00A095A28489C1600AC6919 /* Main.storyboard */,
+				A00A097E2848D3DA00AC6919 /* Extensions */,
+				A00A097C2848D39E00AC6919 /* Model */,
+				A00A097F2848D43C00AC6919 /* Storyboards */,
 				A00A09702848A46B00AC6919 /* Controllers */,
 				A00A095D28489C1700AC6919 /* Assets.xcassets */,
-				A00A095F28489C1700AC6919 /* LaunchScreen.storyboard */,
+				A00A095628489C1600AC6919 /* SceneDelegate.swift */,
+				A00A095428489C1600AC6919 /* AppDelegate.swift */,
 				A00A096228489C1700AC6919 /* Info.plist */,
 			);
 			path = SubmarineAdventure;
@@ -91,6 +93,34 @@
 				A00A096C2848A39C00AC6919 /* GameViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		A00A097C2848D39E00AC6919 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A00A09772848D17600AC6919 /* Shark.swift */,
+				A00A097A2848D2E400AC6919 /* Ship.swift */,
+				A00A09752848BB0800AC6919 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A00A097E2848D3DA00AC6919 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A00A09712848B63900AC6919 /* UIVeiw+extension.swift */,
+				A00A09732848BAE800AC6919 /* UserDefaults+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A00A097F2848D43C00AC6919 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A00A095F28489C1700AC6919 /* LaunchScreen.storyboard */,
+				A00A095A28489C1600AC6919 /* Main.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,10 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00A096D2848A39C00AC6919 /* GameViewController.swift in Sources */,
+				A00A09782848D17600AC6919 /* Shark.swift in Sources */,
 				A00A09722848B63900AC6919 /* UIVeiw+extension.swift in Sources */,
 				A00A095528489C1600AC6919 /* AppDelegate.swift in Sources */,
 				A00A09692848A2DA00AC6919 /* MenuViewController.swift in Sources */,
 				A00A095728489C1600AC6919 /* SceneDelegate.swift in Sources */,
+				A00A097B2848D2E400AC6919 /* Ship.swift in Sources */,
 				A00A09762848BB0800AC6919 /* User.swift in Sources */,
 				A00A096B2848A38600AC6919 /* SettingsViewController.swift in Sources */,
 				A00A09742848BAE800AC6919 /* UserDefaults+Extension.swift in Sources */,

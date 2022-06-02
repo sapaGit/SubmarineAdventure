@@ -119,7 +119,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sea" translatesAutoresizingMaskIntoConstraints="NO" id="TjD-X1-fNG">
-                                <rect key="frame" x="0.0" y="70" width="896" height="344"/>
+                                <rect key="frame" x="0.0" y="70" width="896" height="309"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sky" translatesAutoresizingMaskIntoConstraints="NO" id="PL0-XL-gfl">
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="70"/>
@@ -136,7 +136,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-iJ-aoF">
-                                <rect key="frame" x="800" y="153.5" width="61" height="67"/>
+                                <rect key="frame" x="800" y="136" width="61" height="67"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="⬆️">
@@ -149,7 +149,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Qn-AV6">
-                                <rect key="frame" x="800" y="263.5" width="61" height="67"/>
+                                <rect key="frame" x="800" y="246" width="61" height="67"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="⬇️">
@@ -189,7 +189,7 @@
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Vz-0t-cwN" secondAttribute="trailing" symbolic="YES" id="SXP-Xz-32g"/>
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="-55" id="U38-wQ-BU7"/>
-                            <constraint firstAttribute="bottom" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="dff-FF-2Sc"/>
+                            <constraint firstItem="H1B-UM-X3w" firstAttribute="top" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="Vhj-ly-A5E"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="nqe-Kg-aMd"/>

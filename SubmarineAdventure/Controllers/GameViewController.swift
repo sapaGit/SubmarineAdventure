@@ -34,15 +34,15 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setSubmarine()
-        setShark()
-        setShip()
+        setInterface()
         startShipTimer()
         startSharkTimer()
         
     }
     //MARK: - IBActions
     @IBAction func goToMainPressed(_ sender: UIButton) {
+        sharkTimer.invalidate()
+        shipTimer.invalidate()
         self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func upButtonHold(sender: UIButton) {
@@ -69,11 +69,17 @@ class GameViewController: UIViewController {
         submarineImageView.frame.origin.y -= 1
     }
     
+    func setInterface() {
+        seaImageView.clipsToBounds = true
+        setShark()
+        setShip()
+        setSubmarine()
+    }
     func setShark() {
-        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.center.y, width: 80, height: 60)
+        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY, width: 80, height: 60)
         sharkImageView.image = UIImage(named: "Fish")
-        sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFill
+        sharkImageView.clipsToBounds = true
         view.addSubview(sharkImageView)
     }
     func setSubmarine() {
