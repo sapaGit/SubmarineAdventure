@@ -79,14 +79,15 @@ class GameViewController: UIViewController {
         setSubmarine()
     }
     func setShark() {
-        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY, width: shark.width, height: shark.height)
-        sharkImageView.image = UIImage(named: shark.imageName)
         sharkImageView.contentMode = .scaleAspectFill
         sharkImageView.clipsToBounds = true
+        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
+        sharkImageView.image = UIImage(named: shark.imageName)
+        
         view.addSubview(sharkImageView)
     }
     func setSubmarine() {
-        submarineImageView.frame = CGRect(x: seaImageView.frame.minX+40, y: seaImageView.center.y - submarine.height, width: submarine.width, height: submarine.height)
+        submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
         if let user = UserDefaults.standard.value(User.self, forKey: "currentUser") {
             self.user = user
         } else { let user = User(userName: "User")
@@ -99,7 +100,7 @@ class GameViewController: UIViewController {
         view.addSubview(submarineImageView)
     }
     func setShip() {
-        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.5, width: ship.width, height: ship.height)
+        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         shipImageView.image = UIImage(named: ship.imageName)
         shipImageView.contentMode = .scaleAspectFill
         
