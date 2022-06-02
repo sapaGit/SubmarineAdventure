@@ -13,6 +13,9 @@
 		A00A095E28489C1700AC6919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00A095D28489C1700AC6919 /* Assets.xcassets */; };
 		A00A096128489C1700AC6919 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00A095F28489C1700AC6919 /* LaunchScreen.storyboard */; };
 		A00A09692848A2DA00AC6919 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09682848A2DA00AC6919 /* MenuViewController.swift */; };
+		A00A096B2848A38600AC6919 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A096A2848A38600AC6919 /* SettingsViewController.swift */; };
+		A00A096D2848A39C00AC6919 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A096C2848A39C00AC6919 /* GameViewController.swift */; };
+		A00A096F2848A3B300AC6919 /* RecordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A096E2848A3B300AC6919 /* RecordsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		A00A096028489C1700AC6919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A00A096228489C1700AC6919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00A09682848A2DA00AC6919 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A00A096A2848A38600AC6919 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		A00A096C2848A39C00AC6919 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		A00A096E2848A3B300AC6919 /* RecordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +66,9 @@
 				A00A095628489C1600AC6919 /* SceneDelegate.swift */,
 				A00A095A28489C1600AC6919 /* Main.storyboard */,
 				A00A09682848A2DA00AC6919 /* MenuViewController.swift */,
+				A00A096A2848A38600AC6919 /* SettingsViewController.swift */,
+				A00A096C2848A39C00AC6919 /* GameViewController.swift */,
+				A00A096E2848A3B300AC6919 /* RecordsViewController.swift */,
 				A00A095D28489C1700AC6919 /* Assets.xcassets */,
 				A00A095F28489C1700AC6919 /* LaunchScreen.storyboard */,
 				A00A096228489C1700AC6919 /* Info.plist */,
@@ -138,9 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A00A096D2848A39C00AC6919 /* GameViewController.swift in Sources */,
 				A00A095528489C1600AC6919 /* AppDelegate.swift in Sources */,
 				A00A09692848A2DA00AC6919 /* MenuViewController.swift in Sources */,
 				A00A095728489C1600AC6919 /* SceneDelegate.swift in Sources */,
+				A00A096B2848A38600AC6919 /* SettingsViewController.swift in Sources */,
+				A00A096F2848A3B300AC6919 /* RecordsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

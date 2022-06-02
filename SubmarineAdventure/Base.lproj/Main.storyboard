@@ -40,6 +40,51 @@
             </objects>
             <point key="canvasLocation" x="370" y="48"/>
         </scene>
+        <!--Game View Controller-->
+        <scene sceneID="ulp-cC-t7R">
+            <objects>
+                <viewController storyboardIdentifier="GameViewController" id="r1u-5i-Rcc" customClass="GameViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j45-Tg-t8M">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AkZ-6U-hga" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1006" y="48"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="a5b-a7-SQs">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="hQ4-AH-EbO" customClass="SettingsViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ZO-bR-ZUZ">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="QcL-DL-yTd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aFb-Uh-rtb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="838"/>
+        </scene>
+        <!--Records View Controller-->
+        <scene sceneID="W7T-Dw-vud">
+            <objects>
+                <viewController storyboardIdentifier="RecordsViewController" id="DAw-oj-F75" customClass="RecordsViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gWv-gQ-Obw">
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8wn-NE-XjL"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j9I-KZ-G3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="838"/>
+        </scene>
     </scenes>
     <resources>
         <systemColor name="systemBackgroundColor">
