@@ -11,8 +11,9 @@ class RecordsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
-
-
+    
+    @IBAction func goToMainPressed(_ sender: UIButton) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
 }
