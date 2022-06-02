@@ -99,7 +99,7 @@ class GameViewController: UIViewController {
         view.addSubview(submarineImageView)
     }
     func setShip() {
-        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-45, width: ship.width, height: ship.height)
+        shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.5, width: ship.width, height: ship.height)
         shipImageView.image = UIImage(named: ship.imageName)
         shipImageView.contentMode = .scaleAspectFill
         
