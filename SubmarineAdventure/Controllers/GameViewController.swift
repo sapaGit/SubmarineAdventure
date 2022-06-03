@@ -79,7 +79,7 @@ class GameViewController: UIViewController {
         setSubmarine()
     }
     func setShark() {
-        sharkImageView.contentMode = .scaleAspectFill
+        sharkImageView.contentMode = .scaleToFill
         sharkImageView.clipsToBounds = true
         sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
         sharkImageView.image = UIImage(named: shark.imageName)
@@ -94,7 +94,7 @@ class GameViewController: UIViewController {
             self.user = user
         }
         submarineImageView.image = UIImage(named: user.submarineColor)
-        submarineImageView.contentMode = .scaleAspectFill
+        submarineImageView.contentMode = .scaleToFill
         submarineImageView.clipsToBounds = true
         nameUser.text = user.userName
         view.addSubview(submarineImageView)
@@ -102,21 +102,29 @@ class GameViewController: UIViewController {
     func setShip() {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         shipImageView.image = UIImage(named: ship.imageName)
-        shipImageView.contentMode = .scaleAspectFill
+        shipImageView.clipsToBounds = true
+        shipImageView.contentMode = .scaleToFill
+        
         
         view.addSubview(shipImageView)
     }
     func moveShip() {
-        UIView.animate(withDuration: 14, delay: 0, options: .curveLinear, animations: {
-            self.shipImageView.frame.origin.x -= self.view.bounds.width + 152
-        }, completion: { _ in
+        if self.submarineImageView.frame.intersects(self.shipImageView.frame) {
+            print("Submarine damaged!")
+            self.sharkTimer.invalidate()
+            self.shipTimer.invalidate()
+            return
+        }
+        self.shipImageView.frame.origin.x -= 1
+        
+        if self.shipImageView.frame.maxX < 0 {
             self.shipImageView.frame.origin.x = self.view.bounds.width + 1
-        })
+        }
     }
     
     func moveShark() {
         if self.submarineImageView.frame.intersects(self.sharkImageView.frame) {
-            print("Hi")
+            print("Submarine damaged!")
             self.sharkTimer.invalidate()
             self.shipTimer.invalidate()
             return
@@ -136,7 +144,7 @@ class GameViewController: UIViewController {
         sharkTimer.fire()
     }
     func startShipTimer() {
-        shipTimer = Timer.scheduledTimer(withTimeInterval: 15, repeats: true, block: { _ in
+        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(user.speed), repeats: true, block: { _ in
             self.moveShip()
         })
         shipTimer.fire()

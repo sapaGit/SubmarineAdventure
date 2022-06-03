@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 class Shark {
     var width: CGFloat = 80
-    var height: CGFloat = 60
+    var height: CGFloat = 80
     var speed: Double = 2
     var imageName: String = "Fish"
     
