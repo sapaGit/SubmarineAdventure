@@ -22,7 +22,8 @@ class GameViewController: UIViewController {
     private var submarineImageView = UIImageView()
     private var sharkImageView = UIImageView()
     private var shipImageView = UIImageView()
-    private var oxygenView = UIView()
+    private var oxygenViewFull = UIView()
+    private var oxygenViewEmpty = UIView()
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
@@ -31,6 +32,8 @@ class GameViewController: UIViewController {
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
+    private let oxygenTimeConst = 10
+    private var oxygenTimeVar = 10
     
     var user = User(userName: "User")
     //MARK: - lifecycle funcs
@@ -40,7 +43,7 @@ class GameViewController: UIViewController {
         setInterface()
         startShipTimer()
         startSharkTimer()
-        
+        startOxygenViewTimer()
     }
     //MARK: - IBActions
     @IBAction func goToMainPressed(_ sender: UIButton) {
@@ -66,10 +69,37 @@ class GameViewController: UIViewController {
     //MARK: - flow  funcs
     
     @objc func moveSubmarineDown() {
-        submarineImageView.frame.origin.y += 1
+        if isInRightPositionDown() {
+            if !isInAir() && submarineImageView.frame.minY == seaImageView.frame.minY {
+                startOxygenViewTimer()
+            }
+            submarineImageView.frame.origin.y += 1
+            oxygenViewEmpty.frame.origin.y += 1
+            oxygenViewFull.frame.origin.y += 1
+        }
     }
     @objc func moveSubmarineUp() {
-        submarineImageView.frame.origin.y -= 1
+        if isInRightPositionUp(){
+            if isInAir() {
+                print ("In the air")
+                oxygenViewFull.frame.size.width = submarineImageView.frame.width
+            }
+            submarineImageView.frame.origin.y -= 1
+            oxygenViewEmpty.frame.origin.y -= 1
+            oxygenViewFull.frame.origin.y -= 1
+        }
+    }
+    func isInRightPositionUp() -> Bool {
+        if submarineImageView.frame.minY < seaImageView.frame.minY-submarine.height/4 {
+            return false
+        }
+        return true
+    }
+    func isInRightPositionDown() -> Bool {
+        if submarineImageView.frame.maxY > seaImageView.frame.maxY {
+            return false
+        }
+        return true
     }
     
     func setInterface() {
@@ -77,6 +107,7 @@ class GameViewController: UIViewController {
         setShark()
         setShip()
         setSubmarine()
+        setOxygenView()
     }
     func setShark() {
         sharkImageView.contentMode = .scaleToFill
@@ -104,9 +135,38 @@ class GameViewController: UIViewController {
         shipImageView.image = UIImage(named: ship.imageName)
         shipImageView.clipsToBounds = true
         shipImageView.contentMode = .scaleToFill
-        
-        
         view.addSubview(shipImageView)
+    }
+    
+    func setOxygenView() {
+        oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
+        oxygenViewFull.roundedLess()
+        oxygenViewEmpty.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
+        oxygenViewEmpty.roundedLess()
+        oxygenViewEmpty.backgroundColor = .white
+        oxygenViewFull.backgroundColor = .green
+//        view.addSubview(oxygenViewEmpty)
+        view.addSubview(oxygenViewFull)
+    }
+    func startOxygenViewTimer(){
+        oxygenTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+            self.changeOxygenView()
+        })
+            oxygenTimer.fire()
+        
+    }
+    func changeOxygenView() {
+        oxygenViewFull.frame.size.width -= 0.5
+        if oxygenViewFull.frame.size.width == 0 {
+            print("Oxygen is Empty!")
+            oxygenTimer.invalidate()
+        }
+    }
+    func isInAir()->Bool {
+        if submarineImageView.frame.minY < seaImageView.frame.minY {
+            return true
+        }
+        return false
     }
     func moveShip() {
         if self.submarineImageView.frame.intersects(self.shipImageView.frame) {
