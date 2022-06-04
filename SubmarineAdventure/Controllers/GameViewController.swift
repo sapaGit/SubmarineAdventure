@@ -72,6 +72,7 @@ class GameViewController: UIViewController {
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
         submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.7)
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
+        oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
         sender.isHidden = true
         sender.alpha = 0
@@ -153,7 +154,7 @@ class GameViewController: UIViewController {
         submarineImageView.clipsToBounds = true
         nameUser.text = user.userName
         view.addSubview(submarineImageView)
-        view.addSubview(submarineSafeAreaView)
+        //view.addSubview(submarineSafeAreaView)
     }
     func setShip() {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
