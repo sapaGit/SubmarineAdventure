@@ -20,6 +20,7 @@ class GameViewController: UIViewController {
     
     //MARK: - let/var
     private var submarineImageView = UIImageView()
+    private var submarineSafeAreaView = UIView()
     private var sharkImageView = UIImageView()
     private var shipImageView = UIImageView()
     private var oxygenViewFull = UIView()
@@ -70,10 +71,8 @@ class GameViewController: UIViewController {
     
     @objc func moveSubmarineDown() {
         if isInRightPositionDown() {
-            if !isInAir() && submarineImageView.frame.minY == seaImageView.frame.minY {
-                startOxygenViewTimer()
-            }
             submarineImageView.frame.origin.y += 1
+            submarineSafeAreaView.frame.origin.y += 1
             oxygenViewEmpty.frame.origin.y += 1
             oxygenViewFull.frame.origin.y += 1
         }
@@ -82,9 +81,14 @@ class GameViewController: UIViewController {
         if isInRightPositionUp(){
             if isInAir() {
                 print ("In the air")
-                oxygenViewFull.frame.size.width = submarineImageView.frame.width
+                UIView.animate(withDuration: 0.5) {
+                    self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
+                } completion: { _ in
+                    self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
+                }
             }
             submarineImageView.frame.origin.y -= 1
+            submarineSafeAreaView.frame.origin.y -= 1
             oxygenViewEmpty.frame.origin.y -= 1
             oxygenViewFull.frame.origin.y -= 1
         }
@@ -110,15 +114,18 @@ class GameViewController: UIViewController {
         setOxygenView()
     }
     func setShark() {
-        sharkImageView.contentMode = .scaleToFill
         sharkImageView.clipsToBounds = true
+        sharkImageView.contentMode = .scaleToFill
         sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
         sharkImageView.image = UIImage(named: shark.imageName)
         
         view.addSubview(sharkImageView)
     }
+    
     func setSubmarine() {
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
+        submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.8)
+        submarineSafeAreaView.backgroundColor = .green
         if let user = UserDefaults.standard.value(User.self, forKey: "currentUser") {
             self.user = user
         } else { let user = User(userName: "User")
@@ -129,6 +136,7 @@ class GameViewController: UIViewController {
         submarineImageView.clipsToBounds = true
         nameUser.text = user.userName
         view.addSubview(submarineImageView)
+        view.addSubview(submarineSafeAreaView)
     }
     func setShip() {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
@@ -159,7 +167,9 @@ class GameViewController: UIViewController {
         oxygenViewFull.frame.size.width -= 0.5
         if oxygenViewFull.frame.size.width == 0 {
             print("Oxygen is Empty!")
-            oxygenTimer.invalidate()
+            self.sharkTimer.invalidate()
+            self.shipTimer.invalidate()
+            self.oxygenTimer.invalidate()
         }
     }
     func isInAir()->Bool {
@@ -169,10 +179,11 @@ class GameViewController: UIViewController {
         return false
     }
     func moveShip() {
-        if self.submarineImageView.frame.intersects(self.shipImageView.frame) {
+        if self.submarineSafeAreaView.frame.intersects(self.shipImageView.frame) {
             print("Submarine damaged!")
             self.sharkTimer.invalidate()
             self.shipTimer.invalidate()
+            self.oxygenTimer.invalidate()
             return
         }
         self.shipImageView.frame.origin.x -= 1
@@ -183,10 +194,11 @@ class GameViewController: UIViewController {
     }
     
     func moveShark() {
-        if self.submarineImageView.frame.intersects(self.sharkImageView.frame) {
+        if self.submarineSafeAreaView.frame.intersects(self.sharkImageView.frame) {
             print("Submarine damaged!")
             self.sharkTimer.invalidate()
             self.shipTimer.invalidate()
+            self.oxygenTimer.invalidate()
             return
         }
         self.sharkImageView.frame.origin.x -= 1
@@ -208,11 +220,5 @@ class GameViewController: UIViewController {
             self.moveShip()
         })
         shipTimer.fire()
-    }
-    
-    func checkIntersection() {
-        if submarineImageView.bounds.intersects(sharkImageView.bounds) {
-            sharkTimer.invalidate()
-        }
     }
 }
