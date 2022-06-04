@@ -173,10 +173,26 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-di-maN">
+                                <rect key="frame" x="297.5" y="177.5" width="301" height="59.5"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="47"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-P9-TMP">
+                                <rect key="frame" x="680" y="334" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="reloadTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="OOu-q5-Mlz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="5Nd-di-maN" firstAttribute="centerY" secondItem="j45-Tg-t8M" secondAttribute="centerY" id="18Y-rC-ORj"/>
                             <constraint firstAttribute="trailing" secondItem="H1B-UM-X3w" secondAttribute="trailing" id="2Wh-FX-Uqd"/>
                             <constraint firstAttribute="trailing" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="35" id="43r-Qx-mtg"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="9Zo-Un-HXW"/>
@@ -190,6 +206,7 @@
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="-55" id="U38-wQ-BU7"/>
                             <constraint firstItem="H1B-UM-X3w" firstAttribute="top" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="Vhj-ly-A5E"/>
+                            <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="nqe-Kg-aMd"/>
@@ -204,8 +221,10 @@
                     </view>
                     <connections>
                         <outlet property="downButton" destination="hhc-Qn-AV6" id="Rc5-qp-fv0"/>
+                        <outlet property="gameOverLabel" destination="5Nd-di-maN" id="d7I-SQ-rpj"/>
                         <outlet property="groundImageView" destination="H1B-UM-X3w" id="FZr-Tx-uaJ"/>
                         <outlet property="nameUser" destination="2Vz-0t-cwN" id="2Qr-Db-uBm"/>
+                        <outlet property="reloadButton" destination="RSZ-P9-TMP" id="bqb-3O-IBe"/>
                         <outlet property="seaImageView" destination="TjD-X1-fNG" id="Isj-rN-5Xg"/>
                         <outlet property="skyImageView" destination="PL0-XL-gfl" id="W15-9V-wrZ"/>
                         <outlet property="upButton" destination="X8h-iJ-aoF" id="JgM-sI-eLv"/>
