@@ -74,6 +74,9 @@ class GameViewController: UIViewController {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
         sender.isHidden = true
+        sender.alpha = 0
+        gameOverLabel.alpha = 0
+        self.isLive = true
         startSharkTimer()
         startShipTimer()
         startOxygenViewTimer()
@@ -82,7 +85,7 @@ class GameViewController: UIViewController {
     //MARK: - flow  funcs
     
     @objc func moveSubmarineDown() {
-        if isInRightPositionDown() {
+        if isInRightPositionDown() && isLive {
             submarineImageView.frame.origin.y += 1
             submarineSafeAreaView.frame.origin.y += 1
             oxygenViewEmpty.frame.origin.y += 1
@@ -90,7 +93,7 @@ class GameViewController: UIViewController {
         }
     }
     @objc func moveSubmarineUp() {
-        if isInRightPositionUp(){
+        if isInRightPositionUp() && isLive {
             if isInAir() {
                 print ("In the air")
                 UIView.animate(withDuration: 0.5) {
@@ -124,6 +127,8 @@ class GameViewController: UIViewController {
         setShip()
         setSubmarine()
         setOxygenView()
+        gameOverLabel.layer.zPosition = 1
+        gameOverLabel.rounded()
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
@@ -231,14 +236,11 @@ class GameViewController: UIViewController {
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
+        self.isLive = false
         self.reloadButton.isHidden = false
-        UIView.animateKeyframes(withDuration: 5, delay: 0, options: [.calculationModeCubic, .repeat], animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
-                self.gameOverLabel.alpha = 1
-            }
-            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
-                self.gameOverLabel.alpha = 0
-            }
-        })
+        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
+            self.gameOverLabel.alpha = 1
+            self.reloadButton.alpha = 1
+        }
     }
 }

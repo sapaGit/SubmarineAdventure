@@ -20,6 +20,7 @@ extension UIView {
             layer.shouldRasterize = true
     }
     func rounded(radius: CGFloat = 15) {
+        self.layer.masksToBounds = true
         self.layer.cornerRadius = radius
     }
     func roundedLess(radius: CGFloat = 5) {
