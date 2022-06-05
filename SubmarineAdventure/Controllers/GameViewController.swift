@@ -75,6 +75,8 @@ class GameViewController: UIViewController {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
+        movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
+        movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
         sender.isHidden = true
         sender.alpha = 0
         gameOverLabel.alpha = 0
