@@ -27,16 +27,16 @@ class GameViewController: UIViewController {
     private var shipImageView = UIImageView()
     private var oxygenViewFull = UIView()
     private var oxygenViewEmpty = UIView()
+    private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
+    private var groundTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
-    private let oxygenTimeConst = 10
-    private var oxygenTimeVar = 10
     
     var user = User(userName: "User")
     //MARK: - lifecycle funcs
@@ -47,6 +47,7 @@ class GameViewController: UIViewController {
         startShipTimer()
         startSharkTimer()
         startOxygenViewTimer()
+        startGroundTimer()
     }
     //MARK: - IBActions
     @IBAction func goToMainPressed(_ sender: UIButton) {
@@ -81,6 +82,7 @@ class GameViewController: UIViewController {
         startSharkTimer()
         startShipTimer()
         startOxygenViewTimer()
+        startGroundTimer()
     }
     
     //MARK: - flow  funcs
@@ -130,6 +132,7 @@ class GameViewController: UIViewController {
         setOxygenView()
         gameOverLabel.layer.zPosition = 1
         gameOverLabel.rounded()
+        setMovingGroundImageView()
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
@@ -174,6 +177,17 @@ class GameViewController: UIViewController {
 //        view.addSubview(oxygenViewEmpty)
         view.addSubview(oxygenViewFull)
     }
+    func setMovingGroundImageView() {
+        for view in movingGroundImageViewCollection{
+            view.frame = CGRect(x: groundImageView.frame.origin.x, y: groundImageView.frame.origin.y, width: groundImageView.frame.width, height: groundImageView.frame.height)
+            view.image = UIImage(named: "Ground")
+            view.clipsToBounds = true
+            view.contentMode = .scaleToFill
+            self.view.addSubview(view)
+        }
+        movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
+    }
+    
     func startOxygenViewTimer(){
         oxygenTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
             self.changeOxygenView()
@@ -220,6 +234,21 @@ class GameViewController: UIViewController {
         }
     }
     
+    func moveGround() {
+        for view in movingGroundImageViewCollection {
+            if view.frame.maxX == 0 {
+                view.frame.origin.x = self.view.frame.width
+            }
+            view.frame.origin.x -= 1
+        }
+    }
+    
+    func startGroundTimer() {
+        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(user.speed), repeats: true, block: { _ in
+            self.moveGround()
+        })
+        groundTimer.fire()
+    }
     
     func startSharkTimer() {
         sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(user.speed), repeats: true, block: { _ in
@@ -237,6 +266,7 @@ class GameViewController: UIViewController {
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
+        self.groundTimer.invalidate()
         self.isLive = false
         self.reloadButton.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
