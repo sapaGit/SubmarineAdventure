@@ -118,7 +118,7 @@ class GameViewController: UIViewController {
         return true
     }
     func isInRightPositionDown() -> Bool {
-        if submarineImageView.frame.maxY > seaImageView.frame.maxY {
+        if submarineImageView.frame.maxY > seaImageView.frame.maxY + submarine.height/4 {
             return false
         }
         return true
@@ -155,6 +155,7 @@ class GameViewController: UIViewController {
         submarineImageView.image = UIImage(named: user.submarineColor)
         submarineImageView.contentMode = .scaleToFill
         submarineImageView.clipsToBounds = true
+        submarineImageView.layer.zPosition = 1
         nameUser.text = user.userName
         view.addSubview(submarineImageView)
         //view.addSubview(submarineSafeAreaView)
@@ -235,11 +236,16 @@ class GameViewController: UIViewController {
     }
     
     func moveGround() {
-        for view in movingGroundImageViewCollection {
-            if view.frame.maxX == 0 {
-                view.frame.origin.x = self.view.frame.width
+        for groundView in movingGroundImageViewCollection {
+            if self.submarineSafeAreaView.frame.intersects(groundView.frame) {
+                print("Submarine damaged!")
+                stopGame()
+                return
             }
-            view.frame.origin.x -= 1
+            if groundView.frame.maxX == 0 {
+                groundView.frame.origin.x = self.view.frame.width
+            }
+            groundView.frame.origin.x -= 1
         }
     }
     
