@@ -54,6 +54,14 @@ class GameViewController: UIViewController {
         stopGame()
         self.navigationController?.popToRootViewController(animated: true)
     }
+    @IBAction func rightButtonHold(_ sender: UIButton) {
+    }
+    @IBAction func rightButtonCanceled(_ sender: UIButton) {
+    }
+    @IBAction func leftButtonHold(_ sender: UIButton) {
+    }
+    @IBAction func leftButtonCanceled(_ sender: UIButton) {
+    }
     @IBAction func upButtonHold(sender: UIButton) {
         buttonTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(moveSubmarineUp), userInfo: nil, repeats: true)
     }
