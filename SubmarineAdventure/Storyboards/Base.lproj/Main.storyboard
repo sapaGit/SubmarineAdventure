@@ -154,6 +154,23 @@
                                     <action selector="upButtonHoldWithSender:" destination="r1u-5i-Rcc" eventType="touchDown" id="uDd-7g-O6h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-wQ-Azt">
+                                <rect key="frame" x="714" y="203.5" width="61" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="CS3-yo-ICx"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="MOd-uM-ntv"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="⬅️">
+                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="5A7-yB-PQ6"/>
+                                    <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpOutside" id="dGo-HD-fU5"/>
+                                    <action selector="upButtonHoldWithSender:" destination="r1u-5i-Rcc" eventType="touchDown" id="Pgm-nl-cnw"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Qn-AV6">
                                 <rect key="frame" x="800" y="246" width="61" height="67"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -175,14 +192,18 @@
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-di-maN">
-                                <rect key="frame" x="297.5" y="177.5" width="301" height="59.5"/>
+                                <rect key="frame" x="297.5" y="185" width="301" height="44"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="GXB-0H-d9D"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Mtq-ek-U1o"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="47"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-P9-TMP">
-                                <rect key="frame" x="426" y="267" width="44" height="44"/>
+                                <rect key="frame" x="426" y="259" width="44" height="44"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="1kd-Qh-78i"/>
@@ -195,6 +216,19 @@
                                     <action selector="reloadTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="OOu-q5-Mlz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQG-6l-32t">
+                                <rect key="frame" x="815" y="192" width="61" height="67"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="➡️">
+                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpOutside" id="1i7-z8-2MY"/>
+                                    <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="Ll8-rR-0Fp"/>
+                                    <action selector="upButtonHoldWithSender:" destination="r1u-5i-Rcc" eventType="touchDown" id="2fS-Np-tQs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -202,6 +236,7 @@
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerY" secondItem="j45-Tg-t8M" secondAttribute="centerY" id="18Y-rC-ORj"/>
                             <constraint firstAttribute="trailing" secondItem="H1B-UM-X3w" secondAttribute="trailing" id="2Wh-FX-Uqd"/>
                             <constraint firstAttribute="trailing" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="35" id="43r-Qx-mtg"/>
+                            <constraint firstItem="2bj-wQ-Azt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nd-di-maN" secondAttribute="trailing" constant="8" symbolic="YES" id="8Ls-qD-JtD"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="9Zo-Un-HXW"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" id="9rz-Kk-s4u"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="A7t-Ug-5LT"/>
@@ -215,11 +250,15 @@
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="-55" id="U38-wQ-BU7"/>
                             <constraint firstItem="H1B-UM-X3w" firstAttribute="top" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="Vhj-ly-A5E"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
+                            <constraint firstItem="tQG-6l-32t" firstAttribute="leading" secondItem="2bj-wQ-Azt" secondAttribute="trailing" constant="40" id="ZBF-eM-gyp"/>
+                            <constraint firstItem="tQG-6l-32t" firstAttribute="top" secondItem="X8h-iJ-aoF" secondAttribute="bottom" constant="-11" id="bgh-KZ-rll"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="nqe-Kg-aMd"/>
                             <constraint firstAttribute="bottom" secondItem="2Vz-0t-cwN" secondAttribute="bottom" constant="20" id="oVq-nt-S07"/>
+                            <constraint firstItem="2bj-wQ-Azt" firstAttribute="centerY" secondItem="tQG-6l-32t" secondAttribute="centerY" id="rMk-3q-vn9"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="rZH-2S-SqY"/>
+                            <constraint firstAttribute="trailing" secondItem="tQG-6l-32t" secondAttribute="trailing" constant="20" id="se4-s5-sa8"/>
                             <constraint firstAttribute="trailing" secondItem="hhc-Qn-AV6" secondAttribute="trailing" constant="35" id="tXO-qx-vbf"/>
                             <constraint firstAttribute="trailing" secondItem="PL0-XL-gfl" secondAttribute="trailing" id="ujQ-06-aGe"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="PL0-XL-gfl" secondAttribute="bottom" id="xxR-Wf-pRe"/>
