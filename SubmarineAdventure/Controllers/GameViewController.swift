@@ -55,12 +55,16 @@ class GameViewController: UIViewController {
         self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func rightButtonHold(_ sender: UIButton) {
+        buttonTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(moveSubmarineRight), userInfo: nil, repeats: true)
     }
     @IBAction func rightButtonCanceled(_ sender: UIButton) {
+        buttonTimer.invalidate()
     }
     @IBAction func leftButtonHold(_ sender: UIButton) {
+        buttonTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(moveSubmarineLeft), userInfo: nil, repeats: true)
     }
     @IBAction func leftButtonCanceled(_ sender: UIButton) {
+        buttonTimer.invalidate()
     }
     @IBAction func upButtonHold(sender: UIButton) {
         buttonTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(moveSubmarineUp), userInfo: nil, repeats: true)
@@ -105,6 +109,24 @@ class GameViewController: UIViewController {
             oxygenViewFull.frame.origin.y += 1
         }
     }
+    
+    @objc func moveSubmarineRight() {
+        if isInRightPositionRight() && isLive {
+            submarineImageView.frame.origin.x += 1
+            submarineSafeAreaView.frame.origin.x += 1
+            oxygenViewEmpty.frame.origin.x += 1
+            oxygenViewFull.frame.origin.x += 1
+        }
+    }
+    
+    @objc func moveSubmarineLeft() {
+        if isInRightPositionLeft() && isLive {
+            submarineImageView.frame.origin.x -= 1
+            submarineSafeAreaView.frame.origin.x -= 1
+            oxygenViewEmpty.frame.origin.x -= 1
+            oxygenViewFull.frame.origin.x -= 1
+        }
+    }
     @objc func moveSubmarineUp() {
         if isInRightPositionUp() && isLive {
             if isInAir() {
@@ -129,6 +151,19 @@ class GameViewController: UIViewController {
     }
     func isInRightPositionDown() -> Bool {
         if submarineImageView.frame.maxY > seaImageView.frame.maxY + submarine.height/4 {
+            return false
+        }
+        return true
+    }
+    func isInRightPositionLeft() -> Bool {
+        if submarineImageView.frame.minX < seaImageView.frame.minX + submarine.width/4 {
+            return false
+        }
+        return true
+    }
+    
+    func isInRightPositionRight() -> Bool {
+        if submarineImageView.frame.minX > seaImageView.frame.maxY - submarine.width*3 {
             return false
         }
         return true
