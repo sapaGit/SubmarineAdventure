@@ -163,7 +163,7 @@ class GameViewController: UIViewController {
     }
     
     func isInRightPositionRight() -> Bool {
-        if submarineImageView.frame.minX > seaImageView.frame.maxY - submarine.width*3 {
+        if submarineImageView.frame.minX > seaImageView.frame.maxX - 3 * submarine.width {
             return false
         }
         return true
