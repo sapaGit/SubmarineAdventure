@@ -25,6 +25,7 @@ class GameViewController: UIViewController {
     private var submarineSafeAreaView = UIView()
     private var sharkImageView = UIImageView()
     private var shipImageView = UIImageView()
+    private var missleImageView = UIImageView()
     private var oxygenViewFull = UIView()
     private var oxygenViewEmpty = UIView()
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
@@ -37,6 +38,7 @@ class GameViewController: UIViewController {
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
+    private var missle = Missle()
     
     var user = User(userName: "User")
     //MARK: - lifecycle funcs
@@ -180,6 +182,7 @@ class GameViewController: UIViewController {
         gameOverLabel.layer.zPosition = 1
         gameOverLabel.rounded()
         setMovingGroundImageView()
+        setMissle()
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
@@ -234,6 +237,14 @@ class GameViewController: UIViewController {
             self.view.addSubview(view)
         }
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
+    }
+    
+    func setMissle() {
+        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
+        missleImageView.image = UIImage(named: missle.imageName)
+        missleImageView.clipsToBounds = true
+        missleImageView.contentMode = .scaleToFill
+        view.addSubview(missleImageView)
     }
     
     func startOxygenViewTimer(){
