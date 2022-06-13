@@ -80,6 +80,8 @@ class GameViewController: UIViewController {
     @IBAction func downButtonCancelled(sender: UIButton) {
         buttonTimer.invalidate()
     }
+    @IBAction func fireButtonTapped(_ sender: UIButton) {
+    }
     @IBAction func reloadTapped(_ sender: UIButton) {
         sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
@@ -231,7 +233,7 @@ class GameViewController: UIViewController {
             view.contentMode = .scaleToFill
             self.view.addSubview(view)
         }
-        movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
+        movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
     }
     
     func startOxygenViewTimer(){

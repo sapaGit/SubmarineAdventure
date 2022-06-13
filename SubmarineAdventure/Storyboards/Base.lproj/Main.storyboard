@@ -229,6 +229,16 @@
                                     <action selector="rightButtonHold:" destination="r1u-5i-Rcc" eventType="touchDown" id="JMN-az-8mm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-h2-CQl">
+                                <rect key="frame" x="786.5" y="313" width="58" height="51"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="🔴">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="gZk-NK-bUF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -248,10 +258,12 @@
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Vz-0t-cwN" secondAttribute="trailing" symbolic="YES" id="SXP-Xz-32g"/>
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="-55" id="U38-wQ-BU7"/>
+                            <constraint firstItem="ePA-h2-CQl" firstAttribute="centerX" secondItem="hhc-Qn-AV6" secondAttribute="centerX" id="Upq-T9-t1P"/>
                             <constraint firstItem="H1B-UM-X3w" firstAttribute="top" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="Vhj-ly-A5E"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="leading" secondItem="2bj-wQ-Azt" secondAttribute="trailing" constant="10" id="ZBF-eM-gyp"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="top" secondItem="X8h-iJ-aoF" secondAttribute="bottom" constant="-11" id="bgh-KZ-rll"/>
+                            <constraint firstItem="ePA-h2-CQl" firstAttribute="top" secondItem="hhc-Qn-AV6" secondAttribute="bottom" id="dUq-Xu-i5a"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="nqe-Kg-aMd"/>
