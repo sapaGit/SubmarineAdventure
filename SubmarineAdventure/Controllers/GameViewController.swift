@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     private var groundTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
+    private var missleTimer = Timer()
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
@@ -83,6 +84,8 @@ class GameViewController: UIViewController {
         buttonTimer.invalidate()
     }
     @IBAction func fireButtonTapped(_ sender: UIButton) {
+        view.addSubview(missleImageView)
+        startMissleTimer()
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
         sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
@@ -91,6 +94,7 @@ class GameViewController: UIViewController {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
+        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
         sender.isHidden = true
@@ -111,6 +115,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.y += 1
             oxygenViewEmpty.frame.origin.y += 1
             oxygenViewFull.frame.origin.y += 1
+            missleImageView.frame.origin.y += 1
         }
     }
     
@@ -120,6 +125,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.x += 1
             oxygenViewEmpty.frame.origin.x += 1
             oxygenViewFull.frame.origin.x += 1
+            missleImageView.frame.origin.x += 1
         }
     }
     
@@ -129,6 +135,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.x -= 1
             oxygenViewEmpty.frame.origin.x -= 1
             oxygenViewFull.frame.origin.x -= 1
+            missleImageView.frame.origin.x += 1
         }
     }
     @objc func moveSubmarineUp() {
@@ -145,6 +152,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.y -= 1
             oxygenViewEmpty.frame.origin.y -= 1
             oxygenViewFull.frame.origin.y -= 1
+            missleImageView.frame.origin.y -= 1
         }
     }
     func isInRightPositionUp() -> Bool {
@@ -244,9 +252,22 @@ class GameViewController: UIViewController {
         missleImageView.image = UIImage(named: missle.imageName)
         missleImageView.clipsToBounds = true
         missleImageView.contentMode = .scaleToFill
-        view.addSubview(missleImageView)
     }
     
+    func moveMissle() {
+        if missleImageView.frame.origin.x > self.view.frame.maxX {
+            missleTimer.invalidate()
+            missleImageView.removeFromSuperview()
+            missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+        }
+        if missleImageView.frame.intersects(sharkImageView.frame) {
+            missleTimer.invalidate()
+            missleImageView.removeFromSuperview()
+            missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            sharkImageView.frame.origin.x = self.view.frame.maxX+1
+        }
+        missleImageView.frame.origin.x += 1
+    }
     func startOxygenViewTimer(){
         oxygenTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
             self.changeOxygenView()
@@ -314,6 +335,11 @@ class GameViewController: UIViewController {
         groundTimer.fire()
     }
     
+    func startMissleTimer() {
+        missleTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(missle.speed), repeats: true, block: { _ in
+            self.moveMissle()
+        })
+    }
     func startSharkTimer() {
         sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(user.speed), repeats: true, block: { _ in
             self.moveShark()
