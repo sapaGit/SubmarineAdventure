@@ -12,5 +12,4 @@ class Shark {
     var height: CGFloat = 80
     var speed: Double = 2
     var imageName: String = "Fish"
-    
 }

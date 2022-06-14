@@ -92,7 +92,7 @@ class GameViewController: UIViewController {
         startMissleTimer()
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
-        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
+        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
         submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.7)
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
@@ -199,7 +199,7 @@ class GameViewController: UIViewController {
     func setShark() {
         sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFit
-        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: seaImageView.frame.midY-ship.height/2, width: shark.width, height: shark.height)
+        sharkImageView.frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
         sharkImageView.image = UIImage(named: shark.imageName)
         
         view.addSubview(sharkImageView)
@@ -250,12 +250,15 @@ class GameViewController: UIViewController {
         }
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
     }
+    func randomY() -> CGFloat {
+        return CGFloat.random(in: seaImageView.frame.minY + shark.height...seaImageView.frame.maxY - shark.height)
+    }
     
     func setMissle() {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         missleImageView.image = UIImage(named: missle.imageName)
         missleImageView.clipsToBounds = true
-        missleImageView.contentMode = .scaleToFill
+        missleImageView.contentMode = .scaleAspectFill
     }
     
     func moveMissle() {
@@ -271,6 +274,7 @@ class GameViewController: UIViewController {
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
             missleImageView.frame.origin.y = submarineImageView.frame.midY
+            sharkImageView.frame.origin.y = randomY()
             sharkImageView.frame.origin.x = self.view.frame.maxX+1
             return
         }
@@ -326,6 +330,7 @@ class GameViewController: UIViewController {
         
         if self.sharkImageView.frame.maxX < 0 {
             self.sharkImageView.frame.origin.x = self.view.bounds.width + 1
+            self.sharkImageView.frame.origin.y = randomY()
         }
     }
     
@@ -372,6 +377,7 @@ class GameViewController: UIViewController {
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
+        
         self.isLive = false
         self.reloadButton.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
