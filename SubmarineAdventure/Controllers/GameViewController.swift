@@ -84,6 +84,10 @@ class GameViewController: UIViewController {
         buttonTimer.invalidate()
     }
     @IBAction func fireButtonTapped(_ sender: UIButton) {
+        //checking is missle in fly
+        if missleImageView.frame.origin.x != submarineImageView.frame.maxX + submarine.width/2 {
+            return
+        }
         view.addSubview(missleImageView)
         startMissleTimer()
     }
@@ -259,12 +263,14 @@ class GameViewController: UIViewController {
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            return
         }
         if missleImageView.frame.intersects(sharkImageView.frame) {
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
             sharkImageView.frame.origin.x = self.view.frame.maxX+1
+            return
         }
         missleImageView.frame.origin.x += 1
     }
