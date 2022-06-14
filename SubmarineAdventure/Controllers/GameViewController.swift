@@ -85,7 +85,7 @@ class GameViewController: UIViewController {
     }
     @IBAction func fireButtonTapped(_ sender: UIButton) {
         //checking is missle in fly
-        if missleImageView.frame.origin.x != submarineImageView.frame.maxX + submarine.width/2 {
+        if isAlreadyFired() {
             return
         }
         view.addSubview(missleImageView)
@@ -119,7 +119,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.y += 1
             oxygenViewEmpty.frame.origin.y += 1
             oxygenViewFull.frame.origin.y += 1
-            missleImageView.frame.origin.y += 1
+            if !isAlreadyFired() { missleImageView.frame.origin.y += 1 }
         }
     }
     
@@ -129,7 +129,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.x += 1
             oxygenViewEmpty.frame.origin.x += 1
             oxygenViewFull.frame.origin.x += 1
-            missleImageView.frame.origin.x += 1
+            if !isAlreadyFired() { missleImageView.frame.origin.x += 1 }
         }
     }
     
@@ -139,7 +139,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.x -= 1
             oxygenViewEmpty.frame.origin.x -= 1
             oxygenViewFull.frame.origin.x -= 1
-            missleImageView.frame.origin.x += 1
+            if !isAlreadyFired() { missleImageView.frame.origin.x -= 1 }
         }
     }
     @objc func moveSubmarineUp() {
@@ -156,7 +156,7 @@ class GameViewController: UIViewController {
             submarineSafeAreaView.frame.origin.y -= 1
             oxygenViewEmpty.frame.origin.y -= 1
             oxygenViewFull.frame.origin.y -= 1
-            missleImageView.frame.origin.y -= 1
+            if !isAlreadyFired() { missleImageView.frame.origin.y -= 1 }
         }
     }
     func isInRightPositionUp() -> Bool {
@@ -263,17 +263,26 @@ class GameViewController: UIViewController {
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            missleImageView.frame.origin.y = submarineImageView.frame.midY
             return
         }
         if missleImageView.frame.intersects(sharkImageView.frame) {
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            missleImageView.frame.origin.y = submarineImageView.frame.midY
             sharkImageView.frame.origin.x = self.view.frame.maxX+1
             return
         }
         missleImageView.frame.origin.x += 1
     }
+    func isAlreadyFired()-> Bool {
+        if missleImageView.isDescendant(of: self.view) {
+            return true
+        }
+        return false
+    }
+    
     func startOxygenViewTimer(){
         oxygenTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
             self.changeOxygenView()
