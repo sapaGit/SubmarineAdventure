@@ -42,7 +42,7 @@ class GameViewController: UIViewController {
     private var shark = Shark()
     private var submarine = Submarine()
     private var missle = Missle()
-
+    private var currentScore = 0
     
     var currentUser = User(userName: "User")
     //MARK: - lifecycle funcs
@@ -113,6 +113,7 @@ class GameViewController: UIViewController {
         startShipTimer()
         startOxygenViewTimer()
         startGroundTimer()
+        startScoreTimer()
     }
     
     //MARK: - flow  funcs
@@ -302,6 +303,7 @@ class GameViewController: UIViewController {
         oxygenViewFull.frame.size.width -= 0.5
         if oxygenViewFull.frame.size.width == 0 {
             print("Oxygen is Empty!")
+            checkScore()
             stopGame()
         }
     }
@@ -314,6 +316,7 @@ class GameViewController: UIViewController {
     func moveShip() {
         if self.submarineSafeAreaView.frame.intersects(self.shipImageView.frame) {
             print("Submarine damaged!")
+            checkScore()
             stopGame()
             return
         }
@@ -327,6 +330,7 @@ class GameViewController: UIViewController {
     func moveShark() {
         if self.submarineSafeAreaView.frame.intersects(self.sharkImageView.frame) {
             print("Submarine damaged!")
+            checkScore()
             stopGame()
             return
         }
@@ -342,6 +346,7 @@ class GameViewController: UIViewController {
         for groundView in movingGroundImageViewCollection {
             if self.submarineSafeAreaView.frame.intersects(groundView.frame) {
                 print("Submarine damaged!")
+                checkScore()
                 stopGame()
                 return
             }
@@ -378,11 +383,22 @@ class GameViewController: UIViewController {
     }
     
     func startScoreTimer() {
-        shipTimer = Timer.scheduledTimer(withTimeInterval: 1/Double(currentUser.speed), repeats: true, block: { _ in
-            self.currentUser.score[4] += 5
-            self.scoreLabel.text = String(self.currentUser.score[4])
+        scoreTimer = Timer.scheduledTimer(withTimeInterval: 1/Double(currentUser.speed), repeats: true, block: { _ in
+            self.currentScore += 5
+            self.scoreLabel.text = String(self.currentScore)
         })
         scoreTimer.fire()
+    }
+    func checkScore() {
+        for index in 0...currentUser.score.count-1 {
+            if currentScore > currentUser.score[index] {
+                currentUser.score.insert(currentScore, at: index)
+                currentUser.score.remove(at: currentUser.score.count-1)
+                print(currentUser.score)
+                UserDefaults.standard.set(encodable: currentUser, forKey: "currentUser")
+                break
+            }
+        }
     }
     
     func stopGame() {

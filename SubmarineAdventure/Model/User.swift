@@ -18,7 +18,7 @@ class User: Codable {
     }
         // формируем энум из свойств класса, и тип String и СodingKey обязательно указывать
         public enum CodingKeys: String, CodingKey {
-            case submarineColor, userName, speed
+            case submarineColor, userName, speed, score
         }
         //метод преобразует Data в объект
         required public init(from decoder: Decoder) throws {
@@ -27,6 +27,7 @@ class User: Codable {
             self.submarineColor = try container.decode(String.self, forKey: .submarineColor)
             self.userName = try container.decode(String.self, forKey: .userName)
             self.speed = try container.decode(Int.self, forKey: .speed)
+            self.score = try container.decode([Int].self, forKey: .score)
         }
         // метод создает контейнер и упаковывает его в data. Внутрь контейнера складываем по отдельности каждое свойство.
         public func encode(to encoder: Encoder) throws {
@@ -35,5 +36,6 @@ class User: Codable {
             try container.encode(self.submarineColor, forKey: .submarineColor)
             try container.encode(self.userName, forKey: .userName)
             try container.encode(self.speed, forKey: .speed)
+            try container.encode(self.score, forKey: .score)
         }
 }
