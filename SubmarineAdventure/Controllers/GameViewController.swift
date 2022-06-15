@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     @IBOutlet var groundImageView: UIImageView!
     @IBOutlet var gameOverLabel: UILabel!
     @IBOutlet var reloadButton: UIButton!
+    @IBOutlet var scoreLabel: UILabel!
     
     
     //MARK: - let/var
@@ -36,12 +37,14 @@ class GameViewController: UIViewController {
     private var isLive = true
     private var buttonTimer = Timer()
     private var missleTimer = Timer()
+    private var scoreTimer = Timer()
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
     private var missle = Missle()
+
     
-    var user = User(userName: "User")
+    var currentUser = User(userName: "User")
     //MARK: - lifecycle funcs
     
     override func viewDidLoad() {
@@ -51,6 +54,7 @@ class GameViewController: UIViewController {
         startSharkTimer()
         startOxygenViewTimer()
         startGroundTimer()
+        startScoreTimer()
     }
     //MARK: - IBActions
     @IBAction func goToMainPressed(_ sender: UIButton) {
@@ -210,15 +214,15 @@ class GameViewController: UIViewController {
         submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.7)
         submarineSafeAreaView.backgroundColor = .green
         if let user = UserDefaults.standard.value(User.self, forKey: "currentUser") {
-            self.user = user
+            self.currentUser = user
         } else { let user = User(userName: "User")
-            self.user = user
+            self.currentUser = user
         }
-        submarineImageView.image = UIImage(named: user.submarineColor)
+        submarineImageView.image = UIImage(named: currentUser.submarineColor)
         submarineImageView.contentMode = .scaleToFill
         submarineImageView.clipsToBounds = true
         submarineImageView.layer.zPosition = 1
-        nameUser.text = user.userName
+        nameUser.text = currentUser.userName
         view.addSubview(submarineImageView)
         //view.addSubview(submarineSafeAreaView)
     }
@@ -349,7 +353,7 @@ class GameViewController: UIViewController {
     }
     
     func startGroundTimer() {
-        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(user.speed), repeats: true, block: { _ in
+        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveGround()
         })
         groundTimer.fire()
@@ -361,22 +365,32 @@ class GameViewController: UIViewController {
         })
     }
     func startSharkTimer() {
-        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(user.speed), repeats: true, block: { _ in
+        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveShark()
         })
         sharkTimer.fire()
     }
     func startShipTimer() {
-        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(user.speed), repeats: true, block: { _ in
+        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveShip()
         })
         shipTimer.fire()
     }
+    
+    func startScoreTimer() {
+        shipTimer = Timer.scheduledTimer(withTimeInterval: 1/Double(currentUser.speed), repeats: true, block: { _ in
+            self.currentUser.score[4] += 5
+            self.scoreLabel.text = String(self.currentUser.score[4])
+        })
+        scoreTimer.fire()
+    }
+    
     func stopGame() {
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
+        self.scoreTimer.invalidate()
         
         self.isLive = false
         self.reloadButton.isHidden = false

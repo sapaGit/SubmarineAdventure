@@ -11,6 +11,7 @@ class User: Codable {
     var submarineColor = "SubmarineGrey"
     var userName: String
     var speed = 2
+    var score = [0, 0, 0, 0, 0]
     
     init(userName: String) {
         self.userName = userName
