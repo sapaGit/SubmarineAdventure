@@ -9,7 +9,7 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    let currentUser = User(userName: "Hello")
+    let currentUser = User(userName: "User")
     let imageNameArray = ["SubmarineGrey", "SubmarineGreen", "SubmarineBlue", "SubmarineRed"]
     let speedArray = [1, 2, 4]
     var index = 0
@@ -27,6 +27,8 @@ class SettingsViewController: UIViewController {
             textField.text = user.userName
             currentUser.speed = user.speed
             currentUser.submarineColor = user.submarineColor
+            currentUser.scoreName = user.scoreName
+            currentUser.score = user.score
             submarineView.image = UIImage(named: user.submarineColor)
         }
         checkSpeedButtons()

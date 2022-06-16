@@ -394,7 +394,9 @@ class GameViewController: UIViewController {
             if currentScore > currentUser.score[index] {
                 currentUser.score.insert(currentScore, at: index)
                 currentUser.score.remove(at: currentUser.score.count-1)
-                print(currentUser.score)
+                currentUser.scoreName.insert(currentUser.userName, at: index)
+                currentUser.scoreName.remove(at: currentUser.scoreName.count-1)
+                print(currentUser.score, currentUser.scoreName)
                 UserDefaults.standard.set(encodable: currentUser, forKey: "currentUser")
                 break
             }

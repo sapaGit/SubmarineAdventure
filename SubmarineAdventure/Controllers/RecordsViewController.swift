@@ -37,7 +37,7 @@ extension RecordsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomViewCell", for: indexPath) as? CustomViewCell else { return UITableViewCell() }
-        cell.configue(with: "\(currentUser.score[indexPath.row])")
+        cell.configue(with: "\(currentUser.scoreName[indexPath.row])", score: "\(currentUser.score[indexPath.row])")
                 return cell
     }
 }

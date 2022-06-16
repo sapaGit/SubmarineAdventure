@@ -17,7 +17,8 @@ class CustomViewCell: UITableViewCell {
         // Initialization code
     }
 
-    func configue(with text: String) {
-            scoreLabel.text = text
+    func configue(with nameUser: String, score: String) {
+            usernameLabel.text = nameUser
+            scoreLabel.text = score
         }
 }
