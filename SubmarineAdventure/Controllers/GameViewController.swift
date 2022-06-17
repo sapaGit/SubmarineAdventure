@@ -15,7 +15,6 @@ class GameViewController: UIViewController {
     @IBOutlet var downButton: UIButton!
     @IBOutlet var skyImageView: UIImageView!
     @IBOutlet var seaImageView: UIImageView!
-    @IBOutlet var groundImageView: UIImageView!
     @IBOutlet var gameOverLabel: UILabel!
     @IBOutlet var reloadButton: UIButton!
     @IBOutlet var scoreLabel: UILabel!
@@ -247,8 +246,8 @@ class GameViewController: UIViewController {
     }
     func setMovingGroundImageView() {
         for view in movingGroundImageViewCollection{
-            view.frame = CGRect(x: groundImageView.frame.origin.x, y: groundImageView.frame.origin.y, width: groundImageView.frame.width, height: groundImageView.frame.height)
-            view.image = UIImage(named: "Ground")
+            view.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/5, width: seaImageView.frame.width, height: seaImageView.frame.height/5)
+            view.image = UIImage(named: "SandGround")
             view.clipsToBounds = true
             view.contentMode = .scaleToFill
             self.view.addSubview(view)
@@ -409,7 +408,7 @@ class GameViewController: UIViewController {
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
         self.scoreTimer.invalidate()
-        
+        self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false
         UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
