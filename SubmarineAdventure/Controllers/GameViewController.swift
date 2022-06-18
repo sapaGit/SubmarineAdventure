@@ -29,6 +29,7 @@ class GameViewController: UIViewController {
     private var oxygenViewFull = UIView()
     private var oxygenViewEmpty = UIView()
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
+    private var groundSafeArea = UIView()
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
@@ -245,15 +246,17 @@ class GameViewController: UIViewController {
         view.addSubview(oxygenViewFull)
     }
     func setMovingGroundImageView() {
-        for view in movingGroundImageViewCollection{
-            view.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/5, width: seaImageView.frame.width, height: seaImageView.frame.height/5)
+        for view in movingGroundImageViewCollection {
+            view.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/7, width: seaImageView.frame.width, height: seaImageView.frame.height/7)
             view.image = UIImage(named: "SandGround")
             view.clipsToBounds = true
             view.contentMode = .scaleToFill
             self.view.addSubview(view)
         }
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
+        groundSafeArea.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/8, width: seaImageView.frame.width, height: seaImageView.frame.height/8)
     }
+
     func randomY() -> CGFloat {
         return CGFloat.random(in: seaImageView.frame.minY + shark.height...seaImageView.frame.maxY - shark.height)
     }
@@ -343,7 +346,7 @@ class GameViewController: UIViewController {
     
     func moveGround() {
         for groundView in movingGroundImageViewCollection {
-            if self.submarineSafeAreaView.frame.intersects(groundView.frame) {
+            if self.submarineSafeAreaView.frame.intersects(groundSafeArea.frame) {
                 print("Submarine damaged!")
                 checkScore()
                 stopGame()
@@ -357,7 +360,7 @@ class GameViewController: UIViewController {
     }
     
     func startGroundTimer() {
-        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed), repeats: true, block: { _ in
+        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.050/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveGround()
         })
         groundTimer.fire()
