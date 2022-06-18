@@ -25,6 +25,7 @@ class GameViewController: UIViewController {
     private var submarineSafeAreaView = UIView()
     private var sharkImageView = UIImageView()
     private var shipImageView = UIImageView()
+    private var boomImageView = UIImageView()
     private var missleImageView = UIImageView()
     private var oxygenViewFull = UIView()
     private var oxygenViewEmpty = UIView()
@@ -200,6 +201,7 @@ class GameViewController: UIViewController {
         gameOverLabel.rounded()
         setMovingGroundImageView()
         setMissle()
+        setBoom()
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
@@ -234,7 +236,15 @@ class GameViewController: UIViewController {
         shipImageView.contentMode = .scaleToFill
         view.addSubview(shipImageView)
     }
-    
+    func setBoom() {
+        boomImageView.frame = CGRect(x: sharkImageView.frame.origin.x, y: sharkImageView.frame.origin.y, width: sharkImageView.frame.width, height: sharkImageView.frame.height)
+        boomImageView.image = UIImage(named: "Boom")
+        boomImageView.contentMode = .scaleToFill
+        boomImageView.clipsToBounds = true
+        boomImageView.alpha = 0
+        view.addSubview(boomImageView)
+        
+    }
     func setOxygenView() {
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         oxygenViewFull.roundedLess()
@@ -277,6 +287,12 @@ class GameViewController: UIViewController {
             return
         }
         if missleImageView.frame.intersects(sharkImageView.frame) {
+            self.boomImageView.frame.origin = self.sharkImageView.frame.origin
+            self.boomImageView.alpha = 1
+            UIView.animate(withDuration: 0.5) {
+                self.boomImageView.alpha = 0
+            }
+            
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
