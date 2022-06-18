@@ -118,7 +118,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sea" translatesAutoresizingMaskIntoConstraints="NO" id="TjD-X1-fNG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sea" translatesAutoresizingMaskIntoConstraints="NO" id="TjD-X1-fNG">
                                 <rect key="frame" x="0.0" y="70" width="896" height="344"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sky" translatesAutoresizingMaskIntoConstraints="NO" id="PL0-XL-gfl">
@@ -281,6 +281,7 @@
                     </view>
                     <connections>
                         <outlet property="downButton" destination="hhc-Qn-AV6" id="Rc5-qp-fv0"/>
+                        <outlet property="fireButton" destination="ePA-h2-CQl" id="OHw-Bk-ZTf"/>
                         <outlet property="gameOverLabel" destination="5Nd-di-maN" id="d7I-SQ-rpj"/>
                         <outlet property="nameUser" destination="2Vz-0t-cwN" id="2Qr-Db-uBm"/>
                         <outlet property="reloadButton" destination="RSZ-P9-TMP" id="bqb-3O-IBe"/>

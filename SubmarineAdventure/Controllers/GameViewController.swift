@@ -18,6 +18,7 @@ class GameViewController: UIViewController {
     @IBOutlet var gameOverLabel: UILabel!
     @IBOutlet var reloadButton: UIButton!
     @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var fireButton: UIButton!
     
     
     //MARK: - let/var
@@ -107,6 +108,7 @@ class GameViewController: UIViewController {
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
         sender.isHidden = true
+        fireButton.isHidden = false
         sender.alpha = 0
         gameOverLabel.alpha = 0
         self.isLive = true
@@ -202,6 +204,7 @@ class GameViewController: UIViewController {
         setMovingGroundImageView()
         setMissle()
         setBoom()
+        fireButton.layer.zPosition = 1
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
@@ -241,6 +244,7 @@ class GameViewController: UIViewController {
         boomImageView.image = UIImage(named: "Boom")
         boomImageView.contentMode = .scaleToFill
         boomImageView.clipsToBounds = true
+        boomImageView.layer.zPosition = 1
         boomImageView.alpha = 0
         view.addSubview(boomImageView)
         
@@ -257,14 +261,14 @@ class GameViewController: UIViewController {
     }
     func setMovingGroundImageView() {
         for view in movingGroundImageViewCollection {
-            view.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/7, width: seaImageView.frame.width, height: seaImageView.frame.height/7)
+            view.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/7, width: self.view.frame.width, height: seaImageView.frame.height/7)
             view.image = UIImage(named: "SandGround")
             view.clipsToBounds = true
             view.contentMode = .scaleToFill
             self.view.addSubview(view)
         }
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
-        groundSafeArea.frame = CGRect(x: seaImageView.frame.minX, y: seaImageView.frame.maxY - seaImageView.frame.height/8, width: seaImageView.frame.width, height: seaImageView.frame.height/8)
+        groundSafeArea.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/8, width: self.view.frame.width, height: seaImageView.frame.height/8)
     }
 
     func randomY() -> CGFloat {
@@ -278,6 +282,17 @@ class GameViewController: UIViewController {
         missleImageView.contentMode = .scaleAspectFill
     }
     
+    func boomAnimation() {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.05) {
+                self.boomImageView.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.05, relativeDuration: 0.95) {
+                self.boomImageView.alpha = 0
+            }
+        }
+    }
+    
     func moveMissle() {
         if missleImageView.frame.origin.x > self.view.frame.maxX {
             missleTimer.invalidate()
@@ -288,11 +303,7 @@ class GameViewController: UIViewController {
         }
         if missleImageView.frame.intersects(sharkImageView.frame) {
             self.boomImageView.frame.origin = self.sharkImageView.frame.origin
-            self.boomImageView.alpha = 1
-            UIView.animate(withDuration: 0.5) {
-                self.boomImageView.alpha = 0
-            }
-            
+            boomAnimation()
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
             missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
@@ -334,6 +345,8 @@ class GameViewController: UIViewController {
     func moveShip() {
         if self.submarineSafeAreaView.frame.intersects(self.shipImageView.frame) {
             print("Submarine damaged!")
+            boomImageView.frame.origin = submarineImageView.frame.origin
+            boomAnimation()
             checkScore()
             stopGame()
             return
@@ -348,6 +361,8 @@ class GameViewController: UIViewController {
     func moveShark() {
         if self.submarineSafeAreaView.frame.intersects(self.sharkImageView.frame) {
             print("Submarine damaged!")
+            boomImageView.frame.origin = submarineImageView.frame.origin
+            boomAnimation()
             checkScore()
             stopGame()
             return
@@ -364,6 +379,8 @@ class GameViewController: UIViewController {
         for groundView in movingGroundImageViewCollection {
             if self.submarineSafeAreaView.frame.intersects(groundSafeArea.frame) {
                 print("Submarine damaged!")
+                boomImageView.frame.origin = submarineImageView.frame.origin
+                boomAnimation()
                 checkScore()
                 stopGame()
                 return
@@ -430,6 +447,7 @@ class GameViewController: UIViewController {
         self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false
+        self.fireButton.isHidden = true
         UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
             self.gameOverLabel.alpha = 1
             self.reloadButton.alpha = 1
