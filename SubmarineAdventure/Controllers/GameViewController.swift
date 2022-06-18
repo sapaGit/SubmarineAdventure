@@ -258,7 +258,7 @@ class GameViewController: UIViewController {
     }
 
     func randomY() -> CGFloat {
-        return CGFloat.random(in: seaImageView.frame.minY + shark.height...seaImageView.frame.maxY - shark.height)
+        return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/6)
     }
     
     func setMissle() {
