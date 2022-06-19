@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
+    private var bubbleTimer = Timer()
     private var groundTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
@@ -117,6 +118,7 @@ class GameViewController: UIViewController {
         startOxygenViewTimer()
         startGroundTimer()
         startScoreTimer()
+        startBubbleTimer()
     }
     
     //MARK: - flow  funcs
@@ -204,6 +206,7 @@ class GameViewController: UIViewController {
         setMovingGroundImageView()
         setMissle()
         setBoom()
+        startBubbleTimer()
         fireButton.layer.zPosition = 1
     }
     func setShark() {
@@ -259,6 +262,15 @@ class GameViewController: UIViewController {
 //        view.addSubview(oxygenViewEmpty)
         view.addSubview(oxygenViewFull)
     }
+    
+    func setBubble() -> UIImageView {
+            let bubbleView = UIImageView()
+        bubbleView.frame = CGRect(x: submarineImageView.frame.origin.x+submarineImageView.frame.width*0.7, y: submarineImageView.frame.origin.y, width: submarine.width/8, height: submarine.width/8)
+            bubbleView.image = UIImage(named: "Bubble")
+            bubbleView.clipsToBounds = true
+            bubbleView.contentMode = .scaleToFill
+            return bubbleView
+    }
     func setMovingGroundImageView() {
         for view in movingGroundImageViewCollection {
             view.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/7, width: self.view.frame.width, height: seaImageView.frame.height/7)
@@ -292,7 +304,15 @@ class GameViewController: UIViewController {
             }
         }
     }
-    
+    func moveBubble() {
+        let oneBubble = setBubble()
+        self.view.addSubview(oneBubble)
+        UIImageView.animate(withDuration: 2, delay: 0, options: .curveLinear) {
+            oneBubble.frame.origin.y = self.seaImageView.frame.minY
+        } completion: { _ in
+            oneBubble.removeFromSuperview()
+        }
+    }
     func moveMissle() {
         if missleImageView.frame.origin.x > self.view.frame.maxX {
             missleTimer.invalidate()
@@ -327,6 +347,12 @@ class GameViewController: UIViewController {
         })
             oxygenTimer.fire()
         
+    }
+    
+    func startBubbleTimer() {
+        bubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.moveBubble()
+        })
     }
     func changeOxygenView() {
         oxygenViewFull.frame.size.width -= 0.5
@@ -444,6 +470,7 @@ class GameViewController: UIViewController {
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
         self.scoreTimer.invalidate()
+        self.bubbleTimer.invalidate()
         self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false
