@@ -269,6 +269,9 @@ class GameViewController: UIViewController {
             bubbleView.image = UIImage(named: "Bubble")
             bubbleView.clipsToBounds = true
             bubbleView.contentMode = .scaleToFill
+        if submarineImageView.frame.origin.y < seaImageView.frame.origin.y {
+            bubbleView.alpha = 0
+        }
             return bubbleView
     }
     func setMovingGroundImageView() {
