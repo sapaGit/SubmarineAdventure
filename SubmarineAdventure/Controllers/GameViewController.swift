@@ -32,11 +32,13 @@ class GameViewController: UIViewController {
     private var oxygenViewEmpty = UIView()
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
     private var groundSafeArea = UIView()
+    private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
     private var bubbleTimer = Timer()
     private var groundTimer = Timer()
+    private var sprayTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
     private var missleTimer = Timer()
@@ -58,6 +60,7 @@ class GameViewController: UIViewController {
         startOxygenViewTimer()
         startGroundTimer()
         startScoreTimer()
+        startSprayTimer()
     }
     //MARK: - IBActions
     @IBAction func goToMainPressed(_ sender: UIButton) {
@@ -119,6 +122,7 @@ class GameViewController: UIViewController {
         startGroundTimer()
         startScoreTimer()
         startBubbleTimer()
+        startSprayTimer()
     }
     
     //MARK: - flow  funcs
@@ -207,12 +211,14 @@ class GameViewController: UIViewController {
         setMissle()
         setBoom()
         startBubbleTimer()
+        setSprayImageView()
         fireButton.layer.zPosition = 1
     }
     func setShark() {
         sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFit
         sharkImageView.frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
+        shipImageView.layer.zPosition = 1
         sharkImageView.image = UIImage(named: shark.imageName)
         
         view.addSubview(sharkImageView)
@@ -239,6 +245,7 @@ class GameViewController: UIViewController {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         shipImageView.image = UIImage(named: ship.imageName)
         shipImageView.clipsToBounds = true
+        shipImageView.layer.zPosition = 1
         shipImageView.contentMode = .scaleToFill
         view.addSubview(shipImageView)
     }
@@ -285,6 +292,19 @@ class GameViewController: UIViewController {
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
         groundSafeArea.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/8, width: self.view.frame.width, height: seaImageView.frame.height/8)
     }
+    
+    func setSprayImageView() {
+        for view in sprayImageViewCollection {
+            view.frame = CGRect(x: 0, y: skyImageView.frame.maxY-skyImageView.frame.maxY/1.3, width: self.view.frame.width, height: seaImageView.frame.height)
+            view.image = UIImage(named: "Spray")
+            view.alpha = 0.5
+            view.layer.zPosition = 0
+            view.clipsToBounds = true
+            view.contentMode = .redraw
+            self.view.addSubview(view)
+        }
+        sprayImageViewCollection[1].frame.origin.x = self.view.bounds.width
+    }
 
     func randomY() -> CGFloat {
         return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/6)
@@ -294,6 +314,7 @@ class GameViewController: UIViewController {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         missleImageView.image = UIImage(named: missle.imageName)
         missleImageView.clipsToBounds = true
+        missleImageView.layer.zPosition = 1
         missleImageView.contentMode = .scaleAspectFill
     }
     
@@ -420,6 +441,14 @@ class GameViewController: UIViewController {
             groundView.frame.origin.x -= 1
         }
     }
+    func moveSpray() {
+        for sprayView in sprayImageViewCollection {
+            if sprayView.frame.maxX == 0 {
+                sprayView.frame.origin.x = self.view.frame.width
+            }
+            sprayView.frame.origin.x -= 1
+        }
+    }
     
     func startGroundTimer() {
         groundTimer = Timer.scheduledTimer(withTimeInterval: 0.050/Double(currentUser.speed), repeats: true, block: { _ in
@@ -428,6 +457,12 @@ class GameViewController: UIViewController {
         groundTimer.fire()
     }
     
+    func startSprayTimer() {
+        sprayTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed), repeats: true, block: { _ in
+            self.moveSpray()
+        })
+        groundTimer.fire()
+    }
     func startMissleTimer() {
         missleTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(missle.speed), repeats: true, block: { _ in
             self.moveMissle()
@@ -472,6 +507,7 @@ class GameViewController: UIViewController {
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
+        self.sprayTimer.invalidate()
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
         self.currentScore = 0
