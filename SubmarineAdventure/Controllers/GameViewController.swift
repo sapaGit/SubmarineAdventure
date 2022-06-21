@@ -108,7 +108,7 @@ class GameViewController: UIViewController {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
-        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
+        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
         sender.isHidden = true
@@ -266,6 +266,7 @@ class GameViewController: UIViewController {
 //        oxygenViewEmpty.roundedLess()
 //        oxygenViewEmpty.backgroundColor = .white
         oxygenViewFull.backgroundColor = .green
+        oxygenViewFull.layer.zPosition = 1
 //        view.addSubview(oxygenViewEmpty)
         view.addSubview(oxygenViewFull)
     }
@@ -297,7 +298,7 @@ class GameViewController: UIViewController {
         for view in sprayImageViewCollection {
             view.frame = CGRect(x: 0, y: skyImageView.frame.maxY-skyImageView.frame.maxY/1.3, width: self.view.frame.width, height: seaImageView.frame.height)
             view.image = UIImage(named: "Spray")
-            view.alpha = 0.5
+            view.alpha = 0.1
             view.layer.zPosition = 0
             view.clipsToBounds = true
             view.contentMode = .redraw
@@ -311,7 +312,7 @@ class GameViewController: UIViewController {
     }
     
     func setMissle() {
-        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX + submarine.width/2, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
+        missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         missleImageView.image = UIImage(named: missle.imageName)
         missleImageView.clipsToBounds = true
         missleImageView.layer.zPosition = 1
@@ -341,7 +342,7 @@ class GameViewController: UIViewController {
         if missleImageView.frame.origin.x > self.view.frame.maxX {
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
-            missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            missleImageView.frame.origin.x = submarineImageView.frame.maxX
             missleImageView.frame.origin.y = submarineImageView.frame.midY
             return
         }
@@ -350,7 +351,7 @@ class GameViewController: UIViewController {
             boomAnimation()
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
-            missleImageView.frame.origin.x = submarineImageView.frame.maxX + submarine.width/2
+            missleImageView.frame.origin.x = submarineImageView.frame.maxX
             missleImageView.frame.origin.y = submarineImageView.frame.midY
             sharkImageView.frame.origin.y = randomY()
             sharkImageView.frame.origin.x = self.view.frame.maxX+1
@@ -401,6 +402,12 @@ class GameViewController: UIViewController {
             stopGame()
             return
         }
+//        UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: .calculationModeLinear) {
+//            
+//        } completion: { <#Bool#> in
+//            <#code#>
+//        }
+
         self.shipImageView.frame.origin.x -= 1
         
         if self.shipImageView.frame.maxX < 0 {
