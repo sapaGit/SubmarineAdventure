@@ -115,6 +115,7 @@ class GameViewController: UIViewController {
         fireButton.isHidden = false
         sender.alpha = 0
         gameOverLabel.alpha = 0
+        oxygenViewFull.alpha = 1
         self.isLive = true
         startSharkTimer()
         startShipTimer()
@@ -348,6 +349,7 @@ class GameViewController: UIViewController {
         }
         if missleImageView.frame.intersects(sharkImageView.frame) {
             self.boomImageView.frame.origin = self.sharkImageView.frame.origin
+            oxygenViewFull.frame.size.width += 7
             boomAnimation()
             missleTimer.invalidate()
             missleImageView.removeFromSuperview()
@@ -403,7 +405,7 @@ class GameViewController: UIViewController {
             return
         }
 //        UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: .calculationModeLinear) {
-//            
+//
 //        } completion: { <#Bool#> in
 //            <#code#>
 //        }
@@ -508,8 +510,16 @@ class GameViewController: UIViewController {
             }
         }
     }
+    func animateCrash() {
+        UIView.animate(withDuration: 2, delay: 0, options: .curveLinear) {
+            self.submarineImageView.frame.origin.y = self.view.frame.height - self.submarine.height*1.3
+        }
+
+    }
     
     func stopGame() {
+        self.oxygenViewFull.alpha = 0
+        animateCrash()
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
