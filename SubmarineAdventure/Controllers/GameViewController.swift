@@ -118,6 +118,7 @@ class GameViewController: UIViewController {
         sender.alpha = 0
         gameOverLabel.alpha = 0
         gameOverScoreLabel.alpha = 0
+        scoreLabel.alpha = 1
         oxygenViewFull.alpha = 1
         self.isLive = true
         startSharkTimer()
@@ -530,7 +531,8 @@ class GameViewController: UIViewController {
         self.sprayTimer.invalidate()
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
-        gameOverScoreLabel.text = " Score: \(currentScore) "
+        gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
+        scoreLabel.alpha = 0
         self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false
