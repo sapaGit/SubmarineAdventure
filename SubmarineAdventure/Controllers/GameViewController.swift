@@ -13,6 +13,7 @@ class GameViewController: UIViewController {
     @IBOutlet var nameUser: UILabel!
     @IBOutlet var upButton: UIButton!
     @IBOutlet var downButton: UIButton!
+    @IBOutlet var goToMain: UIButton!
     @IBOutlet var skyImageView: UIImageView!
     @IBOutlet var seaImageView: UIImageView!
     @IBOutlet var gameOverLabel: UILabel!
@@ -210,8 +211,11 @@ class GameViewController: UIViewController {
         setOxygenView()
         gameOverLabel.layer.zPosition = 1
         gameOverScoreLabel.layer.zPosition = 1
+        reloadButton.layer.zPosition = 1
+        goToMain.layer.zPosition = 2
         gameOverLabel.rounded()
         gameOverScoreLabel.rounded()
+        reloadButton.rounded()
         setMovingGroundImageView()
         setMissle()
         setBoom()
@@ -526,7 +530,7 @@ class GameViewController: UIViewController {
         self.sprayTimer.invalidate()
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
-        gameOverScoreLabel.text = "Score: \(currentScore)"
+        gameOverScoreLabel.text = " Score: \(currentScore) "
         self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false

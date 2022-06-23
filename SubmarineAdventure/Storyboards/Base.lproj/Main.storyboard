@@ -72,7 +72,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jWJ-r0-t2K">
                                         <rect key="frame" x="0.0" y="141" width="189.5" height="59.5"/>
-                                        <color key="backgroundColor" red="0.11310814096987425" green="0.15673551899681243" blue="0.61480359662804518" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.11372549019607843" green="0.15686274509803921" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Records">
@@ -125,10 +125,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="70"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qc-JY-cY9">
-                                <rect key="frame" x="5" y="20" width="89" height="44.5"/>
+                                <rect key="frame" x="5" y="20" width="36" height="45"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Back">
+                                <buttonConfiguration key="configuration" style="plain" title="&lt;">
                                     <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -185,8 +185,8 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Over" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-di-maN">
-                                <rect key="frame" x="297.5" y="185" width="301" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game over " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-di-maN">
+                                <rect key="frame" x="285.5" y="185" width="325.5" height="44"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="GXB-0H-d9D"/>
@@ -197,15 +197,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-P9-TMP">
-                                <rect key="frame" x="426" y="259" width="44" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="1kd-Qh-78i"/>
-                                    <constraint firstAttribute="width" constant="44" id="yjd-4c-jzK"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                <rect key="frame" x="338" y="249" width="220" height="52"/>
+                                <color key="backgroundColor" red="0.11372549019607843" green="0.15686274509803921" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="🔄"/>
+                                <state key="normal" title=" Play again ">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
                                 <connections>
                                     <action selector="reloadTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="OOu-q5-Mlz"/>
                                 </connections>
@@ -258,7 +256,7 @@
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" id="9rz-Kk-s4u"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="A7t-Ug-5LT"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" constant="70" id="EOB-VV-QwP"/>
-                            <constraint firstItem="RSZ-P9-TMP" firstAttribute="top" secondItem="5Nd-di-maN" secondAttribute="bottom" constant="30" id="G0i-Vw-5WC"/>
+                            <constraint firstItem="RSZ-P9-TMP" firstAttribute="top" secondItem="5Nd-di-maN" secondAttribute="bottom" constant="20" id="G0i-Vw-5WC"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="top" secondItem="ScG-ll-Tjw" secondAttribute="bottom" constant="20" id="IfU-aR-xpw"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="Lf8-gK-Djj"/>
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Qc-JY-cY9" secondAttribute="trailing" symbolic="YES" id="R9j-cT-NzF"/>
@@ -293,6 +291,7 @@
                         <outlet property="fireButton" destination="ePA-h2-CQl" id="OHw-Bk-ZTf"/>
                         <outlet property="gameOverLabel" destination="5Nd-di-maN" id="d7I-SQ-rpj"/>
                         <outlet property="gameOverScoreLabel" destination="ScG-ll-Tjw" id="Opq-Vj-qmg"/>
+                        <outlet property="goToMain" destination="5Qc-JY-cY9" id="fur-YN-jBL"/>
                         <outlet property="nameUser" destination="2Vz-0t-cwN" id="2Qr-Db-uBm"/>
                         <outlet property="reloadButton" destination="RSZ-P9-TMP" id="bqb-3O-IBe"/>
                         <outlet property="scoreLabel" destination="PAL-yv-std" id="iWu-ty-bKE"/>

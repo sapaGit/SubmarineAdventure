@@ -24,6 +24,7 @@ extension UIView {
         self.layer.cornerRadius = radius
     }
     func roundedLess(radius: CGFloat = 5) {
+        self.layer.masksToBounds = true
         self.layer.cornerRadius = radius
     }
     
