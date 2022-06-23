@@ -107,8 +107,8 @@
 			children = (
 				A00A09772848D17600AC6919 /* Shark.swift */,
 				A08F1D612857AC4F00F49DCF /* Missle.swift */,
-				A00A097A2848D2E400AC6919 /* Ship.swift */,
 				A00A09752848BB0800AC6919 /* User.swift */,
+				A00A097A2848D2E400AC6919 /* Ship.swift */,
 				A00A09802848E22600AC6919 /* Submarine.swift */,
 			);
 			path = Model;

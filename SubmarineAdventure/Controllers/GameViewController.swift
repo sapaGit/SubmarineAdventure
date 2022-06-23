@@ -19,6 +19,7 @@ class GameViewController: UIViewController {
     @IBOutlet var reloadButton: UIButton!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var fireButton: UIButton!
+    @IBOutlet var gameOverScoreLabel: UILabel!
     
     
     //MARK: - let/var
@@ -115,6 +116,7 @@ class GameViewController: UIViewController {
         fireButton.isHidden = false
         sender.alpha = 0
         gameOverLabel.alpha = 0
+        gameOverScoreLabel.alpha = 0
         oxygenViewFull.alpha = 1
         self.isLive = true
         startSharkTimer()
@@ -207,7 +209,9 @@ class GameViewController: UIViewController {
         setSubmarine()
         setOxygenView()
         gameOverLabel.layer.zPosition = 1
+        gameOverScoreLabel.layer.zPosition = 1
         gameOverLabel.rounded()
+        gameOverScoreLabel.rounded()
         setMovingGroundImageView()
         setMissle()
         setBoom()
@@ -404,11 +408,6 @@ class GameViewController: UIViewController {
             stopGame()
             return
         }
-//        UIView.animateKeyframes(withDuration: 0.3, delay: 0, options: .calculationModeLinear) {
-//
-//        } completion: { <#Bool#> in
-//            <#code#>
-//        }
 
         self.shipImageView.frame.origin.x -= 1
         
@@ -527,6 +526,7 @@ class GameViewController: UIViewController {
         self.sprayTimer.invalidate()
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
+        gameOverScoreLabel.text = "Score: \(currentScore)"
         self.currentScore = 0
         self.isLive = false
         self.reloadButton.isHidden = false
@@ -534,6 +534,7 @@ class GameViewController: UIViewController {
         UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
             self.gameOverLabel.alpha = 1
             self.reloadButton.alpha = 1
+            self.gameOverScoreLabel.alpha = 1
         }
     }
 }
