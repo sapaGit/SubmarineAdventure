@@ -535,12 +535,16 @@ class GameViewController: UIViewController {
         scoreLabel.alpha = 0
         self.currentScore = 0
         self.isLive = false
-        self.reloadButton.isHidden = false
         self.fireButton.isHidden = true
-        UIView.animate(withDuration: 1, delay: 0, options: .curveLinear) {
-            self.gameOverLabel.alpha = 1
-            self.reloadButton.alpha = 1
-            self.gameOverScoreLabel.alpha = 1
-        }
+        self.reloadButton.isHidden = false
+        UIView.animateKeyframes(withDuration: 3, delay: 0, options: .calculationModeLinear) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3) {
+                self.gameOverLabel.alpha = 1
+                self.gameOverScoreLabel.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 0.3) {
+                self.reloadButton.alpha = 1
+            }
     }
+}
 }
