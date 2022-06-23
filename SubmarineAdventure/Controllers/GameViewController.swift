@@ -113,7 +113,7 @@ class GameViewController: UIViewController {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
-        sender.isHidden = true
+        sender.isEnabled = false
         fireButton.isHidden = false
         sender.alpha = 0
         gameOverLabel.alpha = 0
@@ -520,6 +520,21 @@ class GameViewController: UIViewController {
         }
 
     }
+    func animateGameOverLabels() {
+        UIView.animateKeyframes(withDuration: 4, delay: 0, options: .calculationModeLinear) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3) {
+                self.gameOverLabel.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.2, relativeDuration: 0.5) {
+                self.gameOverScoreLabel.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.6, relativeDuration: 1) {
+                self.reloadButton.alpha = 1
+            }
+        } completion: { _ in
+            self.reloadButton.isEnabled = true
+        }
+    }
     
     func stopGame() {
         self.oxygenViewFull.alpha = 0
@@ -536,15 +551,6 @@ class GameViewController: UIViewController {
         self.currentScore = 0
         self.isLive = false
         self.fireButton.isHidden = true
-        self.reloadButton.isHidden = false
-        UIView.animateKeyframes(withDuration: 3, delay: 0, options: .calculationModeLinear) {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.3) {
-                self.gameOverLabel.alpha = 1
-                self.gameOverScoreLabel.alpha = 1
-            }
-            UIView.addKeyframe(withRelativeStartTime: 0.7, relativeDuration: 0.3) {
-                self.reloadButton.alpha = 1
-            }
+        self.animateGameOverLabels()
     }
-}
 }

@@ -14,6 +14,10 @@ class CustomViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        usernameLabel.rounded()
+        usernameLabel.dropShadow()
+        scoreLabel.rounded()
+        scoreLabel.dropShadow()
         // Initialization code
     }
 
