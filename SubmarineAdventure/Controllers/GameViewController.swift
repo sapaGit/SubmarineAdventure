@@ -24,6 +24,8 @@ class GameViewController: UIViewController {
     
     
     //MARK: - let/var
+    private var currentUser = User(userName: "User")
+    
     private var submarineImageView = UIImageView()
     private var submarineSafeAreaView = UIView()
     private var sharkImageView = UIImageView()
@@ -34,25 +36,33 @@ class GameViewController: UIViewController {
     private var oxygenViewEmpty = UIView()
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
     private var groundSafeArea = UIView()
+    private var plantImageView = UIImageView()
     private var bonusLabel = UILabel()
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
+    private var movingSkyViewCollection = [UIImageView(), UIImageView()]
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
     private var bubbleTimer = Timer()
     private var groundTimer = Timer()
+    private var skyTimer = Timer()
+    private var plantTimer = Timer()
     private var sprayTimer = Timer()
     private var isLive = true
     private var buttonTimer = Timer()
     private var missleTimer = Timer()
     private var scoreTimer = Timer()
+    private var seaBubbleTimer = Timer()
+    private var gameSpeedTimer = Timer()
+    private var speedMultiplier = 1
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
     private var missle = Missle()
     private var currentScore = 0
     
-    var currentUser = User(userName: "User")
+    
+
     //MARK: - lifecycle funcs
     
     override func viewDidLoad() {
@@ -64,8 +74,13 @@ class GameViewController: UIViewController {
         startGroundTimer()
         startScoreTimer()
         startSprayTimer()
+        startSkyTimer()
+        startPlantTimer()
+        startSeaBubbleTimer()
+        startGameSpeedTimer()
     }
     //MARK: - IBActions
+    
     @IBAction func goToMainPressed(_ sender: UIButton) {
         stopGame()
         self.navigationController?.popToRootViewController(animated: true)
@@ -114,6 +129,7 @@ class GameViewController: UIViewController {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
+        plantImageView.frame.origin.x = 1.2 * self.view.frame.width
         sender.isEnabled = false
         fireButton.isHidden = false
         sender.alpha = 0
@@ -121,6 +137,7 @@ class GameViewController: UIViewController {
         gameOverScoreLabel.alpha = 0
         scoreLabel.alpha = 1
         oxygenViewFull.alpha = 1
+        speedMultiplier = 1
         self.isLive = true
         startSharkTimer()
         startShipTimer()
@@ -128,7 +145,11 @@ class GameViewController: UIViewController {
         startGroundTimer()
         startScoreTimer()
         startBubbleTimer()
+        startSeaBubbleTimer()
         startSprayTimer()
+        startSkyTimer()
+        startPlantTimer()
+        startGameSpeedTimer()
     }
     
     //MARK: - flow  funcs
@@ -219,8 +240,10 @@ class GameViewController: UIViewController {
         gameOverScoreLabel.rounded()
         reloadButton.rounded()
         setMovingGroundImageView()
+        setMovingSkyImageView()
         setMissle()
         setBoom()
+        setPlant()
         startBubbleTimer()
         setSprayImageView()
         setBonusLabel()
@@ -261,6 +284,15 @@ class GameViewController: UIViewController {
         shipImageView.contentMode = .scaleToFill
         view.addSubview(shipImageView)
     }
+    func setPlant() {
+        plantImageView.frame = CGRect(x: self.view.frame.width*1.2, y: groundSafeArea.frame.minY - sharkImageView.frame.height*0.8, width: self.view.frame.width/18, height: sharkImageView.frame.height)
+        plantImageView.image = UIImage(named: "Plant")
+        plantImageView.contentMode = .scaleToFill
+        plantImageView.clipsToBounds = true
+        plantImageView.layer.zPosition = 1
+        view.addSubview(plantImageView)
+    }
+    
     func setBoom() {
         boomImageView.frame = CGRect(x: sharkImageView.frame.origin.x, y: sharkImageView.frame.origin.y, width: sharkImageView.frame.width, height: sharkImageView.frame.height)
         boomImageView.image = UIImage(named: "Boom")
@@ -294,6 +326,15 @@ class GameViewController: UIViewController {
         }
             return bubbleView
     }
+    
+    func setSeaBubble() -> UIImageView {
+        let bubbleView = UIImageView()
+        bubbleView.frame = CGRect(x: randomXSeaBubble(), y: self.view.frame.height, width: submarine.width/4, height: submarine.width/4)
+        bubbleView.image = UIImage(named: "Bubble")
+        bubbleView.clipsToBounds = true
+        bubbleView.contentMode = .scaleToFill
+        return bubbleView
+    }
     func setMovingGroundImageView() {
         for view in movingGroundImageViewCollection {
             view.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/7, width: self.view.frame.width, height: seaImageView.frame.height/7)
@@ -304,6 +345,17 @@ class GameViewController: UIViewController {
         }
         movingGroundImageViewCollection[1].frame.origin.x = self.view.bounds.width
         groundSafeArea.frame = CGRect(x: 0, y: self.view.frame.height - seaImageView.frame.height/8, width: self.view.frame.width, height: seaImageView.frame.height/8)
+    }
+    
+    func setMovingSkyImageView() {
+        for view in movingSkyViewCollection {
+            view.frame = skyImageView.frame
+            view.image = UIImage(named: "Sky")
+            view.clipsToBounds = true
+            view.contentMode = .scaleToFill
+            self.view.addSubview(view)
+        }
+        movingSkyViewCollection[1].frame.origin.x = self.view.bounds.width
     }
     
     func setSprayImageView() {
@@ -332,6 +384,12 @@ class GameViewController: UIViewController {
     func randomY() -> CGFloat {
         return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/5)
     }
+    
+    func randomXSeaBubble() -> CGFloat {
+        return CGFloat.random(in: self.view.frame.origin.x + submarine.width/2...self.view.frame.width-submarine.width)
+    }
+    
+    
     
     func setMissle() {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
@@ -370,6 +428,16 @@ class GameViewController: UIViewController {
             oneBubble.removeFromSuperview()
         }
     }
+    func moveSeaBubble() {
+        let oneBubble = setSeaBubble()
+        self.view.addSubview(oneBubble)
+        UIImageView.animate(withDuration: 2, delay: 0, options: .curveLinear) {
+            oneBubble.frame.origin.y = self.seaImageView.frame.minY
+        } completion: { _ in
+            oneBubble.removeFromSuperview()
+        }
+    }
+    
     func moveMissle() {
         if missleImageView.frame.origin.x > self.view.frame.maxX {
             missleTimer.invalidate()
@@ -412,6 +480,11 @@ class GameViewController: UIViewController {
     func startBubbleTimer() {
         bubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.moveBubble()
+        })
+    }
+    func startSeaBubbleTimer() {
+        seaBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.moveSeaBubble()
         })
     }
     func changeOxygenView() {
@@ -487,18 +560,56 @@ class GameViewController: UIViewController {
         }
     }
     
+   func movePlant() {
+       if self.submarineSafeAreaView.frame.intersects(self.plantImageView.frame) {
+           print("Submarine damaged!")
+           boomImageView.frame.origin = submarineImageView.frame.origin
+           boomAnimation()
+           checkScore()
+           stopGame()
+           return
+       }
+        if plantImageView.frame.maxX < 0 {
+            plantImageView.frame.origin.x = self.view.frame.width
+        }
+        plantImageView.frame.origin.x -= 1
+    }
+    func moveSky() {
+        for skyView in movingSkyViewCollection {
+            if skyView.frame.maxX == 0 {
+                skyView.frame.origin.x = self.view.frame.width
+            }
+            skyView.frame.origin.x -= 1
+        }
+    }
+    
     func startGroundTimer() {
-        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.050/Double(currentUser.speed), repeats: true, block: { _ in
+        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.030/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveGround()
         })
         groundTimer.fire()
     }
     
+    func startPlantTimer() {
+        plantTimer = Timer.scheduledTimer(withTimeInterval: 0.03/Double(currentUser.speed), repeats: true, block: { _ in
+            self.movePlant()
+        })
+        plantTimer.fire()
+    }
+    
+    
     func startSprayTimer() {
         sprayTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveSpray()
         })
-        groundTimer.fire()
+        sprayTimer.fire()
+    }
+    
+    func startSkyTimer() {
+        skyTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed), repeats: true, block: { _ in
+            self.moveSky()
+        })
+        skyTimer.fire()
     }
     func startMissleTimer() {
         missleTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(missle.speed), repeats: true, block: { _ in
@@ -506,13 +617,13 @@ class GameViewController: UIViewController {
         })
     }
     func startSharkTimer() {
-        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed), repeats: true, block: { _ in
+        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed*speedMultiplier), repeats: true, block: { _ in
             self.moveShark()
         })
         sharkTimer.fire()
     }
     func startShipTimer() {
-        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(currentUser.speed), repeats: true, block: { _ in
+        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(speedMultiplier * currentUser.speed), repeats: true, block: { _ in
             self.moveShip()
         })
         shipTimer.fire()
@@ -522,8 +633,16 @@ class GameViewController: UIViewController {
         scoreTimer = Timer.scheduledTimer(withTimeInterval: 1/Double(currentUser.speed), repeats: true, block: { _ in
             self.currentScore += 5
             self.scoreLabel.text = String(self.currentScore)
+            print(self.speedMultiplier)
         })
         scoreTimer.fire()
+    }
+    
+    func startGameSpeedTimer(){
+        gameSpeedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+            self.speedMultiplier += 1
+        })
+        gameSpeedTimer.fire()
     }
     func checkScore() {
         for index in 0...currentUser.score.count-1 {
@@ -568,13 +687,18 @@ class GameViewController: UIViewController {
         self.oxygenTimer.invalidate()
         self.groundTimer.invalidate()
         self.sprayTimer.invalidate()
+        self.skyTimer.invalidate()
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
+        self.plantTimer.invalidate()
+        self.gameSpeedTimer.invalidate()
+        self.seaBubbleTimer.invalidate()
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
         self.currentScore = 0
         self.isLive = false
         self.fireButton.isHidden = true
         self.animateGameOverLabels()
+       
     }
 }
