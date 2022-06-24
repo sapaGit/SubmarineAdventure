@@ -325,6 +325,7 @@ class GameViewController: UIViewController {
         bonusLabel.textColor = .white
         bonusLabel.text = "+25"
         bonusLabel.font = UIFont(name: "Chalkduster", size: 25)
+        bonusLabel.alpha = 0
         self.view.addSubview(bonusLabel)
     }
     
@@ -340,6 +341,16 @@ class GameViewController: UIViewController {
         missleImageView.contentMode = .scaleAspectFill
     }
     
+    func bonusScoreAnimation() {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                self.bonusLabel.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5) {
+                self.bonusLabel.alpha = 0
+            }
+        }
+    }
     func boomAnimation() {
         UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.05) {
@@ -377,6 +388,8 @@ class GameViewController: UIViewController {
             missleImageView.frame.origin.y = submarineImageView.frame.midY
             sharkImageView.frame.origin.y = randomY()
             sharkImageView.frame.origin.x = self.view.frame.maxX+1
+            bonusScoreAnimation()
+            self.currentScore += 25
             return
         }
         missleImageView.frame.origin.x += 1
