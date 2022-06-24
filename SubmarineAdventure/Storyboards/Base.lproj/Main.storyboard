@@ -228,27 +228,29 @@
                                     <action selector="rightButtonHold:" destination="r1u-5i-Rcc" eventType="touchDown" id="JMN-az-8mm"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-h2-CQl">
-                                <rect key="frame" x="786.5" y="330.5" width="58" height="51"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="🔴">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="gZk-NK-bUF"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAL-yv-std">
                                 <rect key="frame" x="723.5" y="344" width="68.5" height="30"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-h2-CQl">
+                                <rect key="frame" x="5" y="342.5" width="55" height="61.5"/>
+                                <color key="tintColor" systemColor="systemGray6Color"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="🚀">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="gZk-NK-bUF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerY" secondItem="j45-Tg-t8M" secondAttribute="centerY" id="18Y-rC-ORj"/>
+                            <constraint firstAttribute="bottom" secondItem="ePA-h2-CQl" secondAttribute="bottom" constant="10" id="3Ac-7R-lcv"/>
                             <constraint firstAttribute="trailing" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="50" id="43r-Qx-mtg"/>
                             <constraint firstItem="ScG-ll-Tjw" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="6SS-1m-tYh"/>
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nd-di-maN" secondAttribute="trailing" constant="8" symbolic="YES" id="8Ls-qD-JtD"/>
@@ -264,11 +266,9 @@
                             <constraint firstAttribute="bottom" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="SYm-Yz-51j"/>
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="-55" id="U38-wQ-BU7"/>
-                            <constraint firstItem="ePA-h2-CQl" firstAttribute="centerX" secondItem="hhc-Qn-AV6" secondAttribute="centerX" id="Upq-T9-t1P"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="leading" secondItem="2bj-wQ-Azt" secondAttribute="trailing" constant="10" id="ZBF-eM-gyp"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="top" secondItem="X8h-iJ-aoF" secondAttribute="bottom" constant="-11" id="bgh-KZ-rll"/>
-                            <constraint firstItem="ePA-h2-CQl" firstAttribute="top" secondItem="hhc-Qn-AV6" secondAttribute="bottom" id="dUq-Xu-i5a"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Vz-0t-cwN" secondAttribute="trailing" constant="646.5" id="gmS-db-XQV"/>
@@ -278,6 +278,7 @@
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="centerY" secondItem="tQG-6l-32t" secondAttribute="centerY" id="rMk-3q-vn9"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="rZH-2S-SqY"/>
                             <constraint firstAttribute="trailing" secondItem="tQG-6l-32t" secondAttribute="trailing" constant="20" id="se4-s5-sa8"/>
+                            <constraint firstItem="ePA-h2-CQl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="tKf-8B-blP"/>
                             <constraint firstAttribute="trailing" secondItem="hhc-Qn-AV6" secondAttribute="trailing" constant="50" id="tXO-qx-vbf"/>
                             <constraint firstAttribute="trailing" secondItem="PL0-XL-gfl" secondAttribute="trailing" id="ujQ-06-aGe"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="PL0-XL-gfl" secondAttribute="bottom" id="xxR-Wf-pRe"/>
@@ -406,10 +407,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vde-Bl-tIi">
-                                <rect key="frame" x="5" y="20" width="89" height="44.5"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="5" y="20" width="36" height="44.5"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Back">
+                                <buttonConfiguration key="configuration" style="plain" title="&lt;">
                                     <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -473,10 +474,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiJ-zb-mGw">
-                                <rect key="frame" x="5" y="20" width="89" height="44.5"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="5" y="20" width="36" height="45"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Back">
+                                <buttonConfiguration key="configuration" style="plain" title="&lt;">
                                     <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 </buttonConfiguration>
                                 <connections>
@@ -484,7 +485,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bw8-cX-aPf">
-                                <rect key="frame" x="60" y="73" width="776" height="292"/>
+                                <rect key="frame" x="60" y="73.5" width="776" height="291.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomViewCell" id="t41-Es-hms" customClass="CustomViewCell" customModule="SubmarineAdventure" customModuleProvider="target">
@@ -572,6 +573,9 @@
         </systemColor>
         <systemColor name="systemBrownColor">
             <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
