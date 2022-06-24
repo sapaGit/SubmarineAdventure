@@ -34,6 +34,7 @@ class GameViewController: UIViewController {
     private var oxygenViewEmpty = UIView()
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
     private var groundSafeArea = UIView()
+    private var bonusLabel = UILabel()
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
@@ -222,6 +223,7 @@ class GameViewController: UIViewController {
         setBoom()
         startBubbleTimer()
         setSprayImageView()
+        setBonusLabel()
         fireButton.layer.zPosition = 1
     }
     func setShark() {
@@ -317,6 +319,15 @@ class GameViewController: UIViewController {
         sprayImageViewCollection[1].frame.origin.x = self.view.bounds.width
     }
 
+    func setBonusLabel() {
+        bonusLabel.frame = CGRect(x: self.view.frame.midX-scoreLabel.frame.width/2, y: self.view.frame.midY, width: 50, height: 25)
+        bonusLabel.textAlignment = .center
+        bonusLabel.textColor = .white
+        bonusLabel.text = "+25"
+        bonusLabel.font = UIFont(name: "Chalkduster", size: 25)
+        self.view.addSubview(bonusLabel)
+    }
+    
     func randomY() -> CGFloat {
         return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/6)
     }
