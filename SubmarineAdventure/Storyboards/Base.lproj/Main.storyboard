@@ -136,11 +136,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-iJ-aoF">
-                                <rect key="frame" x="785" y="153.5" width="61" height="67"/>
+                                <rect key="frame" x="800" y="154.5" width="46" height="65"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="⬆️">
-                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                <buttonConfiguration key="configuration" style="plain" title="^">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="40"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="4a6-gf-g0e"/>
@@ -149,15 +149,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2bj-wQ-Azt">
-                                <rect key="frame" x="744" y="221" width="61" height="44"/>
+                                <rect key="frame" x="764" y="217" width="60" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CS3-yo-ICx"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="MOd-uM-ntv"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="⬅️">
-                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                <buttonConfiguration key="configuration" style="plain" title="&lt;">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="37"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="leftButtonCanceled:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="Ba4-2f-xZL"/>
@@ -166,11 +166,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhc-Qn-AV6">
-                                <rect key="frame" x="785" y="263.5" width="61" height="67"/>
+                                <rect key="frame" x="798" y="266.5" width="48" height="61"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="⬇️">
-                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                <buttonConfiguration key="configuration" style="plain" title="v">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="37"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="downButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="4A5-gw-f8r"/>
@@ -216,11 +216,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQG-6l-32t">
-                                <rect key="frame" x="815" y="209.5" width="61" height="67"/>
+                                <rect key="frame" x="834" y="208.5" width="42" height="61"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="➡️">
-                                    <fontDescription key="titleFontDescription" name="Kailasa" family="Kailasa" pointSize="37"/>
+                                <buttonConfiguration key="configuration" style="plain" title="&gt;">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="37"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="rightButtonCanceled:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="ihi-Zk-akb"/>
@@ -236,6 +236,9 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-h2-CQl">
                                 <rect key="frame" x="5" y="342.5" width="55" height="61.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="wIv-YS-a5Y"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemGray6Color"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="🚀">
@@ -254,6 +257,7 @@
                             <constraint firstAttribute="trailing" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="50" id="43r-Qx-mtg"/>
                             <constraint firstItem="ScG-ll-Tjw" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="6SS-1m-tYh"/>
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nd-di-maN" secondAttribute="trailing" constant="8" symbolic="YES" id="8Ls-qD-JtD"/>
+                            <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ePA-h2-CQl" secondAttribute="trailing" constant="8" symbolic="YES" id="8MU-5t-8w7"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="9Zo-Un-HXW"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" id="9rz-Kk-s4u"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="A7t-Ug-5LT"/>
