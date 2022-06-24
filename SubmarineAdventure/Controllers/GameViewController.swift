@@ -54,7 +54,7 @@ class GameViewController: UIViewController {
     private var scoreTimer = Timer()
     private var seaBubbleTimer = Timer()
     private var gameSpeedTimer = Timer()
-    private var speedMultiplier = 1
+    private var speedMultiplier = 1.0
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
@@ -584,14 +584,14 @@ class GameViewController: UIViewController {
     }
     
     func startGroundTimer() {
-        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.030/Double(currentUser.speed), repeats: true, block: { _ in
+        groundTimer = Timer.scheduledTimer(withTimeInterval: 0.030/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.moveGround()
         })
         groundTimer.fire()
     }
     
     func startPlantTimer() {
-        plantTimer = Timer.scheduledTimer(withTimeInterval: 0.03/Double(currentUser.speed), repeats: true, block: { _ in
+        plantTimer = Timer.scheduledTimer(withTimeInterval: 0.03/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.movePlant()
         })
         plantTimer.fire()
@@ -599,14 +599,14 @@ class GameViewController: UIViewController {
     
     
     func startSprayTimer() {
-        sprayTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed), repeats: true, block: { _ in
+        sprayTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.moveSpray()
         })
         sprayTimer.fire()
     }
     
     func startSkyTimer() {
-        skyTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed), repeats: true, block: { _ in
+        skyTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.moveSky()
         })
         skyTimer.fire()
@@ -617,13 +617,13 @@ class GameViewController: UIViewController {
         })
     }
     func startSharkTimer() {
-        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed*speedMultiplier), repeats: true, block: { _ in
+        sharkTimer = Timer.scheduledTimer(withTimeInterval: 0.020/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.moveShark()
         })
         sharkTimer.fire()
     }
     func startShipTimer() {
-        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(speedMultiplier * currentUser.speed), repeats: true, block: { _ in
+        shipTimer = Timer.scheduledTimer(withTimeInterval: 0.015/Double(currentUser.speed)/speedMultiplier*2, repeats: true, block: { _ in
             self.moveShip()
         })
         shipTimer.fire()
@@ -633,14 +633,14 @@ class GameViewController: UIViewController {
         scoreTimer = Timer.scheduledTimer(withTimeInterval: 1/Double(currentUser.speed), repeats: true, block: { _ in
             self.currentScore += 5
             self.scoreLabel.text = String(self.currentScore)
-            print(self.speedMultiplier)
         })
         scoreTimer.fire()
     }
     
     func startGameSpeedTimer(){
         gameSpeedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
-            self.speedMultiplier += 1
+            self.reloadTimers()
+            self.speedMultiplier += 0.05
         })
         gameSpeedTimer.fire()
     }
@@ -677,6 +677,22 @@ class GameViewController: UIViewController {
         } completion: { _ in
             self.reloadButton.isEnabled = true
         }
+    }
+    
+    func reloadTimers() {
+        shipTimer.invalidate()
+        sharkTimer.invalidate()
+        groundTimer.invalidate()
+        plantTimer.invalidate()
+        skyTimer.invalidate()
+        sprayTimer.invalidate()
+        
+        startSprayTimer()
+        startPlantTimer()
+        startGroundTimer()
+        startSkyTimer()
+        startShipTimer()
+        startSharkTimer()
     }
     
     func stopGame() {
