@@ -9,6 +9,7 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+    
     //MARK: - IBOutlets
     @IBOutlet var nameUser: UILabel!
     @IBOutlet var upButton: UIButton!
