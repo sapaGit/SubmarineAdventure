@@ -46,6 +46,7 @@ class GameViewController: UIViewController {
     private var shipTimer = Timer()
     private var bubbleTimer = Timer()
     private var groundTimer = Timer()
+    private var crabTimer = Timer()
     private var skyTimer = Timer()
     private var plantTimer = Timer()
     private var sprayTimer = Timer()
@@ -79,6 +80,7 @@ class GameViewController: UIViewController {
         startPlantTimer()
         startSeaBubbleTimer()
         startGameSpeedTimer()
+        startCrabTimer()
     }
     //MARK: - IBActions
     
@@ -148,6 +150,7 @@ class GameViewController: UIViewController {
         startScoreTimer()
         startBubbleTimer()
         startSeaBubbleTimer()
+        startCrabTimer()
         startSprayTimer()
         startSkyTimer()
         startPlantTimer()
@@ -280,6 +283,18 @@ class GameViewController: UIViewController {
         nameUser.text = currentUser.userName
         view.addSubview(submarineImageView)
         //view.addSubview(submarineSafeAreaView)
+    }
+    func addCrab() {
+            let crabImageView = UIImageView()
+        crabImageView.frame = CGRect(x: randomXSeaBubble()+view.frame.width, y: movingGroundImageViewCollection[0].frame.minY-submarine.height*0.8, width: self.view.frame.width/20, height: sharkImageViewCollection[0].frame.height)
+            crabImageView.image = UIImage(named: "Crab")
+            view.addSubview(crabImageView)
+        UIView.animate(withDuration: 7, delay: 0, options: .curveLinear) {
+            crabImageView.frame.origin.x = -crabImageView.frame.width
+        } completion: { _ in
+            crabImageView.removeFromSuperview()
+        }
+
     }
     func setShip() {
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
@@ -491,6 +506,11 @@ class GameViewController: UIViewController {
             self.moveBubble()
         })
     }
+    func startCrabTimer() {
+        crabTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+            self.addCrab()
+        })
+    }
     func startSeaBubbleTimer() {
         seaBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.moveSeaBubble()
@@ -651,7 +671,7 @@ class GameViewController: UIViewController {
     func startGameSpeedTimer(){
         gameSpeedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.reloadTimers()
-            self.speedMultiplier += 0.05
+            self.speedMultiplier += 0.02
         })
         gameSpeedTimer.fire()
     }
@@ -697,7 +717,6 @@ class GameViewController: UIViewController {
         plantTimer.invalidate()
         skyTimer.invalidate()
         sprayTimer.invalidate()
-        
         startSprayTimer()
         startPlantTimer()
         startGroundTimer()
@@ -719,6 +738,7 @@ class GameViewController: UIViewController {
         self.bubbleTimer.invalidate()
         self.plantTimer.invalidate()
         self.gameSpeedTimer.invalidate()
+        self.crabTimer.invalidate()
         self.seaBubbleTimer.invalidate()
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
