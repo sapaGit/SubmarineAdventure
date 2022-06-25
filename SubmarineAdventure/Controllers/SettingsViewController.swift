@@ -12,7 +12,6 @@ class SettingsViewController: UIViewController {
     let currentUser = User(userName: "User")
     let imageNameArray = ["SubmarineGrey", "SubmarineGreen", "SubmarineBlue", "SubmarineRed"]
     let speedArray = [1, 2, 4]
-    var index = 0
     var speedIndex = 0
     @IBOutlet var textField: UITextField!
     @IBOutlet var submarineView: UIImageView!
@@ -29,7 +28,9 @@ class SettingsViewController: UIViewController {
             currentUser.submarineColor = user.submarineColor
             currentUser.scoreName = user.scoreName
             currentUser.score = user.score
+            currentUser.index = user.index
             submarineView.image = UIImage(named: user.submarineColor)
+            
         }
         checkSpeedButtons()
     }
@@ -77,19 +78,19 @@ class SettingsViewController: UIViewController {
         }
     }
    private func changeImageLeft() {
-        if index == 0 {
-                index = imageNameArray.count-1
-            } else { index -= 1
+        if currentUser.index == 0 {
+            currentUser.index = imageNameArray.count-1
+            } else { currentUser.index -= 1
         }
-        submarineView.image = UIImage(named: imageNameArray[index])
-       currentUser.submarineColor = imageNameArray[index]
+        submarineView.image = UIImage(named: imageNameArray[currentUser.index])
+       currentUser.submarineColor = imageNameArray[currentUser.index]
     }
     private func changeImageRight() {
-        if index > imageNameArray.count-2 {
-            index = 0
-        } else { index += 1
+        if currentUser.index > imageNameArray.count-2 {
+            currentUser.index = 0
+        } else { currentUser.index += 1
         }
-        submarineView.image = UIImage(named: imageNameArray[index])
+        submarineView.image = UIImage(named: imageNameArray[currentUser.index])
     }
     
     private func setInterface() {
