@@ -260,7 +260,7 @@ class GameViewController: UIViewController {
             sharkImageView.contentMode = .scaleAspectFit
             sharkImageView.frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
             shipImageView.layer.zPosition = 1
-            sharkImageView.image = UIImage(named: shark.imageName)
+            sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
             
             view.addSubview(sharkImageView)
         }
@@ -477,7 +477,8 @@ class GameViewController: UIViewController {
                 missleImageView.frame.origin.x = submarineImageView.frame.maxX
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
                 sharkImageView.frame.origin.y = randomY()
-                sharkImageView.frame.origin.x = self.view.frame.maxX+1
+                sharkImageView.frame.origin.x = self.view.frame.width*1.5
+                sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
                 bonusScoreAnimation()
                 self.currentScore += 25
                 return
@@ -559,7 +560,8 @@ class GameViewController: UIViewController {
             }
             sharkImageView.frame.origin.x -= 1
             if sharkImageView.frame.maxX < 0 {
-                sharkImageView.frame.origin.x = self.view.bounds.width + 1
+                sharkImageView.frame.origin.x = self.view.bounds.width*1.5
+                sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
                 sharkImageView.frame.origin.y = randomY()
             }
         }
