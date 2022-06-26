@@ -63,6 +63,7 @@ class GameViewController: UIViewController {
     private var submarine = Submarine()
     private var missle = Missle()
     private var currentScore = 0
+    private var xSharkPosition: CGFloat = 0
     
     
 
@@ -83,6 +84,7 @@ class GameViewController: UIViewController {
         startGameSpeedTimer()
         startCrabTimer()
         startGraviTimer()
+        
     }
     //MARK: - IBActions
     
@@ -125,6 +127,7 @@ class GameViewController: UIViewController {
         startMissleTimer()
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
+        setSharkStartPosition()
         sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
         sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: randomY(), width: shark.width, height: shark.height)
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
@@ -236,6 +239,7 @@ class GameViewController: UIViewController {
     }
     
     func setInterface() {
+        xSharkPosition = view.frame.width - 150
         seaImageView.clipsToBounds = true
         setShark()
         setShip()
@@ -245,6 +249,8 @@ class GameViewController: UIViewController {
         gameOverScoreLabel.layer.zPosition = 1
         reloadButton.layer.zPosition = 1
         goToMain.layer.zPosition = 2
+        upButton.layer.zPosition = 1
+        upButton.alpha = 0.7
         gameOverLabel.rounded()
         gameOverScoreLabel.rounded()
         reloadButton.rounded()
@@ -258,17 +264,24 @@ class GameViewController: UIViewController {
         setBonusLabel()
         fireButton.layer.zPosition = 1
     }
+    
+    func setSharkStartPosition() {
+        for sharkImageView in sharkImageViewCollection {
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
+        xSharkPosition += self.view.frame.width*0.7
+        }
+    }
     func setShark() {
         for sharkImageView in sharkImageViewCollection{
             sharkImageView.clipsToBounds = true
             sharkImageView.contentMode = .scaleAspectFit
-            sharkImageView.frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
+            sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
+            xSharkPosition += self.view.frame.width*0.7
             shipImageView.layer.zPosition = 1
             sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
-            
+    
             view.addSubview(sharkImageView)
         }
-        sharkImageViewCollection[1].frame.origin.x = view.frame.width*1.5
     }
     
     func setSubmarine() {
@@ -772,6 +785,7 @@ class GameViewController: UIViewController {
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
         self.currentScore = 0
+        xSharkPosition = view.frame.width - 150
         self.isLive = false
         self.fireButton.isHidden = true
         self.animateGameOverLabels()
