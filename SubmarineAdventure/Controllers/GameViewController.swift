@@ -55,7 +55,7 @@ class GameViewController: UIViewController {
     private var missleTimer = Timer()
     private var scoreTimer = Timer()
     private var seaBubbleTimer = Timer()
-    private var gameSpeedTimer = Timer()
+    private var gameDificultyTimer = Timer()
     private var graviTimer = Timer()
     private var speedMultiplier = 1.0
     private var ship = Ship()
@@ -64,7 +64,7 @@ class GameViewController: UIViewController {
     private var missle = Missle()
     private var currentScore = 0
     private var xSharkPosition: CGFloat = 0
-    
+    private var gameTime = 0
     
 
     //MARK: - lifecycle funcs
@@ -81,7 +81,7 @@ class GameViewController: UIViewController {
         startSkyTimer()
         startPlantTimer()
         startSeaBubbleTimer()
-        startGameSpeedTimer()
+        startGameDificultyTimer()
         startCrabTimer()
         startGraviTimer()
         
@@ -127,6 +127,7 @@ class GameViewController: UIViewController {
         startMissleTimer()
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
+        removeCreatedSharks()
         setSharkStartPosition()
         sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
         sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: randomY(), width: shark.width, height: shark.height)
@@ -147,6 +148,7 @@ class GameViewController: UIViewController {
         scoreLabel.alpha = 1
         oxygenViewFull.alpha = 1
         speedMultiplier = 1
+        gameTime = 0
         self.isLive = true
         startSharkTimer()
         startShipTimer()
@@ -160,7 +162,7 @@ class GameViewController: UIViewController {
         startSprayTimer()
         startSkyTimer()
         startPlantTimer()
-        startGameSpeedTimer()
+        startGameDificultyTimer()
     }
     
     //MARK: - flow  funcs
@@ -277,7 +279,6 @@ class GameViewController: UIViewController {
             sharkImageView.contentMode = .scaleAspectFit
             sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
             xSharkPosition += self.view.frame.width*0.7
-            shipImageView.layer.zPosition = 1
             sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
     
             view.addSubview(sharkImageView)
@@ -301,6 +302,20 @@ class GameViewController: UIViewController {
         view.addSubview(submarineImageView)
         //view.addSubview(submarineSafeAreaView)
     }
+    func addAnoterShark() {
+        let sharkImageView = UIImageView()
+        sharkImageViewCollection.append(sharkImageView)
+        sharkImageView.clipsToBounds = true
+        sharkImageView.contentMode = .scaleAspectFit
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
+        if isSharkIntersectedWithPrevious() {
+            sharkImageView.frame.origin.x += sharkImageView.frame.width
+        }
+        sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
+
+        view.addSubview(sharkImageView)
+    }
+    
     func addCrab() {
             let crabImageView = UIImageView()
         crabImageView.frame = CGRect(x: randomXSeaBubble()+view.frame.width, y: movingGroundImageViewCollection[0].frame.minY-submarine.height*0.8, width: self.view.frame.width/20, height: sharkImageViewCollection[0].frame.height)
@@ -709,12 +724,32 @@ class GameViewController: UIViewController {
         scoreTimer.fire()
     }
     
-    func startGameSpeedTimer(){
-        gameSpeedTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+    func removeCreatedSharks() {
+        if gameTime > 14 {
+            sharkImageViewCollection[sharkImageViewCollection.count-1].removeFromSuperview()
+            sharkImageViewCollection.removeLast()
+            print("Shark 4 removed")
+        }
+        if gameTime > 4 {
+            sharkImageViewCollection[sharkImageViewCollection.count-1].removeFromSuperview()
+            sharkImageViewCollection.removeLast()
+            print("Shark 3 removed")
+        }
+    }
+    
+    func startGameDificultyTimer(){
+        gameDificultyTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.reloadTimers()
             self.speedMultiplier += 0.02
+            self.gameTime += 1
+            if self.gameTime == 5 {
+                self.addAnoterShark()
+            }
+            if self.gameTime == 15 {
+                self.addAnoterShark()
+            }
         })
-        gameSpeedTimer.fire()
+        gameDificultyTimer.fire()
     }
     func checkScore() {
         for index in 0...currentUser.score.count-1 {
@@ -778,7 +813,7 @@ class GameViewController: UIViewController {
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
         self.plantTimer.invalidate()
-        self.gameSpeedTimer.invalidate()
+        self.gameDificultyTimer.invalidate()
         self.crabTimer.invalidate()
         self.graviTimer.invalidate()
         self.seaBubbleTimer.invalidate()
