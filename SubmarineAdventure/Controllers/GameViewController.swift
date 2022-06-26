@@ -56,6 +56,7 @@ class GameViewController: UIViewController {
     private var scoreTimer = Timer()
     private var seaBubbleTimer = Timer()
     private var gameSpeedTimer = Timer()
+    private var graviTimer = Timer()
     private var speedMultiplier = 1.0
     private var ship = Ship()
     private var shark = Shark()
@@ -81,6 +82,7 @@ class GameViewController: UIViewController {
         startSeaBubbleTimer()
         startGameSpeedTimer()
         startCrabTimer()
+        startGraviTimer()
     }
     //MARK: - IBActions
     
@@ -149,6 +151,7 @@ class GameViewController: UIViewController {
         startGroundTimer()
         startScoreTimer()
         startBubbleTimer()
+        startGraviTimer()
         startSeaBubbleTimer()
         startCrabTimer()
         startSprayTimer()
@@ -158,7 +161,7 @@ class GameViewController: UIViewController {
     }
     
     //MARK: - flow  funcs
-    
+    //not installed
     @objc func moveSubmarineDown() {
         if isInRightPositionDown() && isLive {
             submarineImageView.frame.origin.y += 1
@@ -168,7 +171,7 @@ class GameViewController: UIViewController {
             if !isAlreadyFired() { missleImageView.frame.origin.y += 1 }
         }
     }
-    
+    //not installed
     @objc func moveSubmarineRight() {
         if isInRightPositionRight() && isLive {
             submarineImageView.frame.origin.x += 1
@@ -178,7 +181,7 @@ class GameViewController: UIViewController {
             if !isAlreadyFired() { missleImageView.frame.origin.x += 1 }
         }
     }
-    
+    //not installed
     @objc func moveSubmarineLeft() {
         if isInRightPositionLeft() && isLive {
             submarineImageView.frame.origin.x -= 1
@@ -191,18 +194,19 @@ class GameViewController: UIViewController {
     @objc func moveSubmarineUp() {
         if isInRightPositionUp() && isLive {
             if isInAir() {
-                print ("In the air")
                 UIView.animate(withDuration: 0.5) {
                     self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
                 } completion: { _ in
                     self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
                 }
             }
-            submarineImageView.frame.origin.y -= 1
-            submarineSafeAreaView.frame.origin.y -= 1
-            oxygenViewEmpty.frame.origin.y -= 1
-            oxygenViewFull.frame.origin.y -= 1
-            if !isAlreadyFired() { missleImageView.frame.origin.y -= 1 }
+            UIView.animate(withDuration: 0.3) {
+                self.submarineImageView.frame.origin.y -= 2
+                self.submarineSafeAreaView.frame.origin.y -= 2
+                self.oxygenViewEmpty.frame.origin.y -= 2
+                self.oxygenViewFull.frame.origin.y -= 2
+                if !self.isAlreadyFired() { self.missleImageView.frame.origin.y -= 2 }
+            }
         }
     }
     func isInRightPositionUp() -> Bool {
@@ -478,6 +482,9 @@ class GameViewController: UIViewController {
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
                 sharkImageView.frame.origin.y = randomY()
                 sharkImageView.frame.origin.x = self.view.frame.width*1.5
+                if isSharkIntersectedWithPrevious() {
+                    sharkImageView.frame.origin.x += sharkImageView.frame.width
+                }
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
                 bonusScoreAnimation()
                 self.currentScore += 25
@@ -486,6 +493,13 @@ class GameViewController: UIViewController {
 
         }
         missleImageView.frame.origin.x += 1
+    }
+    
+    func isSharkIntersectedWithPrevious() -> Bool {
+        for index in 1...sharkImageViewCollection.count-1 {
+            if sharkImageViewCollection[index].frame.intersects(sharkImageViewCollection[index-1].frame) { return true }
+        }
+        return false
     }
     func isAlreadyFired()-> Bool {
         if missleImageView.isDescendant(of: self.view) {
@@ -515,6 +529,18 @@ class GameViewController: UIViewController {
     func startSeaBubbleTimer() {
         seaBubbleTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
             self.moveSeaBubble()
+        })
+    }
+    func startGraviTimer() {
+        graviTimer = Timer.scheduledTimer(withTimeInterval: 0.03, repeats: true, block: { _ in
+            if self.isInRightPositionDown() {
+                let graviSpeed: CGFloat = 2
+                self.submarineImageView.frame.origin.y += graviSpeed
+                self.submarineSafeAreaView.frame.origin.y += graviSpeed
+                self.oxygenViewFull.frame.origin.y += graviSpeed
+                self.oxygenViewEmpty.frame.origin.y += graviSpeed
+                if !self.isAlreadyFired() { self.missleImageView.frame.origin.y += graviSpeed }
+            }
         })
     }
     func changeOxygenView() {
@@ -741,6 +767,7 @@ class GameViewController: UIViewController {
         self.plantTimer.invalidate()
         self.gameSpeedTimer.invalidate()
         self.crabTimer.invalidate()
+        self.graviTimer.invalidate()
         self.seaBubbleTimer.invalidate()
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
