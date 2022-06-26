@@ -113,7 +113,7 @@
         <!--Game View Controller-->
         <scene sceneID="ulp-cC-t7R">
             <objects>
-                <viewController storyboardIdentifier="GameViewController" id="r1u-5i-Rcc" customClass="GameViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GameViewController" autoresizesArchivedViewToFullSize="NO" id="r1u-5i-Rcc" customClass="GameViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j45-Tg-t8M">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -235,13 +235,16 @@
                                     <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="gZk-NK-bUF"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-iJ-aoF">
-                                <rect key="frame" x="76" y="321" width="64" height="79"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-iJ-aoF">
+                                <rect key="frame" x="76" y="320" width="83" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="a3L-pT-ZHd"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="sdl-nt-Mw2"/>
+                                </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="⚪️">
-                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="40"/>
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="59"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="upButtonCancelledWithSender:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="4a6-gf-g0e"/>
@@ -261,8 +264,10 @@
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="roW-8H-DWj" secondAttribute="leading" symbolic="YES" id="9Zo-Un-HXW"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" id="9rz-Kk-s4u"/>
                             <constraint firstItem="PL0-XL-gfl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="A7t-Ug-5LT"/>
+                            <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="8" symbolic="YES" id="DQP-7r-gX0"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" constant="70" id="EOB-VV-QwP"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="top" secondItem="5Nd-di-maN" secondAttribute="bottom" constant="20" id="G0i-Vw-5WC"/>
+                            <constraint firstAttribute="bottom" secondItem="X8h-iJ-aoF" secondAttribute="bottom" constant="14" id="GRe-fr-blp"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="top" secondItem="ScG-ll-Tjw" secondAttribute="bottom" constant="20" id="IfU-aR-xpw"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="Lf8-gK-Djj"/>
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Qc-JY-cY9" secondAttribute="trailing" symbolic="YES" id="R9j-cT-NzF"/>
@@ -271,6 +276,7 @@
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="leading" secondItem="2bj-wQ-Azt" secondAttribute="trailing" constant="10" id="ZBF-eM-gyp"/>
+                            <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" secondItem="ePA-h2-CQl" secondAttribute="trailing" constant="16" id="cjQ-nu-AXz"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
                             <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="lessThanOrEqual" secondItem="2Vz-0t-cwN" secondAttribute="trailing" constant="646.5" id="gmS-db-XQV"/>

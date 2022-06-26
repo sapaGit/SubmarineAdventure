@@ -28,19 +28,34 @@ class GameViewController: UIViewController {
     private var currentUser = User(userName: "User")
     
     private var submarineImageView = UIImageView()
+    
+    //created for checking intersection
     private var submarineSafeAreaView = UIView()
-    private var sharkImageViewCollection = [UIImageView(), UIImageView()]
+    
     private var shipImageView = UIImageView()
     private var boomImageView = UIImageView()
     private var missleImageView = UIImageView()
-    private var oxygenViewFull = UIView()
-    private var oxygenViewEmpty = UIView()
-    private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
-    private var groundSafeArea = UIView()
     private var plantImageView = UIImageView()
-    private var bonusLabel = UILabel()
+    
+    //created to hide elements when pop to root VC
+    private var interfaceImageView = UIImageView()
+    
+    private var sharkImageViewCollection = [UIImageView(), UIImageView()]
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var movingSkyViewCollection = [UIImageView(), UIImageView()]
+    private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
+    
+    //created for checking intersection
+    private var groundSafeArea = UIView()
+    
+    private var oxygenViewFull = UIView()
+    
+    //not installed, this is white view when oxygen is decreasing
+    private var oxygenViewEmpty = UIView()
+   
+    //shows bonus points for some actions in game
+    private var bonusLabel = UILabel()
+    
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
@@ -50,40 +65,36 @@ class GameViewController: UIViewController {
     private var skyTimer = Timer()
     private var plantTimer = Timer()
     private var sprayTimer = Timer()
-    private var isLive = true
     private var buttonTimer = Timer()
     private var missleTimer = Timer()
     private var scoreTimer = Timer()
     private var seaBubbleTimer = Timer()
     private var gameDificultyTimer = Timer()
     private var graviTimer = Timer()
+    
+    //for checking is submarine already damaged
+    private var isLive = true
+    
+    //multiplier for changing game speed
     private var speedMultiplier = 1.0
+    
+    //creating objects
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
     private var missle = Missle()
+    
     private var currentScore = 0
-    private var xSharkPosition: CGFloat = 0
     private var gameTime = 0
     
+    private var xSharkPosition: CGFloat = 0
 
     //MARK: - lifecycle funcs
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setInterface()
-        startShipTimer()
-        startSharkTimer()
-        startOxygenViewTimer()
-        startGroundTimer()
-        startScoreTimer()
-        startSprayTimer()
-        startSkyTimer()
-        startPlantTimer()
-        startSeaBubbleTimer()
-        startGameDificultyTimer()
-        startCrabTimer()
-        startGraviTimer()
+        startTimers()
         
     }
     //MARK: - IBActions
@@ -150,19 +161,7 @@ class GameViewController: UIViewController {
         speedMultiplier = 1
         gameTime = 0
         self.isLive = true
-        startSharkTimer()
-        startShipTimer()
-        startOxygenViewTimer()
-        startGroundTimer()
-        startScoreTimer()
-        startBubbleTimer()
-        startGraviTimer()
-        startSeaBubbleTimer()
-        startCrabTimer()
-        startSprayTimer()
-        startSkyTimer()
-        startPlantTimer()
-        startGameDificultyTimer()
+        startTimers()
     }
     
     //MARK: - flow  funcs
@@ -263,6 +262,7 @@ class GameViewController: UIViewController {
         setPlant()
         startBubbleTimer()
         setSprayImageView()
+        setInterfaceImageView()
         setBonusLabel()
         fireButton.layer.zPosition = 1
     }
@@ -421,6 +421,14 @@ class GameViewController: UIViewController {
             self.view.addSubview(view)
         }
         sprayImageViewCollection[1].frame.origin.x = self.view.bounds.width
+    }
+    
+    func setInterfaceImageView() {
+        interfaceImageView.frame = CGRect(x: -self.view.frame.width, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        interfaceImageView.layer.zPosition = 2
+        interfaceImageView.image = UIImage(named: "YellowSubmarine")
+        interfaceImageView.contentMode = .scaleAspectFill
+        self.view.addSubview(interfaceImageView)
     }
 
     func setBonusLabel() {
@@ -784,6 +792,20 @@ class GameViewController: UIViewController {
         } completion: { _ in
             self.reloadButton.isEnabled = true
         }
+    }
+    func startTimers() {
+        startShipTimer()
+        startSharkTimer()
+        startOxygenViewTimer()
+        startGroundTimer()
+        startScoreTimer()
+        startSprayTimer()
+        startSkyTimer()
+        startPlantTimer()
+        startSeaBubbleTimer()
+        startGameDificultyTimer()
+        startCrabTimer()
+        startGraviTimer()
     }
     
     func reloadTimers() {
