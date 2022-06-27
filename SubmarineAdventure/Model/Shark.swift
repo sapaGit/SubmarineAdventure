@@ -11,5 +11,5 @@ class Shark {
     var width: CGFloat = 80
     var height: CGFloat = 80
     var speed: Double = 2
-    var imageName = ["Fish", "Fish2", "Fish3"]
+    var imageName = ["Fish", "Fish2", "Fish3", "Fish4", "Fish5", "Fish6", "Fish7", "Fish8", "Fish9", "Fish10", "Fish11"]
 }
