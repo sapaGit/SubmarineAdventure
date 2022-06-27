@@ -260,7 +260,6 @@ class GameViewController: UIViewController {
         setMissle()
         setBoom()
         setPlant()
-        startBubbleTimer()
         setSprayImageView()
         setInterfaceImageView()
         setBonusLabel()
@@ -806,6 +805,7 @@ class GameViewController: UIViewController {
         startGameDificultyTimer()
         startCrabTimer()
         startGraviTimer()
+        startBubbleTimer()
     }
     
     func reloadTimers() {
