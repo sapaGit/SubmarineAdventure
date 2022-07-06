@@ -303,15 +303,18 @@ class GameViewController: UIViewController {
     }
     func addAnoterShark() {
         let sharkImageView = UIImageView()
-        sharkImageViewCollection.append(sharkImageView)
         sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFit
         sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
-        if isSharkIntersectedWithPrevious() {
-            sharkImageView.frame.origin.x += sharkImageView.frame.width
+        
+        for imageView in sharkImageViewCollection {
+            if sharkImageView.frame.intersects(imageView.frame) {
+                print("Shark intersection detected")
+                return
+            }
         }
         sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
-
+        sharkImageViewCollection.append(sharkImageView)
         view.addSubview(sharkImageView)
     }
     
@@ -517,7 +520,7 @@ class GameViewController: UIViewController {
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
                 sharkImageView.frame.origin.y = randomY()
                 sharkImageView.frame.origin.x = self.view.frame.width*1.5
-                if isSharkIntersectedWithPrevious() {
+                while isSharkIntersectedWithPrevious() {
                     sharkImageView.frame.origin.x += sharkImageView.frame.width
                 }
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
