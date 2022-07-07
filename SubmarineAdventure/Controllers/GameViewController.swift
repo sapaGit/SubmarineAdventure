@@ -461,6 +461,14 @@ class GameViewController: UIViewController {
         missleImageView.contentMode = .scaleAspectFill
     }
     
+    func startSharkXPosition() -> CGFloat {
+        for sharkImageView in sharkImageViewCollection {
+            if sharkImageView.frame.maxX > self.view.frame.width * 1.5 {
+                return self.view.frame.width * 1.5 + shark.width }
+        }
+        return self.view.frame.width * 1.5
+    }
+    
     func bonusScoreAnimation() {
         UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
@@ -624,7 +632,7 @@ class GameViewController: UIViewController {
             }
             sharkImageView.frame.origin.x -= 1
             if sharkImageView.frame.maxX < 0 {
-                sharkImageView.frame.origin.x = self.view.bounds.width*1.5
+                sharkImageView.frame.origin.x = startSharkXPosition()
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
                 sharkImageView.frame.origin.y = randomY()
             }
