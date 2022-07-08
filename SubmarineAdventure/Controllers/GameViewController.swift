@@ -40,6 +40,10 @@ class GameViewController: UIViewController {
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
     
+    //created for gestureRecognizer
+    private var gestureView = UIView()
+    
+    
     private var sharkImageViewCollection = [UIImageView(), UIImageView()]
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var movingSkyViewCollection = [UIImageView(), UIImageView()]
@@ -164,6 +168,7 @@ class GameViewController: UIViewController {
         speedMultiplier = 1
         gameTime = 0
         self.isLive = true
+        self.gestureView.isUserInteractionEnabled = true
         startTimers()
     }
     
@@ -217,14 +222,19 @@ class GameViewController: UIViewController {
         }
     }
     
-    private let tap = UITapGestureRecognizer(target: self, action: #selector(seaViewTap))
-    @objc func seaViewTap(_ sender: UITapGestureRecognizer) {
-        print("Hello")
+    func addGestures() {
+    let longPressGesture = UITapGestureRecognizer(target: self, action: #selector(longPressDetected))
+        gestureView.addGestureRecognizer(longPressGesture)
     }
-    
-    func addGestureRecognizer() {
-        seaImageView.addGestureRecognizer(tap)
-        seaImageView.isUserInteractionEnabled = true
+    @objc func longPressDetected() {
+        UIView.animate(withDuration: 0.5) {
+            if self.isInRightPositionUp(){
+                self.submarineImageView.frame.origin.y -= 50
+                self.oxygenViewFull.frame.origin.y -= 50
+                
+            }
+        }
+
     }
     
     func isInRightPositionUp() -> Bool {
@@ -278,7 +288,15 @@ class GameViewController: UIViewController {
         setInterfaceImageView()
         setBonusLabel()
         fireButton.layer.zPosition = 1
-        addGestureRecognizer()
+        //setGestureView()
+        //addGestures()
+    }
+    
+    func setGestureView() {
+        gestureView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+        gestureView.isUserInteractionEnabled = true
+        gestureView.layer.zPosition = 2
+        self.view.addSubview(gestureView)
     }
     
     func setSharkStartPosition() {
@@ -851,6 +869,7 @@ class GameViewController: UIViewController {
     
     func stopGame() {
         self.oxygenViewFull.alpha = 0
+        self.gestureView.isUserInteractionEnabled = false
         animateCrash()
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
