@@ -89,6 +89,7 @@ class GameViewController: UIViewController {
     
     private var xSharkPosition: CGFloat = 0
 
+    
     //MARK: - lifecycle funcs
     
     override func viewDidLoad() {
@@ -98,7 +99,9 @@ class GameViewController: UIViewController {
         
     }
     //MARK: - IBActions
-    
+   
+                                             
+                                             
     @IBAction func goToMainPressed(_ sender: UIButton) {
         stopGame()
         self.navigationController?.popToRootViewController(animated: true)
@@ -213,6 +216,17 @@ class GameViewController: UIViewController {
             }
         }
     }
+    
+    private let tap = UITapGestureRecognizer(target: self, action: #selector(seaViewTap))
+    @objc func seaViewTap(_ sender: UITapGestureRecognizer) {
+        print("Hello")
+    }
+    
+    func addGestureRecognizer() {
+        seaImageView.addGestureRecognizer(tap)
+        seaImageView.isUserInteractionEnabled = true
+    }
+    
     func isInRightPositionUp() -> Bool {
         if submarineImageView.frame.minY < seaImageView.frame.minY-submarine.height/4 {
             return false
@@ -264,6 +278,7 @@ class GameViewController: UIViewController {
         setInterfaceImageView()
         setBonusLabel()
         fireButton.layer.zPosition = 1
+        addGestureRecognizer()
     }
     
     func setSharkStartPosition() {
