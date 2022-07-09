@@ -169,6 +169,7 @@ class GameViewController: UIViewController {
         gameTime = 0
         self.isLive = true
         self.gestureView.isUserInteractionEnabled = true
+        self.upButton.isUserInteractionEnabled = true
         startTimers()
     }
     
@@ -275,7 +276,7 @@ class GameViewController: UIViewController {
         reloadButton.layer.zPosition = 1
         goToMain.layer.zPosition = 2
         upButton.layer.zPosition = 1
-        upButton.alpha = 0.7
+        upButton.alpha = 0.02
         gameOverLabel.rounded()
         gameOverScoreLabel.rounded()
         reloadButton.rounded()
@@ -891,6 +892,6 @@ class GameViewController: UIViewController {
         self.isLive = false
         self.fireButton.isHidden = true
         self.animateGameOverLabels()
-       
+        self.upButton.isUserInteractionEnabled = false
     }
 }
