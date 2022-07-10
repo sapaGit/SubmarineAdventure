@@ -147,8 +147,8 @@ class GameViewController: UIViewController {
     @IBAction func reloadTapped(_ sender: UIButton) {
         removeCreatedSharks()
         setSharkStartPosition()
-        sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: randomY(index: 0), width: shark.width, height: shark.height)
-        sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: randomY(index: 1), width: shark.width, height: shark.height)
+        sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: sharkYPosition(index: 0), width: shark.width, height: shark.height)
+        sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: sharkYPosition(index: 1), width: shark.width, height: shark.height)
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
         submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.7)
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
@@ -304,7 +304,7 @@ class GameViewController: UIViewController {
     func setSharkStartPosition() {
         var tempIndex = 0
         for sharkImageView in sharkImageViewCollection {
-        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: tempIndex), width: shark.width, height: shark.height)
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: sharkYPosition(index: tempIndex), width: shark.width, height: shark.height)
         xSharkPosition += self.view.frame.width*0.7
             tempIndex += 1
         }
@@ -314,7 +314,7 @@ class GameViewController: UIViewController {
         for sharkImageView in sharkImageViewCollection{
             sharkImageView.clipsToBounds = true
             sharkImageView.contentMode = .scaleAspectFit
-            sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: tempIndex), width: shark.width, height: shark.height)
+            sharkImageView.frame = CGRect(x: xSharkPosition, y: sharkYPosition(index: tempIndex), width: shark.width, height: shark.height)
             xSharkPosition += self.view.frame.width*0.7
             tempIndex += 1
             sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
@@ -343,7 +343,7 @@ class GameViewController: UIViewController {
         let sharkImageView = UIImageView()
         sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFit
-        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: sharkIndex), width: shark.width, height: shark.height)
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: sharkYPosition(index: sharkIndex), width: shark.width, height: shark.height)
         sharkIndex += 1
         for imageView in sharkImageViewCollection {
             if sharkImageView.frame.intersects(imageView.frame) {
@@ -481,12 +481,12 @@ class GameViewController: UIViewController {
         self.view.addSubview(bonusLabel)
     }
     //next
-    func randomY(index: Int) -> CGFloat {
+    func sharkYPosition(index: Int) -> CGFloat {
         switch index {
-        case 0: return seaImageView.frame.origin.y + seaImageView.frame.height/8
+        case 0: return seaImageView.frame.origin.y + seaImageView.frame.height/10
         case 1: return seaImageView.frame.origin.y + seaImageView.frame.height/3.3
-        case 2: return seaImageView.frame.origin.y + seaImageView.frame.height/2.3
-        case 3: return seaImageView.frame.origin.y + seaImageView.frame.height/1.7
+        case 2: return seaImageView.frame.origin.y + seaImageView.frame.height/2.1
+        case 3: return seaImageView.frame.origin.y + seaImageView.frame.height/1.5
         default: return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/5)
         }
     }
