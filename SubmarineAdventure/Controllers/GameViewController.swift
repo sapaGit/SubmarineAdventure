@@ -480,7 +480,7 @@ class GameViewController: UIViewController {
         bonusLabel.alpha = 0
         self.view.addSubview(bonusLabel)
     }
-    
+    //next
     func randomY(index: Int) -> CGFloat {
         switch index {
         case 0: return seaImageView.frame.origin.y + seaImageView.frame.height/8
