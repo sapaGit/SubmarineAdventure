@@ -90,7 +90,7 @@ class GameViewController: UIViewController {
     
     private var currentScore = 0
     private var gameTime = 0
-    
+    private var sharkIndex = 2
     private var xSharkPosition: CGFloat = 0
 
     
@@ -147,8 +147,8 @@ class GameViewController: UIViewController {
     @IBAction func reloadTapped(_ sender: UIButton) {
         removeCreatedSharks()
         setSharkStartPosition()
-        sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: randomY(), width: shark.width, height: shark.height)
-        sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: randomY(), width: shark.width, height: shark.height)
+        sharkImageViewCollection[0].frame = CGRect(x: view.frame.width - 150, y: randomY(index: 0), width: shark.width, height: shark.height)
+        sharkImageViewCollection[1].frame = CGRect(x: view.frame.width*1.5, y: randomY(index: 1), width: shark.width, height: shark.height)
         submarineImageView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/2, y: seaImageView.center.y - submarine.height/1.5, width: submarine.width, height: submarine.height)
         submarineSafeAreaView.frame = CGRect(x: seaImageView.frame.minX+submarine.width/1.4, y: seaImageView.center.y - submarine.height/3.5, width: submarine.width-submarine.width/2.5, height: submarine.height-submarine.height/1.7)
         shipImageView.frame = CGRect(x: self.view.frame.width + 1, y: seaImageView.frame.minY-ship.height/1.3, width: ship.width, height: ship.height)
@@ -167,6 +167,7 @@ class GameViewController: UIViewController {
         oxygenViewFull.alpha = 1
         speedMultiplier = 1
         gameTime = 0
+        sharkIndex = 2
         self.isLive = true
         self.gestureView.isUserInteractionEnabled = true
         self.upButton.isUserInteractionEnabled = true
@@ -301,19 +302,22 @@ class GameViewController: UIViewController {
     }
     
     func setSharkStartPosition() {
+        var tempIndex = 0
         for sharkImageView in sharkImageViewCollection {
-        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: tempIndex), width: shark.width, height: shark.height)
         xSharkPosition += self.view.frame.width*0.7
+            tempIndex += 1
         }
     }
     func setShark() {
+        var tempIndex = 0
         for sharkImageView in sharkImageViewCollection{
             sharkImageView.clipsToBounds = true
             sharkImageView.contentMode = .scaleAspectFit
-            sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
+            sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: tempIndex), width: shark.width, height: shark.height)
             xSharkPosition += self.view.frame.width*0.7
+            tempIndex += 1
             sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
-    
             view.addSubview(sharkImageView)
         }
     }
@@ -339,8 +343,8 @@ class GameViewController: UIViewController {
         let sharkImageView = UIImageView()
         sharkImageView.clipsToBounds = true
         sharkImageView.contentMode = .scaleAspectFit
-        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(), width: shark.width, height: shark.height)
-        
+        sharkImageView.frame = CGRect(x: xSharkPosition, y: randomY(index: sharkIndex), width: shark.width, height: shark.height)
+        sharkIndex += 1
         for imageView in sharkImageViewCollection {
             if sharkImageView.frame.intersects(imageView.frame) {
                 print("Shark intersection detected")
@@ -477,8 +481,14 @@ class GameViewController: UIViewController {
         self.view.addSubview(bonusLabel)
     }
     
-    func randomY() -> CGFloat {
-        return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/5)
+    func randomY(index: Int) -> CGFloat {
+        switch index {
+        case 0: return seaImageView.frame.origin.y + seaImageView.frame.height/8
+        case 1: return seaImageView.frame.origin.y + seaImageView.frame.height/3.3
+        case 2: return seaImageView.frame.origin.y + seaImageView.frame.height/2.3
+        case 3: return seaImageView.frame.origin.y + seaImageView.frame.height/1.7
+        default: return CGFloat.random(in: seaImageView.frame.origin.y + shark.height/2...seaImageView.frame.height - seaImageView.frame.height/5)
+        }
     }
     
     func randomXSeaBubble() -> CGFloat {
@@ -560,7 +570,6 @@ class GameViewController: UIViewController {
                 missleImageView.removeFromSuperview()
                 missleImageView.frame.origin.x = submarineImageView.frame.maxX
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
-                sharkImageView.frame.origin.y = randomY()
                 sharkImageView.frame.origin.x = self.view.frame.width*1.5
                 while isSharkIntersectedWithPrevious() {
                     sharkImageView.frame.origin.x += sharkImageView.frame.width
@@ -668,7 +677,6 @@ class GameViewController: UIViewController {
             if sharkImageView.frame.maxX < 0 {
                 sharkImageView.frame.origin.x = startSharkXPosition()
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
-                sharkImageView.frame.origin.y = randomY()
             }
         }
         
