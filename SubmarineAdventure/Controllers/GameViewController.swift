@@ -36,6 +36,7 @@ class GameViewController: UIViewController {
     private var boomImageView = UIImageView()
     private var missleImageView = UIImageView()
     private var plantImageView = UIImageView()
+    private var oxygenBubble = UIImageView()
     
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
@@ -286,6 +287,7 @@ class GameViewController: UIViewController {
         setMissle()
         setBoom()
         setPlant()
+        setOxygenBubble()
         setSprayImageView()
         setInterfaceImageView()
         setBonusLabel()
@@ -383,6 +385,14 @@ class GameViewController: UIViewController {
         plantImageView.clipsToBounds = true
         plantImageView.layer.zPosition = 1
         view.addSubview(plantImageView)
+    }
+    func setOxygenBubble() {
+        oxygenBubble.frame = CGRect(x: self.view.frame.width*1.2, y: CGFloat.random(in: seaImageView.frame.minY+submarine.height...seaImageView.frame.maxY-submarine.height), width: sharkImageViewCollection[0].frame.height, height: sharkImageViewCollection[0].frame.height)
+        oxygenBubble.image = UIImage(named: "OxygenBubble")
+        oxygenBubble.contentMode = .scaleToFill
+        oxygenBubble.clipsToBounds = true
+        oxygenBubble.layer.zPosition = 1
+        view.addSubview(oxygenBubble)
     }
     
     func setBoom() {
