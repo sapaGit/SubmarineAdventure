@@ -76,6 +76,7 @@ class GameViewController: UIViewController {
     private var seaBubbleTimer = Timer()
     private var gameDificultyTimer = Timer()
     private var graviTimer = Timer()
+    private var oxygenBubbleTimer = Timer()
     
     //for checking is submarine already damaged
     private var isLive = true
@@ -209,11 +210,7 @@ class GameViewController: UIViewController {
     @objc func moveSubmarineUp() {
         if isInRightPositionUp() && isLive {
             if isInAir() {
-                UIView.animate(withDuration: 0.5) {
-                    self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
-                } completion: { _ in
-                    self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
-                }
+                addOxygen()
             }
             UIView.animate(withDuration: 0.3) {
                 self.submarineImageView.frame.origin.y -= 2
@@ -387,7 +384,7 @@ class GameViewController: UIViewController {
         view.addSubview(plantImageView)
     }
     func setOxygenBubble() {
-        oxygenBubble.frame = CGRect(x: self.view.frame.width*1.2, y: CGFloat.random(in: seaImageView.frame.minY+submarine.height...seaImageView.frame.maxY-submarine.height), width: sharkImageViewCollection[0].frame.height, height: sharkImageViewCollection[0].frame.height)
+        oxygenBubble.frame = CGRect(x: self.view.frame.width*1.2, y: randomSeaYPosition(), width: sharkImageViewCollection[0].frame.height, height: sharkImageViewCollection[0].frame.height)
         oxygenBubble.image = UIImage(named: "OxygenBubble")
         oxygenBubble.contentMode = .scaleToFill
         oxygenBubble.clipsToBounds = true
@@ -521,6 +518,10 @@ class GameViewController: UIViewController {
                 return self.view.frame.width * 1.5 + shark.width }
         }
         return self.view.frame.width * 1.5
+    }
+    
+    func randomSeaYPosition()-> CGFloat {
+        return CGFloat.random(in: seaImageView.frame.minY+submarine.height...seaImageView.frame.maxY-2*submarine.height)
     }
     
     func bonusScoreAnimation() {
@@ -731,12 +732,34 @@ class GameViewController: UIViewController {
         }
         plantImageView.frame.origin.x -= 1
     }
+    
+    func moveOxygenBubble() {
+        if self.submarineSafeAreaView.frame.intersects(self.oxygenBubble.frame) {
+            print("Oxygen added!")
+            oxygenBubble.frame.origin.x = self.view.frame.width*3
+            addOxygen()
+            return
+        }
+         if oxygenBubble.frame.maxX < 0 {
+             oxygenBubble.frame.origin.x = self.view.frame.width*3
+             oxygenBubble.frame.origin.y = randomSeaYPosition()
+         }
+         oxygenBubble.frame.origin.x -= 1
+    }
     func moveSky() {
         for skyView in movingSkyViewCollection {
             if skyView.frame.maxX == 0 {
                 skyView.frame.origin.x = self.view.frame.width
             }
             skyView.frame.origin.x -= 1
+        }
+    }
+    
+    func addOxygen() {
+        UIView.animate(withDuration: 0.5) {
+            self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
+        } completion: { _ in
+            self.oxygenViewFull.frame.size.width = self.submarineImageView.frame.width
         }
     }
     
@@ -754,6 +777,12 @@ class GameViewController: UIViewController {
         plantTimer.fire()
     }
     
+    func startOxygenBubbleTimer() {
+        oxygenBubbleTimer = Timer.scheduledTimer(withTimeInterval: 0.025/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
+            self.moveOxygenBubble()
+        })
+        oxygenBubbleTimer.fire()
+    }
     
     func startSprayTimer() {
         sprayTimer = Timer.scheduledTimer(withTimeInterval: 0.10/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
@@ -864,6 +893,7 @@ class GameViewController: UIViewController {
         startSprayTimer()
         startSkyTimer()
         startPlantTimer()
+        startOxygenBubbleTimer()
         startSeaBubbleTimer()
         startGameDificultyTimer()
         startCrabTimer()
@@ -878,7 +908,9 @@ class GameViewController: UIViewController {
         plantTimer.invalidate()
         skyTimer.invalidate()
         sprayTimer.invalidate()
+        oxygenBubbleTimer.invalidate()
         startSprayTimer()
+        startOxygenBubbleTimer()
         startPlantTimer()
         startGroundTimer()
         startSkyTimer()
@@ -899,6 +931,7 @@ class GameViewController: UIViewController {
         self.scoreTimer.invalidate()
         self.bubbleTimer.invalidate()
         self.plantTimer.invalidate()
+        self.oxygenBubbleTimer.invalidate()
         self.gameDificultyTimer.invalidate()
         self.crabTimer.invalidate()
         self.graviTimer.invalidate()
