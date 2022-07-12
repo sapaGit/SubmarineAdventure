@@ -575,7 +575,6 @@ class GameViewController: UIViewController {
         for sharkImageView in sharkImageViewCollection {
             if missleImageView.frame.intersects(sharkImageView.frame) {
                 self.boomImageView.frame.origin = sharkImageView.frame.origin
-                oxygenViewFull.frame.size.width += 7
                 boomAnimation()
                 missleTimer.invalidate()
                 missleImageView.removeFromSuperview()
