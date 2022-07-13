@@ -29,3 +29,23 @@ extension UIView {
     }
     
 }
+
+extension UIView {
+    func addBlurEffect() {
+        var blurEffect: UIBlurEffect!
+        blurEffect = UIBlurEffect(style: .light)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = self.bounds
+        blurredEffectView.alpha = 0
+        blurredEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurredEffectView)
+    }
+    
+    func removeBlurEffect() {
+        for subview in self.subviews {
+            if subview is UIVisualEffectView {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+}
