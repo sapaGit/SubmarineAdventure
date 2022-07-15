@@ -24,6 +24,8 @@
 		A00A09812848E22600AC6919 /* Submarine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00A09802848E22600AC6919 /* Submarine.swift */; };
 		A0127705285A073D002051FE /* CustomViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0127704285A073D002051FE /* CustomViewCell.swift */; };
 		A08F1D622857AC4F00F49DCF /* Missle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A08F1D612857AC4F00F49DCF /* Missle.swift */; };
+		A0A68F4C28811F3E00B54E09 /* SuperMissle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A68F4B28811F3E00B54E09 /* SuperMissle.swift */; };
+		A0A68F4E2881215000B54E09 /* MysteryBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0A68F4D2881215000B54E09 /* MysteryBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		A00A09802848E22600AC6919 /* Submarine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Submarine.swift; sourceTree = "<group>"; };
 		A0127704285A073D002051FE /* CustomViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewCell.swift; sourceTree = "<group>"; };
 		A08F1D612857AC4F00F49DCF /* Missle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Missle.swift; sourceTree = "<group>"; };
+		A0A68F4B28811F3E00B54E09 /* SuperMissle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperMissle.swift; sourceTree = "<group>"; };
+		A0A68F4D2881215000B54E09 /* MysteryBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MysteryBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,8 @@
 			children = (
 				A00A09772848D17600AC6919 /* Shark.swift */,
 				A08F1D612857AC4F00F49DCF /* Missle.swift */,
+				A0A68F4B28811F3E00B54E09 /* SuperMissle.swift */,
+				A0A68F4D2881215000B54E09 /* MysteryBox.swift */,
 				A00A09752848BB0800AC6919 /* User.swift */,
 				A00A097A2848D2E400AC6919 /* Ship.swift */,
 				A00A09802848E22600AC6919 /* Submarine.swift */,
@@ -204,8 +210,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00A096D2848A39C00AC6919 /* GameViewController.swift in Sources */,
+				A0A68F4E2881215000B54E09 /* MysteryBox.swift in Sources */,
 				A00A09782848D17600AC6919 /* Shark.swift in Sources */,
 				A00A09722848B63900AC6919 /* UIVeiw+extension.swift in Sources */,
+				A0A68F4C28811F3E00B54E09 /* SuperMissle.swift in Sources */,
 				A00A095528489C1600AC6919 /* AppDelegate.swift in Sources */,
 				A00A09812848E22600AC6919 /* Submarine.swift in Sources */,
 				A00A09692848A2DA00AC6919 /* MenuViewController.swift in Sources */,

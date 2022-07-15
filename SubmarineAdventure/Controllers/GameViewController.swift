@@ -35,8 +35,10 @@ class GameViewController: UIViewController {
     private var shipImageView = UIImageView()
     private var boomImageView = UIImageView()
     private var missleImageView = UIImageView()
+    private var superMissleImageView = UIImageView()
     private var plantImageView = UIImageView()
     private var oxygenBubble = UIImageView()
+    private var mysteryBox = UIImageView()
     
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
@@ -89,10 +91,12 @@ class GameViewController: UIViewController {
     private var shark = Shark()
     private var submarine = Submarine()
     private var missle = Missle()
+    private var superMisssle = SuperMissle()
     
     private var currentScore = 0
     private var gameTime = 0
     private var sharkIndex = 2
+    private var superMissleCount = 0
     private var xSharkPosition: CGFloat = 0
 
     
