@@ -79,6 +79,7 @@ class GameViewController: UIViewController {
     private var gameDificultyTimer = Timer()
     private var graviTimer = Timer()
     private var oxygenBubbleTimer = Timer()
+    private var mysteryBoxTimer = Timer()
     
     //for checking is submarine already damaged
     private var isLive = true

@@ -251,6 +251,20 @@
                                     <action selector="upButtonHoldWithSender:" destination="r1u-5i-Rcc" eventType="touchDown" id="uDd-7g-O6h"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zat-lC-9Q0">
+                                <rect key="frame" x="85" y="342.5" width="55" height="61.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="e0O-XT-RAr"/>
+                                </constraints>
+                                <color key="tintColor" systemColor="systemGray6Color"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="💣">
+                                    <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="Dce-zE-tyx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -259,6 +273,7 @@
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerY" secondItem="j45-Tg-t8M" secondAttribute="centerY" id="18Y-rC-ORj"/>
                             <constraint firstAttribute="bottom" secondItem="ePA-h2-CQl" secondAttribute="bottom" constant="10" id="3Ac-7R-lcv"/>
                             <constraint firstItem="ScG-ll-Tjw" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="6SS-1m-tYh"/>
+                            <constraint firstItem="Zat-lC-9Q0" firstAttribute="leading" secondItem="ePA-h2-CQl" secondAttribute="trailing" constant="25" id="6gR-ed-AUt"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="top" secondItem="PL0-XL-gfl" secondAttribute="bottom" id="7t4-ZK-7kW"/>
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nd-di-maN" secondAttribute="trailing" constant="8" symbolic="YES" id="8Ls-qD-JtD"/>
                             <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ePA-h2-CQl" secondAttribute="trailing" constant="8" symbolic="YES" id="8MU-5t-8w7"/>
@@ -285,6 +300,7 @@
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="centerY" secondItem="tQG-6l-32t" secondAttribute="centerY" id="rMk-3q-vn9"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="rZH-2S-SqY"/>
                             <constraint firstAttribute="trailing" secondItem="tQG-6l-32t" secondAttribute="trailing" constant="20" id="se4-s5-sa8"/>
+                            <constraint firstItem="Zat-lC-9Q0" firstAttribute="centerY" secondItem="ePA-h2-CQl" secondAttribute="centerY" id="tGF-B2-gEb"/>
                             <constraint firstItem="ePA-h2-CQl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="tKf-8B-blP"/>
                             <constraint firstAttribute="trailing" secondItem="hhc-Qn-AV6" secondAttribute="trailing" constant="50" id="tXO-qx-vbf"/>
                             <constraint firstAttribute="trailing" secondItem="PL0-XL-gfl" secondAttribute="trailing" id="ujQ-06-aGe"/>
