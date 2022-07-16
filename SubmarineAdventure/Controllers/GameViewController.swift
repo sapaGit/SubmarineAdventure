@@ -21,6 +21,7 @@ class GameViewController: UIViewController {
     @IBOutlet var reloadButton: UIButton!
     @IBOutlet var scoreLabel: UILabel!
     @IBOutlet var fireButton: UIButton!
+    @IBOutlet var superMissleButton: UIButton!
     @IBOutlet var gameOverScoreLabel: UILabel!
     
     
@@ -150,6 +151,8 @@ class GameViewController: UIViewController {
         }
         view.addSubview(missleImageView)
         startMissleTimer()
+    }
+    @IBAction func superButtonTapped(_ sender: UIButton) {
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
         removeCreatedSharks()

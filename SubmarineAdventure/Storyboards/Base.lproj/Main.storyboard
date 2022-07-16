@@ -263,6 +263,7 @@
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="Dce-zE-tyx"/>
+                                    <action selector="superButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="D9X-FU-cho"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -328,6 +329,7 @@
                         <outlet property="scoreLabel" destination="PAL-yv-std" id="iWu-ty-bKE"/>
                         <outlet property="seaImageView" destination="TjD-X1-fNG" id="Isj-rN-5Xg"/>
                         <outlet property="skyImageView" destination="PL0-XL-gfl" id="W15-9V-wrZ"/>
+                        <outlet property="superMissleButton" destination="Zat-lC-9Q0" id="VUd-Jv-CTC"/>
                         <outlet property="upButton" destination="X8h-iJ-aoF" id="JgM-sI-eLv"/>
                     </connections>
                 </viewController>
