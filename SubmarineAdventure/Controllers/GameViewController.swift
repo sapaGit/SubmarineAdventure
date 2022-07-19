@@ -290,6 +290,7 @@ class GameViewController: UIViewController {
         setMovingGroundImageView()
         setMovingSkyImageView()
         setMissle()
+        setSuperMissle()
         setBoom()
         setPlant()
         setOxygenBubble()
@@ -518,6 +519,14 @@ class GameViewController: UIViewController {
         missleImageView.clipsToBounds = true
         missleImageView.layer.zPosition = 1
         missleImageView.contentMode = .scaleAspectFill
+    }
+    
+    func setSuperMissle() {
+        superMissleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
+        superMissleImageView.image = UIImage(named: missle.imageName)
+        superMissleImageView.clipsToBounds = true
+        superMissleImageView.layer.zPosition = 1
+        superMissleImageView.contentMode = .scaleAspectFill
     }
     
     func startSharkXPosition() -> CGFloat {
