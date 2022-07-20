@@ -39,7 +39,7 @@ class GameViewController: UIViewController {
     private var superMissleImageView = UIImageView()
     private var plantImageView = UIImageView()
     private var oxygenBubble = UIImageView()
-    private var mysteryBox = UIImageView()
+    private var mysteryBoxImageView = UIImageView()
     
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
@@ -89,6 +89,7 @@ class GameViewController: UIViewController {
     private var ship = Ship()
     private var shark = Shark()
     private var submarine = Submarine()
+    private var mysteryBox = MysteryBox()
     private var missle = Missle()
     private var superMisssle = SuperMissle()
     
@@ -275,6 +276,7 @@ class GameViewController: UIViewController {
         setSuperMissle()
         setBoom()
         setPlant()
+        setMysteryBox()
         setOxygenBubble()
         setSprayImageView()
         setInterfaceImageView()
@@ -366,6 +368,16 @@ class GameViewController: UIViewController {
         plantImageView.layer.zPosition = 1
         view.addSubview(plantImageView)
     }
+    
+    func setMysteryBox() {
+        mysteryBoxImageView.frame = CGRect(x: self.view.frame.width*1.2, y: groundSafeArea.frame.minY - sharkImageViewCollection[0].frame.height*0.8, width: self.view.frame.width/18, height: sharkImageViewCollection[0].frame.height)
+        mysteryBoxImageView.image = UIImage(named: mysteryBox.imageName)
+        mysteryBoxImageView.contentMode = .scaleToFill
+        mysteryBoxImageView.clipsToBounds = true
+        mysteryBoxImageView.layer.zPosition = 1
+        view.addSubview(mysteryBoxImageView)
+    }
+    
     func setOxygenBubble() {
         oxygenBubble.frame = CGRect(x: self.view.frame.width*1.2, y: randomSeaYPosition(), width: sharkImageViewCollection[0].frame.height, height: sharkImageViewCollection[0].frame.height)
         oxygenBubble.image = UIImage(named: "OxygenBubble")
@@ -723,6 +735,18 @@ class GameViewController: UIViewController {
         plantImageView.frame.origin.x -= 1
     }
     
+    func moveMysteryBox() {
+        if self.submarineSafeAreaView.frame.intersects(self.mysteryBoxImageView.frame) {
+            print("Mystery box added!")
+            superMissleCount += 1
+        }
+         if mysteryBoxImageView.frame.maxX < 0 {
+             mysteryBoxImageView.frame.origin.x = 3*self.view.frame.width
+         }
+         mysteryBoxImageView.frame.origin.x -= 1
+     }
+    
+    
     func moveOxygenBubble() {
         if self.submarineSafeAreaView.frame.intersects(self.oxygenBubble.frame) {
             print("Oxygen added!")
@@ -765,6 +789,13 @@ class GameViewController: UIViewController {
             self.movePlant()
         })
         plantTimer.fire()
+    }
+    
+    func startMysteryBoxTimer() {
+        mysteryBoxTimer = Timer.scheduledTimer(withTimeInterval: 0.03/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
+            self.moveMysteryBox()
+        })
+        mysteryBoxTimer.fire()
     }
     
     func startOxygenBubbleTimer() {
@@ -889,6 +920,7 @@ class GameViewController: UIViewController {
         startCrabTimer()
         startGraviTimer()
         startBubbleTimer()
+        startMysteryBoxTimer()
     }
     
     func reloadTimers() {
@@ -899,6 +931,7 @@ class GameViewController: UIViewController {
         skyTimer.invalidate()
         sprayTimer.invalidate()
         oxygenBubbleTimer.invalidate()
+        mysteryBoxTimer.invalidate()
         startSprayTimer()
         startOxygenBubbleTimer()
         startPlantTimer()
@@ -906,6 +939,7 @@ class GameViewController: UIViewController {
         startSkyTimer()
         startShipTimer()
         startSharkTimer()
+        startMysteryBoxTimer()
     }
     
     func stopGame() {
@@ -925,6 +959,7 @@ class GameViewController: UIViewController {
         self.crabTimer.invalidate()
         self.graviTimer.invalidate()
         self.seaBubbleTimer.invalidate()
+        self.mysteryBoxTimer.invalidate()
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
         self.currentScore = 0
