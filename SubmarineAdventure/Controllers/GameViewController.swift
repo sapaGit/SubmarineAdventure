@@ -230,20 +230,6 @@ class GameViewController: UIViewController {
         }
     }
     
-    func addGestures() {
-    let longPressGesture = UITapGestureRecognizer(target: self, action: #selector(longPressDetected))
-        gestureView.addGestureRecognizer(longPressGesture)
-    }
-    @objc func longPressDetected() {
-        UIView.animate(withDuration: 0.5) {
-            if self.isInRightPositionUp(){
-                self.submarineImageView.frame.origin.y -= 50
-                self.oxygenViewFull.frame.origin.y -= 50
-                
-            }
-        }
-
-    }
     
     func isInRightPositionUp() -> Bool {
         if submarineImageView.frame.minY < seaImageView.frame.minY-submarine.height/4 {
@@ -298,16 +284,8 @@ class GameViewController: UIViewController {
         setInterfaceImageView()
         setBonusLabel()
         fireButton.layer.zPosition = 1
-        //setGestureView()
-        //addGestures()
     }
     
-    func setGestureView() {
-        gestureView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
-        gestureView.isUserInteractionEnabled = true
-        gestureView.layer.zPosition = 2
-        self.view.addSubview(gestureView)
-    }
     
     func setSharkStartPosition() {
         var tempIndex = 0
