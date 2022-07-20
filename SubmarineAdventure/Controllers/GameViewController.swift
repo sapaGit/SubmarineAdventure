@@ -44,10 +44,6 @@ class GameViewController: UIViewController {
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
     
-    //created for gestureRecognizer
-    private var gestureView = UIView()
-    
-    
     private var sharkImageViewCollection = [UIImageView(), UIImageView()]
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var movingSkyViewCollection = [UIImageView(), UIImageView()]
@@ -75,6 +71,7 @@ class GameViewController: UIViewController {
     private var sprayTimer = Timer()
     private var buttonTimer = Timer()
     private var missleTimer = Timer()
+    private var superMissleTimer = Timer()
     private var scoreTimer = Timer()
     private var seaBubbleTimer = Timer()
     private var gameDificultyTimer = Timer()
@@ -179,7 +176,6 @@ class GameViewController: UIViewController {
         gameTime = 0
         sharkIndex = 2
         self.isLive = true
-        self.gestureView.isUserInteractionEnabled = true
         self.upButton.isUserInteractionEnabled = true
         startTimers()
     }
@@ -914,7 +910,6 @@ class GameViewController: UIViewController {
     
     func stopGame() {
         self.oxygenViewFull.alpha = 0
-        self.gestureView.isUserInteractionEnabled = false
         animateCrash()
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
