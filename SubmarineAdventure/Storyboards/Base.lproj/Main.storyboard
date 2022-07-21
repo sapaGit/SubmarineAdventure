@@ -262,7 +262,6 @@
                                     <fontDescription key="titleFontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="fireButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="Dce-zE-tyx"/>
                                     <action selector="superButtonTapped:" destination="r1u-5i-Rcc" eventType="touchUpInside" id="D9X-FU-cho"/>
                                 </connections>
                             </button>

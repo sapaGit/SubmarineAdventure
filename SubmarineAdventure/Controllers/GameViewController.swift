@@ -151,6 +151,13 @@ class GameViewController: UIViewController {
         startMissleTimer()
     }
     @IBAction func superButtonTapped(_ sender: UIButton) {
+        superMissleCount -= 1
+        superMissleButton.isHidden = true
+        for sharkImageView in sharkImageViewCollection {
+            var tempValue = self.view.frame.width*0.3
+            sharkImageView.frame.origin.x = self.view.frame.width + tempValue
+            tempValue += CGFloat.random(in: 0...self.view.frame.width/2)
+        }
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
         removeCreatedSharks()
@@ -282,6 +289,8 @@ class GameViewController: UIViewController {
         setInterfaceImageView()
         setBonusLabel()
         fireButton.layer.zPosition = 1
+        superMissleButton.layer.zPosition = 1
+        superMissleButton.isHidden = true
     }
     
     
@@ -584,9 +593,6 @@ class GameViewController: UIViewController {
                 missleImageView.frame.origin.x = submarineImageView.frame.maxX
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
                 sharkImageView.frame.origin.x = self.view.frame.width*1.5
-                while isSharkIntersectedWithPrevious() {
-                    sharkImageView.frame.origin.x += sharkImageView.frame.width
-                }
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
                 bonusScoreAnimation()
                 self.currentScore += 25
@@ -597,12 +603,6 @@ class GameViewController: UIViewController {
         missleImageView.frame.origin.x += 1
     }
     
-    func isSharkIntersectedWithPrevious() -> Bool {
-        for index in 1...sharkImageViewCollection.count-1 {
-            if sharkImageViewCollection[index].frame.intersects(sharkImageViewCollection[index-1].frame) { return true }
-        }
-        return false
-    }
     func isAlreadyFired()-> Bool {
         if missleImageView.isDescendant(of: self.view) {
             return true
@@ -738,7 +738,9 @@ class GameViewController: UIViewController {
     func moveMysteryBox() {
         if self.submarineSafeAreaView.frame.intersects(self.mysteryBoxImageView.frame) {
             print("Mystery box added!")
+            mysteryBoxImageView.frame.origin.x = self.view.frame.width*3
             superMissleCount += 1
+            superMissleButton.isHidden = false
         }
          if mysteryBoxImageView.frame.maxX < 0 {
              mysteryBoxImageView.frame.origin.x = 3*self.view.frame.width
@@ -792,7 +794,7 @@ class GameViewController: UIViewController {
     }
     
     func startMysteryBoxTimer() {
-        mysteryBoxTimer = Timer.scheduledTimer(withTimeInterval: 0.03/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
+        mysteryBoxTimer = Timer.scheduledTimer(withTimeInterval: 0.055/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
             self.moveMysteryBox()
         })
         mysteryBoxTimer.fire()
@@ -966,6 +968,8 @@ class GameViewController: UIViewController {
         xSharkPosition = view.frame.width - 150
         self.isLive = false
         self.fireButton.isHidden = true
+        self.superMissleButton.isHidden = true
+        self.superMissleCount = 0
         self.animateGameOverLabels()
         self.upButton.isUserInteractionEnabled = false
     }
