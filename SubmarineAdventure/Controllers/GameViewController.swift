@@ -153,11 +153,15 @@ class GameViewController: UIViewController {
     @IBAction func superButtonTapped(_ sender: UIButton) {
         superMissleCount -= 1
         superMissleButton.isHidden = true
+        var tempValue = self.view.frame.width*0.3
         for sharkImageView in sharkImageViewCollection {
-            var tempValue = self.view.frame.width*0.3
+            self.boomImageView.frame.origin = sharkImageView.frame.origin
+            megaBoomAnimation()
             sharkImageView.frame.origin.x = self.view.frame.width + tempValue
             tempValue += CGFloat.random(in: 0...self.view.frame.width/2)
         }
+        bonusScoreAnimation(score: +100)
+        self.currentScore += 100
     }
     @IBAction func reloadTapped(_ sender: UIButton) {
         removeCreatedSharks()
@@ -173,6 +177,7 @@ class GameViewController: UIViewController {
         movingGroundImageViewCollection[0].frame.origin.x = self.view.frame.origin.x
         movingGroundImageViewCollection[1].frame.origin.x = self.view.frame.width
         plantImageView.frame.origin.x = 1.2 * self.view.frame.width
+        mysteryBoxImageView.frame.origin.x = self.view.frame.width
         sender.isEnabled = false
         fireButton.isHidden = false
         sender.alpha = 0
@@ -483,7 +488,7 @@ class GameViewController: UIViewController {
     }
 
     func setBonusLabel() {
-        bonusLabel.frame = CGRect(x: self.view.frame.midX-scoreLabel.frame.width/2, y: self.view.frame.midY, width: 50, height: 25)
+        bonusLabel.frame = CGRect(x: self.view.frame.midX-scoreLabel.frame.width/2, y: self.view.frame.midY, width: 100, height: 25)
         bonusLabel.textAlignment = .center
         bonusLabel.textColor = .white
         bonusLabel.text = "+25"
@@ -536,8 +541,9 @@ class GameViewController: UIViewController {
         return CGFloat.random(in: seaImageView.frame.minY+submarine.height...seaImageView.frame.maxY-2*submarine.height)
     }
     
-    func bonusScoreAnimation() {
+    func bonusScoreAnimation(score: Int) {
         UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
+            self.bonusLabel.text = "+\(score)"
             UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
                 self.bonusLabel.alpha = 1
             }
@@ -555,6 +561,10 @@ class GameViewController: UIViewController {
                 self.boomImageView.alpha = 0
             }
         }
+    }
+    
+    func megaBoomAnimation() {
+        
     }
     func moveBubble() {
         let oneBubble = setBubble()
@@ -594,7 +604,7 @@ class GameViewController: UIViewController {
                 missleImageView.frame.origin.y = submarineImageView.frame.midY
                 sharkImageView.frame.origin.x = self.view.frame.width*1.5
                 sharkImageView.image = UIImage(named: shark.imageName.randomElement() ?? "Fish")
-                bonusScoreAnimation()
+                bonusScoreAnimation(score: 25)
                 self.currentScore += 25
                 return
             }
