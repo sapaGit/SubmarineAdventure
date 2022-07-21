@@ -370,7 +370,7 @@ class GameViewController: UIViewController {
     }
     
     func setMysteryBox() {
-        mysteryBoxImageView.frame = CGRect(x: self.view.frame.width*1.2, y: groundSafeArea.frame.minY - sharkImageViewCollection[0].frame.height*0.8, width: self.view.frame.width/18, height: sharkImageViewCollection[0].frame.height)
+        mysteryBoxImageView.frame = CGRect(x: self.view.frame.width*1.2, y: randomSeaYPosition(), width: self.view.frame.width/18, height: self.view.frame.width/18)
         mysteryBoxImageView.image = UIImage(named: mysteryBox.imageName)
         mysteryBoxImageView.contentMode = .scaleToFill
         mysteryBoxImageView.clipsToBounds = true
