@@ -749,13 +749,16 @@ class GameViewController: UIViewController {
         if self.submarineSafeAreaView.frame.intersects(self.mysteryBoxImageView.frame) {
             print("Mystery box added!")
             mysteryBoxImageView.frame.origin.x = self.view.frame.width*3
+            mysteryBoxImageView.frame.origin.y = randomSeaYPosition()
             superMissleCount += 1
             superMissleButton.isHidden = false
+            return
         }
          if mysteryBoxImageView.frame.maxX < 0 {
              mysteryBoxImageView.frame.origin.x = 3*self.view.frame.width
+             mysteryBoxImageView.frame.origin.y = randomSeaYPosition()
          }
-         mysteryBoxImageView.frame.origin.x -= 1
+            mysteryBoxImageView.frame.origin.x -= 1
      }
     
     
@@ -804,7 +807,7 @@ class GameViewController: UIViewController {
     }
     
     func startMysteryBoxTimer() {
-        mysteryBoxTimer = Timer.scheduledTimer(withTimeInterval: 0.055/Double(currentUser.speed)/speedMultiplier, repeats: true, block: { _ in
+        mysteryBoxTimer = Timer.scheduledTimer(withTimeInterval: 0.02/Double(currentUser.speed), repeats: true, block: { _ in
             self.moveMysteryBox()
         })
         mysteryBoxTimer.fire()
@@ -943,7 +946,6 @@ class GameViewController: UIViewController {
         skyTimer.invalidate()
         sprayTimer.invalidate()
         oxygenBubbleTimer.invalidate()
-        mysteryBoxTimer.invalidate()
         startSprayTimer()
         startOxygenBubbleTimer()
         startPlantTimer()
@@ -951,12 +953,13 @@ class GameViewController: UIViewController {
         startSkyTimer()
         startShipTimer()
         startSharkTimer()
-        startMysteryBoxTimer()
     }
     
     func stopGame() {
         self.oxygenViewFull.alpha = 0
         animateCrash()
+        self.mysteryBoxTimer.invalidate()
+        print("invalidated")
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
@@ -971,7 +974,6 @@ class GameViewController: UIViewController {
         self.crabTimer.invalidate()
         self.graviTimer.invalidate()
         self.seaBubbleTimer.invalidate()
-        self.mysteryBoxTimer.invalidate()
         gameOverScoreLabel.text = " \(currentUser.userName) your score: \(currentScore) "
         scoreLabel.alpha = 0
         self.currentScore = 0
