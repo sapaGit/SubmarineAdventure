@@ -35,6 +35,7 @@ class GameViewController: UIViewController {
     
     private var shipImageView = UIImageView()
     private var boomImageView = UIImageView()
+    private var superBoomImageView = UIImageView()
     private var missleImageView = UIImageView()
     private var superMissleImageView = UIImageView()
     private var plantImageView = UIImageView()
@@ -154,9 +155,9 @@ class GameViewController: UIViewController {
         superMissleCount -= 1
         superMissleButton.isHidden = true
         var tempValue = self.view.frame.width*0.3
+        superBoomAnimation()
         for sharkImageView in sharkImageViewCollection {
             self.boomImageView.frame.origin = sharkImageView.frame.origin
-            megaBoomAnimation()
             sharkImageView.frame.origin.x = self.view.frame.width + tempValue
             tempValue += CGFloat.random(in: 0...self.view.frame.width/2)
         }
@@ -287,6 +288,7 @@ class GameViewController: UIViewController {
         setMissle()
         setSuperMissle()
         setBoom()
+        setSuperBoom()
         setPlant()
         setMysteryBox()
         setOxygenBubble()
@@ -411,6 +413,18 @@ class GameViewController: UIViewController {
         view.addSubview(boomImageView)
         
     }
+    
+    func setSuperBoom() {
+        superBoomImageView.frame.size = CGSize(width: self.view.frame.height, height: self.view.frame.height)
+        superBoomImageView.frame.origin = CGPoint(x: self.seaImageView.frame.midX-superBoomImageView.frame.width/2, y: self.seaImageView.frame.midY-superBoomImageView.frame.height/2)
+        superBoomImageView.image = UIImage(named: "SuperBoom")
+        superBoomImageView.contentMode = .scaleToFill
+        superBoomImageView.clipsToBounds = true
+        superBoomImageView.layer.zPosition = 1
+        superBoomImageView.alpha = 0
+        view.addSubview(superBoomImageView)
+    }
+    
     func setOxygenView() {
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         oxygenViewFull.roundedLess()
@@ -563,8 +577,15 @@ class GameViewController: UIViewController {
         }
     }
     
-    func megaBoomAnimation() {
-        
+    func superBoomAnimation() {
+        UIView.animateKeyframes(withDuration: 1, delay: 0, options: .calculationModeLinear) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.05) {
+                self.superBoomImageView.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.05, relativeDuration: 0.95) {
+                self.superBoomImageView.alpha = 0
+            }
+        }
     }
     func moveBubble() {
         let oneBubble = setBubble()
@@ -959,7 +980,6 @@ class GameViewController: UIViewController {
         self.oxygenViewFull.alpha = 0
         animateCrash()
         self.mysteryBoxTimer.invalidate()
-        print("invalidated")
         self.sharkTimer.invalidate()
         self.shipTimer.invalidate()
         self.oxygenTimer.invalidate()
