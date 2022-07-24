@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="y8p-VE-0WG">
-    <device id="retina6_7" orientation="landscape" appearance="light"/>
+    <device id="retina6_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -29,14 +29,14 @@
             <objects>
                 <viewController storyboardIdentifier="MenuViewController" id="Knc-HO-eUd" customClass="MenuViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xkK-Md-4hA">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YellowSubmarine" translatesAutoresizingMaskIntoConstraints="NO" id="o2i-HO-Pp9">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submarine Adventures" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHb-S6-CeN">
-                                <rect key="frame" x="264" y="29.999999999999996" width="398.33333333333326" height="40.666666666666657"/>
+                                <rect key="frame" x="248.99999999999997" y="29.999999999999996" width="398.33333333333326" height="40.666666666666657"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" systemColor="systemGrayColor"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="32"/>
@@ -44,7 +44,7 @@
                                 <color key="highlightedColor" systemColor="systemBrownColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="WT6-Tb-lly">
-                                <rect key="frame" x="368.33333333333331" y="143.66666666666666" width="189.33333333333331" height="200.99999999999997"/>
+                                <rect key="frame" x="353.33333333333331" y="136.66666666666666" width="189.33333333333331" height="200.99999999999997"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-0s-CJN">
                                         <rect key="frame" x="0.0" y="0.0" width="189.33333333333334" height="59.666666666666664"/>
@@ -115,14 +115,14 @@
             <objects>
                 <viewController storyboardIdentifier="GameViewController" autoresizesArchivedViewToFullSize="NO" id="r1u-5i-Rcc" customClass="GameViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j45-Tg-t8M">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sea" translatesAutoresizingMaskIntoConstraints="NO" id="TjD-X1-fNG">
-                                <rect key="frame" x="0.0" y="70" width="926" height="358"/>
+                                <rect key="frame" x="0.0" y="70" width="896" height="344"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Sky" translatesAutoresizingMaskIntoConstraints="NO" id="PL0-XL-gfl">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="70"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="70"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Qc-JY-cY9">
                                 <rect key="frame" x="5" y="20" width="36" height="45"/>
@@ -166,21 +166,21 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vz-0t-cwN">
-                                <rect key="frame" x="20" y="357.66666666666669" width="57" height="30.333333333333314"/>
+                                <rect key="frame" x="20" y="343.66666666666669" width="57" height="30.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="0.0" height="0.0"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ScG-ll-Tjw">
-                                <rect key="frame" x="384.66666666666669" y="127" width="157.00000000000006" height="45"/>
+                                <rect key="frame" x="369.66666666666669" y="120" width="157.00000000000006" height="45"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="35"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game over " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Nd-di-maN">
-                                <rect key="frame" x="300.66666666666669" y="192" width="325.00000000000006" height="44"/>
+                                <rect key="frame" x="285.66666666666669" y="185" width="325.00000000000006" height="44"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="GXB-0H-d9D"/>
@@ -191,7 +191,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RSZ-P9-TMP">
-                                <rect key="frame" x="353" y="256" width="220" height="52"/>
+                                <rect key="frame" x="338" y="249" width="220" height="52"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="31"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -216,13 +216,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PAL-yv-std">
-                                <rect key="frame" x="722.33333333333337" y="358" width="99.666666666666629" height="30"/>
+                                <rect key="frame" x="816" y="343" width="16" height="30"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="23"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePA-h2-CQl">
-                                <rect key="frame" x="10" y="357" width="55" height="61"/>
+                                <rect key="frame" x="10" y="343" width="55" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="kPE-vp-E0K"/>
                                     <constraint firstAttribute="height" constant="61" id="tYi-o8-Vci"/>
@@ -237,9 +237,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8h-iJ-aoF">
-                                <rect key="frame" x="155" y="70" width="520.33333333333337" height="358"/>
+                                <rect key="frame" x="282" y="70" width="520" height="344"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="X8h-iJ-aoF" secondAttribute="height" multiplier="500:344" id="7E0-U5-NjG"/>
+                                    <constraint firstAttribute="width" secondItem="X8h-iJ-aoF" secondAttribute="height" multiplier="65:43" id="jwt-2Z-0D8"/>
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
@@ -253,7 +253,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zat-lC-9Q0">
-                                <rect key="frame" x="85" y="357" width="55" height="61"/>
+                                <rect key="frame" x="85" y="343" width="55" height="61"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="Qa9-zD-qO6"/>
                                     <constraint firstAttribute="height" constant="61" id="Y9h-8g-1qd"/>
@@ -271,9 +271,9 @@
                         <viewLayoutGuide key="safeArea" id="roW-8H-DWj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="PAL-yv-std" firstAttribute="leading" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="47" id="098-CU-EA3"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerY" secondItem="j45-Tg-t8M" secondAttribute="centerY" id="18Y-rC-ORj"/>
                             <constraint firstItem="Zat-lC-9Q0" firstAttribute="leading" secondItem="ePA-h2-CQl" secondAttribute="trailing" constant="20" id="1Ks-Ph-7n5"/>
+                            <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" secondItem="X8h-iJ-aoF" secondAttribute="trailing" constant="50" id="2NV-jz-8aX"/>
                             <constraint firstItem="ScG-ll-Tjw" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="6SS-1m-tYh"/>
                             <constraint firstItem="X8h-iJ-aoF" firstAttribute="top" secondItem="PL0-XL-gfl" secondAttribute="bottom" id="7t4-ZK-7kW"/>
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nd-di-maN" secondAttribute="trailing" constant="8" symbolic="YES" id="8Ls-qD-JtD"/>
@@ -284,19 +284,21 @@
                             <constraint firstAttribute="bottom" secondItem="X8h-iJ-aoF" secondAttribute="bottom" id="DPb-Gn-xQn"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" constant="70" id="EOB-VV-QwP"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="top" secondItem="5Nd-di-maN" secondAttribute="bottom" constant="20" id="G0i-Vw-5WC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PAL-yv-std" secondAttribute="trailing" constant="4" id="Hpv-vG-btH"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="top" secondItem="ScG-ll-Tjw" secondAttribute="bottom" constant="20" id="IfU-aR-xpw"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" id="Lf8-gK-Djj"/>
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Qc-JY-cY9" secondAttribute="trailing" symbolic="YES" id="R9j-cT-NzF"/>
                             <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2Vz-0t-cwN" secondAttribute="trailing" symbolic="YES" id="SXP-Xz-32g"/>
                             <constraint firstAttribute="bottom" secondItem="TjD-X1-fNG" secondAttribute="bottom" id="SYm-Yz-51j"/>
                             <constraint firstItem="2Vz-0t-cwN" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="20" id="Tgw-jC-DWG"/>
+                            <constraint firstItem="PAL-yv-std" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Zat-lC-9Q0" secondAttribute="trailing" constant="388" id="TnW-Mc-Pil"/>
                             <constraint firstAttribute="bottom" secondItem="Zat-lC-9Q0" secondAttribute="bottom" constant="10" id="Xvf-9A-sM3"/>
                             <constraint firstItem="5Nd-di-maN" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="YWd-Wr-Thz"/>
                             <constraint firstItem="tQG-6l-32t" firstAttribute="leading" secondItem="2bj-wQ-Azt" secondAttribute="trailing" constant="10" id="ZBF-eM-gyp"/>
-                            <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" secondItem="Zat-lC-9Q0" secondAttribute="trailing" constant="15" id="aeR-S0-pPL"/>
+                            <constraint firstItem="roW-8H-DWj" firstAttribute="bottom" secondItem="PAL-yv-std" secondAttribute="bottom" constant="20" id="bRg-TJ-Axw"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="5" id="eWu-Tv-QPx"/>
                             <constraint firstItem="hhc-Qn-AV6" firstAttribute="centerY" secondItem="TjD-X1-fNG" secondAttribute="centerY" constant="55" id="f5f-Tf-33x"/>
-                            <constraint firstItem="roW-8H-DWj" firstAttribute="trailing" secondItem="PAL-yv-std" secondAttribute="trailing" constant="60" id="mcg-WH-Nqe"/>
+                            <constraint firstItem="X8h-iJ-aoF" firstAttribute="leading" relation="lessThanOrEqual" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="330" id="nZ2-VT-m7O"/>
                             <constraint firstAttribute="bottom" secondItem="2Vz-0t-cwN" secondAttribute="bottom" constant="40" id="oVq-nt-S07"/>
                             <constraint firstItem="2bj-wQ-Azt" firstAttribute="centerY" secondItem="tQG-6l-32t" secondAttribute="centerY" id="rMk-3q-vn9"/>
                             <constraint firstItem="RSZ-P9-TMP" firstAttribute="centerX" secondItem="j45-Tg-t8M" secondAttribute="centerX" id="rZH-2S-SqY"/>
@@ -305,7 +307,6 @@
                             <constraint firstAttribute="trailing" secondItem="PL0-XL-gfl" secondAttribute="trailing" id="ujQ-06-aGe"/>
                             <constraint firstItem="ePA-h2-CQl" firstAttribute="leading" secondItem="j45-Tg-t8M" secondAttribute="leading" constant="10" id="wMj-L6-0aM"/>
                             <constraint firstItem="TjD-X1-fNG" firstAttribute="top" secondItem="PL0-XL-gfl" secondAttribute="bottom" id="xxR-Wf-pRe"/>
-                            <constraint firstAttribute="bottom" secondItem="PAL-yv-std" secondAttribute="bottom" constant="40" id="xy7-Jg-uFB"/>
                             <constraint firstItem="5Qc-JY-cY9" firstAttribute="top" secondItem="roW-8H-DWj" secondAttribute="top" constant="20" id="ycI-a1-6mA"/>
                             <constraint firstAttribute="trailing" secondItem="TjD-X1-fNG" secondAttribute="trailing" id="zmn-Cp-VeN"/>
                         </constraints>
@@ -341,21 +342,21 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsViewController" id="hQ4-AH-EbO" customClass="SettingsViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ZO-bR-ZUZ">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YellowSubmarine" translatesAutoresizingMaskIntoConstraints="NO" id="mKK-Xq-sDf">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SubmarineGrey" translatesAutoresizingMaskIntoConstraints="NO" id="6UC-fN-n7p">
-                                <rect key="frame" x="383" y="174" width="160" height="80"/>
+                                <rect key="frame" x="368" y="167" width="160" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="7Je-hT-28V"/>
                                     <constraint firstAttribute="width" constant="160" id="uYO-VQ-N6y"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="guM-Ng-u5b">
-                                <rect key="frame" x="319" y="192" width="44" height="44"/>
+                                <rect key="frame" x="304" y="185" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="Px2-ws-KVH"/>
                                     <constraint firstAttribute="height" constant="44" id="zMH-56-9G4"/>
@@ -370,7 +371,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NdD-bA-MSW">
-                                <rect key="frame" x="563" y="192" width="44" height="44"/>
+                                <rect key="frame" x="548" y="185" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="3P0-4T-4ud"/>
                                     <constraint firstAttribute="height" constant="44" id="k26-eU-QDg"/>
@@ -385,7 +386,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="68Z-6y-rzr">
-                                <rect key="frame" x="322" y="289" width="282" height="44.333333333333314"/>
+                                <rect key="frame" x="307" y="282" width="282" height="44.333333333333314"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mus-En-8wg">
                                         <rect key="frame" x="0.0" y="0.0" width="78.666666666666671" height="44.333333333333336"/>
@@ -412,7 +413,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foW-FX-1sl">
-                                        <rect key="frame" x="203.33333333333337" y="0.0" width="78.666666666666686" height="44.333333333333336"/>
+                                        <rect key="frame" x="203.33333333333331" y="0.0" width="78.666666666666686" height="44.333333333333336"/>
                                         <color key="backgroundColor" systemColor="systemYellowColor"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
@@ -426,13 +427,13 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iaa-sR-PJA">
-                                <rect key="frame" x="235.66666666666666" y="296" width="76.333333333333343" height="30.333333333333314"/>
+                                <rect key="frame" x="220.66666666666666" y="289" width="76.333333333333343" height="30.333333333333314"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Put your name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T7h-3j-w1o">
-                                <rect key="frame" x="322" y="99" width="282" height="40"/>
+                                <rect key="frame" x="307" y="92" width="282" height="40"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="24"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -498,11 +499,11 @@
             <objects>
                 <viewController storyboardIdentifier="RecordsViewController" id="DAw-oj-F75" customClass="RecordsViewController" customModule="SubmarineAdventure" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gWv-gQ-Obw">
-                        <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YellowSubmarine" translatesAutoresizingMaskIntoConstraints="NO" id="aMA-2a-b7v">
-                                <rect key="frame" x="0.0" y="0.0" width="926" height="428"/>
+                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XiJ-zb-mGw">
                                 <rect key="frame" x="5" y="20" width="36" height="45"/>
@@ -516,14 +517,14 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Bw8-cX-aPf">
-                                <rect key="frame" x="60" y="73.666666666666657" width="806" height="305.33333333333337"/>
+                                <rect key="frame" x="60" y="73.666666666666657" width="776" height="291.33333333333337"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomViewCell" id="t41-Es-hms" customClass="CustomViewCell" customModule="SubmarineAdventure" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="44.666666030883789" width="806" height="56.333332061767578"/>
+                                        <rect key="frame" x="0.0" y="44.666666030883789" width="776" height="56.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t41-Es-hms" id="fk2-pt-0wp">
-                                            <rect key="frame" x="0.0" y="0.0" width="806" height="56.333332061767578"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="776" height="56.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NE7-Qt-xG5">
@@ -535,7 +536,7 @@
                                                     <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKD-Mg-OIj">
-                                                    <rect key="frame" x="698" y="11.333333333333336" width="18" height="34"/>
+                                                    <rect key="frame" x="668" y="11.333333333333336" width="18" height="34"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="26"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
