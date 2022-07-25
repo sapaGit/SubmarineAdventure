@@ -9,7 +9,6 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-    //comment
     //MARK: - IBOutlets
     @IBOutlet var nameUser: UILabel!
     @IBOutlet var upButton: UIButton!
@@ -27,12 +26,20 @@ class GameViewController: UIViewController {
     
     //MARK: - let/var
     private var currentUser = User(userName: "User")
-    
     private var submarineImageView = UIImageView()
     
-    //created for checking intersection
+    //created for checking intersection with submarine
     private var submarineSafeAreaView = UIView()
     
+    //created for checking intersection with ground
+    private var groundSafeArea = UIView()
+    
+    private var oxygenViewFull = UIView()
+    
+    //not installed, this is white view when oxygen is decreasing
+    private var oxygenViewEmpty = UIView()
+    
+    //imageViews
     private var shipImageView = UIImageView()
     private var boomImageView = UIImageView()
     private var superBoomImageView = UIImageView()
@@ -45,22 +52,16 @@ class GameViewController: UIViewController {
     //created to hide elements when pop to root VC
     private var interfaceImageView = UIImageView()
     
+    //imageView collections
     private var sharkImageViewCollection = [UIImageView(), UIImageView()]
     private var sprayImageViewCollection = [UIImageView(), UIImageView()]
     private var movingSkyViewCollection = [UIImageView(), UIImageView()]
     private var movingGroundImageViewCollection = [UIImageView(), UIImageView()]
-    
-    //created for checking intersection
-    private var groundSafeArea = UIView()
-    
-    private var oxygenViewFull = UIView()
-    
-    //not installed, this is white view when oxygen is decreasing
-    private var oxygenViewEmpty = UIView()
    
     //shows bonus points for some actions in game
     private var bonusLabel = UILabel()
     
+    //timers
     private var oxygenTimer = Timer()
     private var sharkTimer = Timer()
     private var shipTimer = Timer()
@@ -86,6 +87,12 @@ class GameViewController: UIViewController {
     //multiplier for changing game speed
     private var speedMultiplier = 1.0
     
+    private var currentScore = 0
+    private var gameTime = 0
+    private var sharkIndex = 2
+    private var superMissleCount = 0
+    private var xSharkPosition: CGFloat = 0
+    
     //creating objects
     private var ship = Ship()
     private var shark = Shark()
@@ -94,12 +101,6 @@ class GameViewController: UIViewController {
     private var missle = Missle()
     private var superMisssle = SuperMissle()
     
-    private var currentScore = 0
-    private var gameTime = 0
-    private var sharkIndex = 2
-    private var superMissleCount = 0
-    private var xSharkPosition: CGFloat = 0
-
     
     //MARK: - lifecycle funcs
     
@@ -111,8 +112,6 @@ class GameViewController: UIViewController {
     }
     //MARK: - IBActions
    
-                                             
-                                             
     @IBAction func goToMainPressed(_ sender: UIButton) {
         stopGame()
         self.navigationController?.popToRootViewController(animated: true)
@@ -225,6 +224,7 @@ class GameViewController: UIViewController {
             if !isAlreadyFired() { missleImageView.frame.origin.x -= 1 }
         }
     }
+    //only that direction installed
     @objc func moveSubmarineUp() {
         if isInRightPositionUp() && isLive {
             if isInAir() {
@@ -240,19 +240,23 @@ class GameViewController: UIViewController {
         }
     }
     
-    
+    //to not move submarine higher than sea
     func isInRightPositionUp() -> Bool {
         if submarineImageView.frame.minY < seaImageView.frame.minY-submarine.height/4 {
             return false
         }
         return true
     }
+    
+    //to not move submarine lower than ground
     func isInRightPositionDown() -> Bool {
         if submarineImageView.frame.maxY > seaImageView.frame.maxY + submarine.height/4 {
             return false
         }
         return true
     }
+    
+    //to not move submarine outside view - not installed
     func isInRightPositionLeft() -> Bool {
         if submarineImageView.frame.minX < seaImageView.frame.minX + submarine.width/4 {
             return false
@@ -260,6 +264,7 @@ class GameViewController: UIViewController {
         return true
     }
     
+    //to not move submarine outside view - not installed
     func isInRightPositionRight() -> Bool {
         if submarineImageView.frame.minX > seaImageView.frame.maxX - 3 * submarine.width {
             return false
@@ -267,6 +272,7 @@ class GameViewController: UIViewController {
         return true
     }
     
+    //set interface funcs
     func setInterface() {
         xSharkPosition = view.frame.width - 150
         seaImageView.clipsToBounds = true
@@ -339,6 +345,8 @@ class GameViewController: UIViewController {
         view.addSubview(submarineImageView)
         //view.addSubview(submarineSafeAreaView)
     }
+    
+    //append new shark to shark array
     func addAnoterShark() {
         let sharkImageView = UIImageView()
         sharkImageView.clipsToBounds = true
@@ -428,12 +436,15 @@ class GameViewController: UIViewController {
     func setOxygenView() {
         oxygenViewFull.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
         oxygenViewFull.roundedLess()
+        
+        //here white view of Oxygen to show that it is empty - not installed
 //        oxygenViewEmpty.frame = CGRect(x: submarineImageView.frame.minX, y: submarineImageView.frame.minY - submarine.height/4, width: submarineImageView.frame.width, height: submarine.height/7)
 //        oxygenViewEmpty.roundedLess()
 //        oxygenViewEmpty.backgroundColor = .white
         oxygenViewFull.backgroundColor = .green
         oxygenViewFull.layer.zPosition = 1
 //        view.addSubview(oxygenViewEmpty)
+        
         view.addSubview(oxygenViewFull)
     }
     
@@ -510,7 +521,7 @@ class GameViewController: UIViewController {
         bonusLabel.alpha = 0
         self.view.addSubview(bonusLabel)
     }
-    //next
+    
     func sharkYPosition(index: Int) -> CGFloat {
         switch index {
         case 0: return seaImageView.frame.origin.y + seaImageView.frame.height/10
@@ -524,8 +535,6 @@ class GameViewController: UIViewController {
     func randomXSeaBubble() -> CGFloat {
         return CGFloat.random(in: self.view.frame.origin.x + submarine.width/2...self.view.frame.width-submarine.width)
     }
-    
-    
     
     func setMissle() {
         missleImageView.frame = CGRect(x: submarineImageView.frame.maxX, y: submarineImageView.frame.midY, width: submarine.width/2, height: submarine.height/5)
